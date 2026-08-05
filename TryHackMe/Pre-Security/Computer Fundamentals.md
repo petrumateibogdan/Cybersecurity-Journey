@@ -61,3 +61,6 @@ I also learnt that using virtualization provides massive advantages, including:
 * A safe, isolated environment for cyber security testing
 * Faster deployment and centralized management
 * Scalability, flexibility, and portability
+
+### 5. Cloud Computing Fundamentals
+
