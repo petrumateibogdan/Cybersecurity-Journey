@@ -18,6 +18,6 @@
   Starting with pressing the power button, firmware starts (older **BIOS** (Basic Input/Output System) and **UEFI** (Unified Extensible Firmware Interface)), **POST** (Power-On Self Test), select boot device from the SSD or HDD, and then start the bootloader (OS into RAM -> UEFI gives control of the components to the OS).
 
 
-### 2.Computer Types
+### 2. Computer Types
 
 
