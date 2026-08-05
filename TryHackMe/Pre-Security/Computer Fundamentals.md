@@ -27,3 +27,20 @@
 
 ### 3. Client-Server Basics
 
+This was an interesting topic where I learnt about: 
+
+* **Client and Server:** client always initiates the request via a browser requesting a webpage, and the server gives what what the client was looking for
+* **Request and response:** clients send requests and servers responses. If it's unavailable an error response is returned.
+* **Protocol:** How does a client and a server communicate(commands,language,structure,syntax,lingo)
+* **Port:** Used to identify a specific service running on a system, similar to using different doors for different services( takeaway,delivery,restaurant)
+* **DNS Domain Name Service):** Like GPS, website to server's location. Server's location is IP (Internet Protocol). So DNS corresponds to an IP address
+
+* **HTTP methods:** GET,POST,PUT,DELETE,PATCH.HEAD,OPTIONS,CONNECT,TRACE (defined in RFC documents, Request for Comments)
+* HTTP uses stateless traffic but it keeps track of past requests via cookies,tokens.
+* WITH **GET** method you retrieve resources from web servers via a browser. (status code: '200 OK')
+
+* **HTTP(S) = Hypertext Transfer Protocol(Secure)** = client server protocol used for the World Wide Web where requests are processed independently
+* In the browser, **F12(inspect)** = opens Developer Tools to inspect,debug and analyze web pages.
+* On the network tab I saw multiple GET requests. (200 OK and 404) and by clicking each one I saw: Scheme(which protocol : HTTP/ HTTPS),Host,Filename('/'=index.html),Address(IP address),Status(200 OK).
+
+### 4.
