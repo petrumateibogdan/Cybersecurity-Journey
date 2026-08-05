@@ -43,4 +43,21 @@ This was an interesting topic where I learnt about:
 * In the browser, **F12(inspect)** = opens Developer Tools to inspect,debug and analyze web pages.
 * On the network tab I saw multiple GET requests. (200 OK and 404) and by clicking each one I saw: Scheme(which protocol : HTTP/ HTTPS),Host,Filename('/'=index.html),Address(IP address),Status(200 OK).
 
-### 4.
+### 4. Virtualisation Basics
+
+In this section, I learnt why virtualization is such a critical foundation in modern IT, both for maximizing hardware efficiency and for safely isolating environments.
+
+### Key Terminology I Learnt:
+* **Virtualization:** Enables a single physical computer to act like multiple separate computers at the same time.
+* **Hypervisor:** The "manager" software that actually makes and runs these virtual computers.
+* **Lab Machine (VM):** A complete virtual computer running inside a real one, with its own dedicated operating system.
+* **Container:** A small, isolated box built for a single app that shares the same system as the host instead of needing a full OS.
+* **Container Images:** Pre-packed recipes or templates used to create containers.
+* **Network Ports:** Special numbered entry points that apps use to communicate over the network.
+
+### The Key Benefits of Virtualization:
+I also learnt that using virtualization provides massive advantages, including:
+* Cost savings and much better resource usage
+* A safe, isolated environment for cyber security testing
+* Faster deployment and centralized management
+* Scalability, flexibility, and portability
