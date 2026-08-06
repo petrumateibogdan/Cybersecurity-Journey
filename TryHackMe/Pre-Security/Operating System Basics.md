@@ -1,6 +1,6 @@
 ## Module 3: Operating System Basics
 
-## 1. Operating Systems: Introduction
+### 1. Operating Systems: Introduction
 
 In this section, I explored what an Operating System (OS) actually is and why it's the most critical piece of software on a computer. 
 
@@ -33,4 +33,4 @@ I also learnt about the two primary ways a user can communicate with the operati
 * **CUI / CLI (Character / Command-Line Interface):** This is the text-based method of interacting with the computer. Instead of clicking icons, you type specific text commands into a terminal. While it has a steeper learning curve, I learned that the command line is significantly faster, uses fewer system resources, and is an absolute necessity for cybersecurity and system administration.
 
 
-## 2.
+### 2.
