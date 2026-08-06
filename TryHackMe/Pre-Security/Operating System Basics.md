@@ -69,3 +69,24 @@ In this room, I learnt about the essential commands for the Linux terminal. Here
 * **`cat os-release`:** Reads the OS release system file.
 * **`cd ~ && clear`:** Clears all and starts from the beginning in the home directory.
 * **`CTRL+C`:** Force stops a process if it is frozen.
+
+## 4. Windows CLI Basics
+
+## Windows CLI Basics
+
+In this room, I learnt about the essential commands used in the Windows Command Prompt (cmd). Here is the list of commands and what they do:
+
+* **`cd`:** Shows my current folder so I know where I am, and is also used to change into a different folder.
+* **`dir`:** Shows the contents of the current directory.
+* **`dir /a`:** Shows all files, including the hidden ones (the `/a` stands for attributes).
+* **`cd folder_name`:** Changes the directory to a specific folder.
+* **`cd ..`:** Goes back up one level.
+* **`dir /s task.txt`:** Searches for a specific file (the `/s` tells Windows to search all subfolders).
+* **`type task.txt`:** Reads the contents of a file and prints it to the screen.
+* **`cls`:** Clears the screen.
+* **`whoami`:** Prints the username of the account currently logged in.
+* **`hostname`:** Shows the computer's name.
+* **`systeminfo`:** Prints detailed information about the PC.
+* **`ipconfig`:** Displays basic network configuration information.
+
+## 5. 
