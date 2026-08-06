@@ -33,4 +33,21 @@ I also learnt about the two primary ways a user can communicate with the operati
 * **CUI / CLI (Character / Command-Line Interface):** This is the text-based method of interacting with the computer. Instead of clicking icons, you type specific text commands into a terminal. While it has a steeper learning curve, I learned that the command line is significantly faster, uses fewer system resources, and is an absolute necessity for cybersecurity and system administration.
 
 
-### 2.
+### 2. Windows Basics
+## Windows Basics
+
+In this track, I went over the core components of the Windows operating system. Since I have been using Windows on my personal computers up until now, I was already familiar with almost all of these tools and features, but it was still a great refresher to see them formally defined from an IT perspective:
+
+* **Desktop:** The primary workspace where shortcuts, files, and folders live.
+* **Taskbar:** The control strip that holds open applications, system tools, and notifications.
+* **Start Menu:** Accessed via the Windows logo, this is the main hub for launching apps, finding settings, and managing power options.
+* **Search:** A quick utility for finding files, applications, or settings just by typing keywords.
+* **File Explorer:** The built-in navigation tool used to manage and organize directories and files.
+* **Windows Update:** The service that automatically keeps the OS, security features, and native apps patched and up to date.
+* **Microsoft Store:** The official marketplace for installing trusted Windows applications.
+* **Windows Settings:** The modern, centralized dashboard for configuring system, personalization, and security options.
+* **Control Panel:** The legacy management interface used for deeper, more advanced system configurations.
+* **Task Manager:** A real-time monitoring tool used to check system performance and manage running processes.
+* **Windows Security:** The main dashboard for Windows' built-in antivirus and threat protection tools.
+* **Windows Defender Firewall:** The native firewall that monitors and blocks unauthorized network traffic to protect the system.
+
