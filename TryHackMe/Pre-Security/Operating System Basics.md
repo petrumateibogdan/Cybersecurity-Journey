@@ -54,7 +54,7 @@ In this track, I went over the core components of the Windows operating system. 
 
 In this room, I learnt about the essential commands for the Linux terminal. Here are the commands I used and what they do:
 
-* **`pwd` ("where am I?"):** Print Working Directory = shows me the folder I'm currently in.
+* **`pwd`("where am I?"):** Print Working Directory = shows me the folder I'm currently in.
 * **`ls`:** Lists files in the current folder.
 * **`ls -l`:** Lists files in LONG FORMAT.
 * **`ls -al`:** Lists all hidden files (files that start with a `.` dot). Linux hides them by default.
