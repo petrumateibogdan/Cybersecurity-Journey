@@ -30,7 +30,7 @@ I also realized that the OS is the first line of defense. Long before you instal
 ### How Users Interact with the OS
 I also learnt about the two primary ways a user can communicate with the operating system:
 * **GUI (Graphical User Interface):** This is the visual method most people use daily. It relies on windows, icons, and menus that you navigate with a mouse (like a standard Windows desktop). It is designed to be highly intuitive and user-friendly.
-* **CUI / CLI (Character / Command-Line Interface):** This is the text-based method of interacting with the computer. Instead of clicking icons, you type specific text commands into a terminal. While it has a steeper learning curve, I learned that the command line is significantly faster, uses fewer system resources, and is an absolute necessity for cybersecurity and system administration.
+* **CLI (Command-Line Interface):** This is the text-based method of interacting with the computer. Instead of clicking icons, you type specific text commands into a terminal. While it has a steeper learning curve, I learned that the command line is significantly faster, uses fewer system resources, and is an absolute necessity for cybersecurity and system administration.
 
 
 ### 2. Windows Basics
