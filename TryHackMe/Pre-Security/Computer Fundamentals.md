@@ -64,3 +64,31 @@ I also learnt that using virtualization provides massive advantages, including:
 
 ### 5. Cloud Computing Fundamentals
 
+
+In this section, I learnt about the core concepts of cloud computing, how different organizations deploy it, and the different ways to consume cloud services.
+
+### Cloud Benefits & Characteristics
+* **Scalability:** The ability to easily grow or shrink resources.
+* **On-demand self-service:** Getting resources exactly when needed without waiting.
+* **Pay only for what you use:** Cost-efficient billing.
+* **Security:** Built-in protection for data and infrastructure.
+* **High availability:** Ensuring services stay online and accessible.
+* **Global access:** Connecting from anywhere in the world.
+
+### Types of Cloud Deployments
+* **Public Cloud:** The most commonly used type (great for startups and general websites).
+* **Private Cloud:** Highly secure, dedicated environments (used by banks, healthcare, and governments).
+* **Hybrid Cloud:** A mix of both (often used by e-commerce platforms).
+
+### Ways to Use Cloud Services (Service Models)
+* **IaaS (Infrastructure as a Service):** Like an empty house. You have to choose the furniture, install the appliances, and handle the maintenance inside.
+* **PaaS (Platform as a Service):** The basics are already set up. You can just move in and focus on living (building your apps).
+* **SaaS (Software as a Service):** Everything is fully furnished, managed for you, and ready to use.
+
+### Major Cloud Vendors
+* **AWS (Amazon Web Services):** The current industry leader.
+* **Other major players:** GCP (Google Cloud Platform), Alibaba Cloud, IBM Cloud, and Oracle Cloud.
+
+### Basic Cloud Terminology
+* **EC2 (Elastic Compute Cloud):** A virtual computer or server in the cloud.
+* **Instance types (e.g., t2, t3, m5):** These dictate how powerful the virtual computer is.
