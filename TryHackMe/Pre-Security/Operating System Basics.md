@@ -1,3 +1,5 @@
+## Module 3: Operating System Basics
+
 ## 1. Operating Systems: Introduction
 
 In this section, I explored what an Operating System (OS) actually is and why it's the most critical piece of software on a computer. 
