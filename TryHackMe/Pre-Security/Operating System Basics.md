@@ -89,4 +89,37 @@ In this room, I learnt about the essential commands used in the Windows Command 
 * **`systeminfo`:** Prints detailed information about the PC.
 * **`ipconfig`:** Displays basic network configuration information.
 
-## 5. 
+## 5. ## Operating System Security
+
+This was a very important and interesting lecture! In this room, I learnt about the core concepts of OS security, why it matters, and how attackers try to break in.
+
+### Hardware vs. Operating System
+* **Hardware:** The physical parts of the computer I can actually touch (CPU, RAM, motherboard). But hardware is useless on its own.
+* **Operating System (OS):** The middleman sitting between the hardware and my apps (like Firefox or WhatsApp). The OS controls the hardware and allows programs to run according to specific rules. There are OSes for PCs (Windows, macOS), phones (Android, iOS), and servers (Linux, Windows Server).
+
+### What We Are Protecting (The CIA Triad)
+Because our devices hold highly sensitive data (passwords, private photos, work documents, banking info), the OS must enforce security to protect three main things:
+* **Confidentiality:** Ensuring my secret files are only seen by the people I intend.
+* **Integrity:** Ensuring nobody can secretly tamper with or alter my files.
+* **Availability:** Ensuring my computer and files are accessible and ready to use whenever I need them.
+
+### Three Major Security Weaknesses
+I learnt that attackers generally target these three weaknesses:
+
+1. **Authentication and Weak Passwords:** Authentication proves who I am (by something I know, am, or have). Because people use terrible, predictable passwords (like `123456`, `password`, or keyboard patterns like `qwerty`), attackers can easily guess them and steal data. Complex, unique passwords are a must.
+2. **Weak File Permissions:** Good security relies on the "principle of least privilege" (users should only have access to what they absolutely need). Weak permissions ruin confidentiality (attackers can read my files) and integrity (attackers can modify my files).
+3. **Malicious Programs:** Malware attacks the system in various ways. Trojans give attackers backdoor access. Ransomware completely destroys *availability* by encrypting all my files into gibberish and demanding money to give me the decryption password.
+
+### Privilege Escalation
+Once an attacker guesses a weak password and gets into a remote system, their next goal is to escalate their privileges to take full control. 
+* On Linux, Android, and Apple, this unrestricted super-account is called **`root`**. 
+* On Windows, it is called **`Administrator`**.
+
+### Hands-On: Linux Security Commands
+I actually practiced attacking a remote Linux machine and learned these essential terminal commands during the process:
+* **`ssh USERNAME@10.113.183.60`:** Secure Shell. Used to remotely log into another computer over the network. (I noted that when typing the password over SSH, it is completely invisible—no stars or dots show up, but the system still receives it).
+* **`whoami`:** Prints out the name of the user I am currently logged in as.
+* **`ls`:** Lists all the non-hidden files in my current directory.
+* **`cat FILENAME`:** Short for concatenate; it reads a text file and prints its contents directly to the screen.
+* **`history`:** Prints out a list of all the previous commands I typed.
+* **`su - johnny`:** Switch User. Allows me to switch my current terminal session to another user account (like johnny) if I know their password.
