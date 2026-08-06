@@ -1,6 +1,6 @@
 ## Module 3: Operating System Basics
 
-### 1. Operating Systems: Introduction
+## 1. Operating Systems: Introduction
 
 In this section, I explored what an Operating System (OS) actually is and why it's the most critical piece of software on a computer. 
 
@@ -33,7 +33,7 @@ I also learnt about the two primary ways a user can communicate with the operati
 * **CLI (Command-Line Interface):** This is the text-based method of interacting with the computer. Instead of clicking icons, you type specific text commands into a terminal. While it has a steeper learning curve, I learned that the command line is significantly faster, uses fewer system resources, and is an absolute necessity for cybersecurity and system administration.
 
 
-### 2. Windows Basics
+## 2. Windows Basics
 ## Windows Basics
 
 In this track, I went over the core components of the Windows operating system. Since I have been using Windows on my personal computers up until now, I was already familiar with almost all of these tools and features, but it was still a great refresher to see them formally defined from an IT perspective:
