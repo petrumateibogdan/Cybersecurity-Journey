@@ -34,7 +34,6 @@ I also learnt about the two primary ways a user can communicate with the operati
 
 
 ## 2. Windows Basics
-## Windows Basics
 
 In this track, I went over the core components of the Windows operating system. Since I have been using Windows on my personal computers up until now, I was already familiar with almost all of these tools and features, but it was still a great refresher to see them formally defined from an IT perspective:
 
@@ -51,3 +50,22 @@ In this track, I went over the core components of the Windows operating system. 
 * **Windows Security:** The main dashboard for Windows' built-in antivirus and threat protection tools.
 * **Windows Defender Firewall:** The native firewall that monitors and blocks unauthorized network traffic to protect the system.
 
+## 3. Linux CLI (Command-line interface)  Basics (VERY IMPORTANT)!!
+
+In this room, I learnt about the essential commands for the Linux terminal. Here are the commands I used and what they do:
+
+* **`pwd` ("where am I?"):** Print Working Directory = shows me the folder I'm currently in.
+* **`ls`:** Lists files in the current folder.
+* **`ls -l`:** Lists files in LONG FORMAT.
+* **`ls -al`:** Lists all hidden files (files that start with a `.` dot). Linux hides them by default.
+* **`cd <directory>`:** Change directory.
+* **`cd ..`:** Go back one level.
+* **`find ~ -name mission_brief.txt`:** Finds a file (`~` is home in Linux).
+* **`cat`:** Reads the file.
+* **`whoami`:** Shows who you're logged in as.
+* **`uname -a` (Unix name):** Shows details about the OS and kernel version. (Just using `uname` shows only the OS name).
+* **`df -h`:** Disk free in human-readable format. If I would have said only `df`, it would have been in bytes.
+* **`cd /etc`:** Changes into the `/etc` directory to read a system file.
+* **`cat os-release`:** Reads the OS release system file.
+* **`cd ~ && clear`:** Clears all and starts from the beginning in the home directory.
+* **`CTRL+C`:** Force stops a process if it is frozen.
