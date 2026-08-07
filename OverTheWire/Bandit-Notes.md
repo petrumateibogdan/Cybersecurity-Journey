@@ -25,5 +25,21 @@ Find the password for `bandit1` stored in a file named `readme` in the home dire
 **Solution:**
 1. Logged into `bandit0` via SSH.
 2. Ran `ls` to locate the `readme` file.
-3. Executed `cat readme` to print the file contents, revealing the password for `bandit1`: `[REDACTED]`
+3. Executed `cat readme` to print the file contents, revealing the password for `bandit1`
 4. Disconnected with `exit` and logged into `bandit1` using: `ssh -p 2220 bandit1@bandit.labs.overthewire.org`
+
+
+## OverTheWire: Bandit - Level 1 → Level 2
+
+**Objective:** 
+Find the password for `bandit2` stored in a file named `-` located in the home directory.
+
+**Commands Used:**
+* `ls`: To list the files in the directory.
+* `cat`: To read file contents using full or relative paths.
+
+**Solution:**
+1. Logged into `bandit1` via SSH.
+2. Discovered a file named `-`. Running `cat -` directly failed because `-` is interpreted as standard input (stdin) rather than a filename.
+3. Bypassed this by providing the absolute path to the file: `cat /home/bandit1/-` (Alternatively, using relative path `./`: `cat ./-`).
+4. Obtained the password for `bandit2`: `[REDACTED]`
