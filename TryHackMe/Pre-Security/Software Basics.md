@@ -13,3 +13,5 @@ Understand how numeric values are represented and stored in computer memory, alo
 * **Octal (Base-8):** I learned that every 3 bits can be grouped into one octal digit (ranging from 0 to 7), though I noted this system is less commonly encountered on modern computers.
 * **Bits and Bytes:** I learned that a "bit" is short for binary digit (a single 0 or 1), and a "byte" (also referred to as an octet) consists of 8 bits.
 * **Hex Colors (RGB):** I learned that colors on computer systems are represented as a combination of Red, Green, and Blue. By assigning exactly one byte (8 bits) to each of these three primary colors, it allows for more than 16 million possible color combinations.
+
+### 2. Data Encoding
