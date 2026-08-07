@@ -78,3 +78,47 @@ Find the password for `bandit4` stored in a hidden file inside the `inhere` dire
 3. Ran `ls` (which showed nothing) and realized the file was hidden.
 4. Used `ls -a` to view all files, revealing a hidden file named `.hidden` (or `...Hiding-From-You`).
 5. Read the contents using `cat ...Hiding-From-You` to retrieve the password for `bandit4`.
+
+## OverTheWire: Bandit - Level 4 → Level 5
+
+**Objective:** 
+Find the password for `bandit5` stored in the only human-readable (ASCII text) file inside the `inhere` directory.
+
+**Commands Used:**
+* `cd`: To change directory into `inhere`.
+* `file`: To determine the type of data contained within files.
+* `cat`: To read the contents of the identified text file. 
+### Commands & Concepts Learned
+* `file`: Inspects file headers to reveal true file types (e.g., ASCII text vs. binary data).
+* `*` (Wildcard): Matches all files/directories in the current path.
+* `./*`: Passes all files in the current folder to a command safely without triggering option flags on filenames starting with `-`.
+
+**Solution:**
+1. Logged into `bandit4` via SSH.
+2. Navigated into the target directory: `cd inhere`
+3. Ran `file ./*` to inspect every file in the directory at once using the wildcard `*`.
+4. Spotted the only file marked as **`ASCII text`** (while the rest were raw binary `data`). // '
+5. Read that specific file using `cat` (`cat ./-file07`) to retrieve the password for `bandit5`.
+
+
+## OverTheWire: Bandit - Level 5 → Level 6
+
+**Objective:** 
+Find the password for `bandit6` stored in a file somewhere under the `inhere` directory that matches all of the following properties:
+* Human-readable (ASCII text)
+* Exactly 1033 bytes in size
+* Not executable
+
+**Commands Used:**
+* `cd`: To navigate into directories (`cd inhere`).
+* `find`: To search files based on criteria like size, type, and permissions.
+* `cat`: To read the contents of the target file.
+
+**Solution:**
+1. Logged into `bandit5` via SSH.
+2. Entered the directory: `cd inhere`
+3. Ran `find` with exact filters to isolate the file:
+   
+   `find . -type f -size 1033c ! -executable` ( dot . = my current directory , type f = regular files, size 1033c, c = characters=bytes in linux, ! - executable NON)
+   4. The command returned the target path and i read the file with  cat./-file 2
+   
