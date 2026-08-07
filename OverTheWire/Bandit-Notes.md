@@ -42,4 +42,6 @@ Find the password for `bandit2` stored in a file named `-` located in the home d
 1. Logged into `bandit1` via SSH.
 2. Discovered a file named `-`. Running `cat -` directly failed because `-` is interpreted as standard input (stdin) rather than a filename.
 3. Bypassed this by providing the absolute path to the file: `cat /home/bandit1/-` (Alternatively, using relative path `./`: `cat ./-`).
-4. Obtained the password for `bandit2`: `[REDACTED]`
+4. Obtained the password for `bandit2`.
+
+## OverTheWire: Bandit - Level 2->3
