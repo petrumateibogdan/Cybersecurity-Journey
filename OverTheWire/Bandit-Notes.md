@@ -44,4 +44,20 @@ Find the password for `bandit2` stored in a file named `-` located in the home d
 3. Bypassed this by providing the absolute path to the file: `cat /home/bandit1/-` (Alternatively, using relative path `./`: `cat ./-`).
 4. Obtained the password for `bandit2`.
 
-## OverTheWire: Bandit - Level 2->3
+
+## OverTheWire: Bandit - Level 2 → Level 3
+
+**Objective:** 
+Find the password for `bandit3` stored in a file named `--spaces in this filename--` in the home directory.
+
+**Commands Used:**
+* `ls`: To view the contents of the home directory.
+* `cat`: To read the file using quotes or character escaping with relative paths.
+
+**Solution:**
+1. Logged into `bandit2` via SSH.
+2. Ran `ls` to view the file `spaces in this filename`.
+3. Handled spaces in the filename using multiple methods:
+   * **Quotes:** `cat "--spaces in this filename--"`
+   * **Tab Completion:** Typed `cat ./--s` and pressed `Tab` to automatically escape spaces with backslashes: `cat ./--spaces\ in\ this\ filename--`
+4. Obtained the password for `bandit3`: `[REDACTED]`
