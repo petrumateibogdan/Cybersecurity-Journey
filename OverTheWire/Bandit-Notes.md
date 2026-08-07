@@ -121,5 +121,5 @@ Find the password for `bandit6` stored in a file somewhere under the `inhere` di
    
    `find . -type f -size 1033c ! -executable` ( dot . = my current directory , type f = regular files, size 1033c, c = characters=bytes in linux, ! - executable NON)
   
-   4. The command returned the target path and i read the file with  cat./-file 2
+ 4. The command returned the target path and i read the file with  cat./-file 2 and I obtained the password for `bandit6`.
    
