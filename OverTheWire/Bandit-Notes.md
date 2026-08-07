@@ -60,4 +60,21 @@ Find the password for `bandit3` stored in a file named `--spaces in this filenam
 3. Handled spaces in the filename using multiple methods:
    * **Quotes:** `cat "--spaces in this filename--"`
    * **Tab Completion:** Typed `cat ./--s` and pressed `Tab` to automatically escape spaces with backslashes: `cat ./--spaces\ in\ this\ filename--`
-4. Obtained the password for `bandit3`: `[REDACTED]`
+4. Obtained the password for `bandit3`.
+
+## OverTheWire: Bandit - Level 3 → Level 4
+
+**Objective:** 
+Find the password for `bandit4` stored in a hidden file inside the `inhere` directory.
+
+**Commands Used:**
+* `cd`: To change the working directory.
+* `ls -a`: To list all files, including hidden ones (files prefixed with a dot `.`).
+* `cat`: To read the contents of the hidden file.
+
+**Solution:**
+1. Logged into `bandit3` via SSH.
+2. Navigated into the target directory: `cd inhere`
+3. Ran `ls` (which showed nothing) and realized the file was hidden.
+4. Used `ls -a` to view all files, revealing a hidden file named `.hidden` (or `...Hiding-From-You`).
+5. Read the contents using `cat ...Hiding-From-You` to retrieve the password for `bandit4`.
