@@ -28,3 +28,46 @@ Understand how computers encode, store, and display text characters across diffe
 * **UTF-16:** I learned that this encoding uses either 2 or 4 bytes per character. Most common characters (Latin, Cyrillic, Chinese) fit into 2 bytes, while rarer ancient scripts or modern symbols require a pair of 16-bit units (4 bytes).
 * **UTF-32:** I learned that UTF-32 is the simplest but most wasteful method. It strictly assigns exactly 4 bytes to every single Unicode character, regardless of whether it is a simple letter or a complex symbol, taking up much more memory.
 * **Character Representation:** I learned how specific symbols are processed by the computer. For instance, a simple smiley face symbol maps to the code point U+0001F60A, the Chinese character for "dragon" maps to U+9F8D, and a black knight chess piece maps to U+265E. The computer reads the raw binary of these codes to show the correct graphic on the screen.
+
+### 3. Python: Simple Demo
+
+## TryHackMe: Python - Simple Demo
+
+**Objective:** 
+Analyze a basic Python program provided by TryHackMe. This was my first real exposure to Python, and I used a provided "Guess the Number" game script to understand how loops, user input, and conditional logic operate under the hood.
+
+### The Code Provided by TryHackMe
+```python
+import random
+
+secret = random.randint(1, 20)
+tries = 0
+guess = 0
+
+print("I'm thinking of a number between 1 and 20")
+
+while guess != secret:
+    text = input("Take a guess: ")
+    guess = int(text)
+    
+    tries = tries + 1
+
+    if guess < 1 or guess > 20:
+        print("That number is out of range. Try again.")
+    elif guess < secret:
+        print("Too low, try again.")
+    elif guess > secret:
+        print("Too high, try again.")
+    else:
+        print("You got it in", tries, "tries!")
+```
+
+### Concepts Analyzed
+* **Importing Modules (`import random`):** Python has built-in toolkits you can bring into a script. Importing `random` gives the program the ability to generate the secret number using `random.randint(1, 20)`.
+* **Variables:** The script sets up variables like `secret`, `tries`, and `guess` to act as storage containers. It updates these containers as the game progresses, like adding 1 to `tries` every time the loop runs.
+* **While Loops (`while guess != secret:`):** This keeps a program running indefinitely. The `while` loop forces the indented code below it to repeat over and over until the user finally guesses the exact secret number.
+* **Handling User Input (`input()` and `int()`):** A crucial detail about data types: when you use `input()` to ask the user for something, Python always captures it as raw text (a string). To do math comparisons, the text must be passed through `int()` to convert it into a solid integer.
+* **Conditional Logic (`if` / `elif` / `else`):** This gives the program a brain to make decisions. 
+  * **`if`:** Checks the very first condition to ensure the user did not type a number outside the 1 to 20 range.
+  * **`elif`:** This simply stands for "else if". It allows the script to chain multiple checks together. If the first check fails, it moves to the `elif` to see if the guess was too low, and then to the next `elif` to see if it was too high.
+  * **`else`:** This is the default fallback. If the guess is not out of bounds, not too low, and not too high, the only logical conclusion is that the user guessed correctly, triggering the win message.
