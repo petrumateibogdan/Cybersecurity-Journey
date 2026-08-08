@@ -71,3 +71,5 @@ while guess != secret:
   * **`if`:** Checks the very first condition to ensure the user did not type a number outside the 1 to 20 range.
   * **`elif`:** This simply stands for "else if". It allows the script to chain multiple checks together. If the first check fails, it moves to the `elif` to see if the guess was too low, and then to the next `elif` to see if it was too high.
   * **`else`:** This is the default fallback. If the guess is not out of bounds, not too low, and not too high, the only logical conclusion is that the user guessed correctly, triggering the win message.
+
+### 4. JavaScript: Simple Demo
