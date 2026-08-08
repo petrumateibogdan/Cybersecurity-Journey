@@ -34,7 +34,7 @@ Understand how computers encode, store, and display text characters across diffe
 ## TryHackMe: Python - Simple Demo
 
 **Objective:** 
-Analyze a basic Python program provided by TryHackMe. This was my first real exposure to Python, and I used a provided "Guess the Number" game script to understand how loops, user input, and conditional logic operate under the hood.
+Analyze a basic Python program provided by TryHackMe. This was my first real exposure to Python, and I used a provided "Guess the Number" game script to understand how loops, user input, and conditional logic operate under the hood; python being a high-level, general purpose, programming language.
 
 ### The Code Provided by TryHackMe
 ```python
