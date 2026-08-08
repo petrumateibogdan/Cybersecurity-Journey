@@ -73,3 +73,62 @@ while guess != secret:
   * **`else`:** This is the default fallback. If the guess is not out of bounds, not too low, and not too high, the only logical conclusion is that the user guessed correctly, triggering the win message.
 
 ### 4. JavaScript: Simple Demo
+
+## TryHackMe: JavaScript - Simple Demo
+
+**Objective:** 
+Checking out a basic JavaScript version of the "Guess the Number" program. I wanted to see how JavaScript handles user input, loops, and logic compared to Python, and I also learned the basics of running JS outside of a normal web browser.
+
+### Running JavaScript
+Before jumping into the code, I noted that JavaScript can be executed in two main ways:
+1. **The Web Browser:** I can run JS directly by pressing F12 and opening the Web Developer Tools console in any browser (like Firefox).
+2. **Node.js:** This lets me run JavaScript files directly from my terminal/command line, which is what I used for this specific script.
+
+### The Code I Analyzed
+```javascript
+import * as readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
+const rl = readline.createInterface({ input, output });
+
+try {
+    const secret = Math.floor(Math.random() * (20)) + 1; // 1 <= secret <= 20
+    let tries = 0;
+    let guess = 0; // start with a value that cannot be the secret
+
+    console.log("I'm thinking of a number between 1 and 20");
+
+    // Repeat until I guess the secret number.
+    while (guess !== secret) {
+        const text = await rl.question("Take a guess: "); // returns text (a string)
+        guess = parseInt(text, 10); // convert the text to a number
+
+        tries = tries + 1; // add 1 try
+
+        // Give a hint using if / else if / else.
+        if (guess < 1 || guess > 20) {
+            console.log("That number is out of range. Try again.");
+        } else if (guess < secret) {
+            console.log("Too low, try again.");
+        } else if (guess > secret) {
+            console.log("Too high, try again.");
+        } else {
+            console.log("You got it in", tries, "tries!");
+        }
+    }
+} finally {
+    rl.close();
+}
+```
+
+### Concepts Analyzed
+* **Importing Modules:** I noticed the script imports `readline` with a `/promises` flag. This basically tells the program to wait for me to type something without freezing the entire system. It also imports standard input and output (`stdin` and `stdout`) to handle reading and displaying text.
+* **Variables (`const` vs `let`):** I learned that JavaScript uses specific keywords to declare variables depending on whether they change. 
+  * I use `const` for things that stay the same (like the `secret` number or the raw user `text` input for that specific turn).
+  * I use `let` for things that update over time (like my `tries` and `guess`).
+* **Generating Random Numbers:** It doesn't have a simple random tool like Python. Instead, I saw that it uses `Math.random()` combined with `Math.floor()` to generate and round out the secret number.
+* **Strict Inequality (`!==`):** In the loop `while (guess !== secret)`, I learned that the `!==` operator means "strictly not equal". JavaScript checks to make sure both the actual value AND the data type (number vs text) are not the same. This is much safer than just using `!=`.
+* **Handling Input (`parseInt`):** Just like Python grabs input as a string, `rl.question()` captures my guess as raw text. I had to use `parseInt(text, 10)` to convert that text into a solid base-10 number so the script could actually do math with it.
+* **Conditional Logic and Operators:** 
+  * I learned that JavaScript actually lets you write `else if` as two separate words, unlike Python's `elif`.
+  * To check multiple conditions at once, JS uses `||` as the "OR" operator (e.g., `guess < 1 || guess > 20`).
+* **Cleanup (`rl.close()`):** Once I win, the script uses a `finally` block to close the `readline` interface. I learned this is important to clean up the memory and properly end the command line process.
