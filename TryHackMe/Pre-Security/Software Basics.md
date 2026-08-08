@@ -132,3 +132,49 @@ try {
   * I learned that JavaScript actually lets you write `else if` as two separate words, unlike Python's `elif`.
   * To check multiple conditions at once, JS uses `||` as the "OR" operator (e.g., `guess < 1 || guess > 20`).
 * **Cleanup (`rl.close()`):** Once I win, the script uses a `finally` block to close the `readline` interface. I learned this is important to clean up the memory and properly end the command line process.
+
+
+### 5. Database SQL Basics
+
+
+**Objective:** 
+Get hands-on with SQL (Structured Query Language) basics to understand how databases store and retrieve information. I used a simulated café database to see how commands interact with data.
+
+### Database Structure
+I looked at how databases organize information into a grid format using tables, rows, and columns. 
+*   **Table:** The overall container (like "Orders").
+*   **Row:** A single entry or record. In the café, one row equals one specific customer order.
+*   **Column:** The specific details for each entry, such as the time of the order, the product name, and the price.
+
+### Building Queries
+When the café owner needs to find something—like asking "Show me all orders," "Show me only coffee orders," or "Show me the cheapest drink"—they write a query. I broke down the four main commands used to ask these questions:
+*   **`SELECT`** – Chooses exactly what data to display.
+*   **`FROM`** – Chooses which table the data comes from.
+*   **`WHERE`** – Filters the records based on a specific condition.
+*   **`ORDER BY`** – Sorts the final results.
+
+### The SQL Commands I Practiced
+```sql
+-- Show absolutely everything in the Orders table (the * means all columns)
+SELECT * FROM Orders;
+
+-- Show only specific columns (just the drink and the price)
+SELECT drink, price FROM Orders;
+
+-- Filter the results to show only the orders where the drink was Coffee
+SELECT * FROM Orders WHERE drink = 'Coffee';
+
+-- Sort all the orders by their price (defaults to lowest to highest)
+SELECT * FROM Orders ORDER BY price;
+
+-- Sort all the orders by price, but highest to lowest (DESC means descending)
+SELECT * FROM Orders ORDER BY price DESC;
+
+-- Combine them all: Find only Coffee orders and sort them from most to least expensive
+SELECT * FROM Orders WHERE drink = 'Coffee' ORDER BY price DESC;
+```
+
+### The Security Implication
+At the end of the module, I thought about the security side of databases: *What would happen if someone were allowed to change or remove these café orders without permission?* 
+
+If an unauthorized person, like a hacker, gained access to manipulate the database, the operations would completely break down. Orders would get mixed up, customers would be unhappy and leave terrible reviews, and the company would suffer drastically. It really puts into perspective why locking down database access is a core part of cybersecurity.
