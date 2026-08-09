@@ -20,7 +20,7 @@ There are two main types:
 #### IPv4 vs. IPv6
 We are running out of IPv4 addresses! IPv4 uses a 32-bit system (`2^32`), capping out at about 4.29 billion addresses. With companies like Cisco estimating over 50 billion connected devices by the end of 2021, the world had to adapt. 
 *   This led to **IPv6**, which supports `2^128` addresses (over 340 trillion-plus). 
-*   As shown in `image_de8248.png`, you can clearly see the difference in formatting between an older IPv4 address and a massive, hex-based IPv6 address.
+
 
 ### 3. MAC Addresses (The Physical Identity)
 While IP addresses are logical and can change, a **MAC (Media Access Control)** address is physically tied to the device's network interface board at the factory. Think of it like a hardware serial number.
