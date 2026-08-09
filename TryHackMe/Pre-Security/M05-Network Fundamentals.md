@@ -86,5 +86,5 @@ It uses a "subnet mask" (a 32-bit number ranging from 0-255) to divide things up
     3.  **DHCP Request:** The device says, "I accept this IP address.".
     4.  **DHCP ACK:** The server sends an acknowledgment, finalizing the process so the device can use the IP.
 
-    ## 3.OSI (Open Systems Interconnection Model) Model
+    ## 3.OSI Model (Open Systems Interconnection Model)
     
