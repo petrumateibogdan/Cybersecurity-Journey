@@ -44,3 +44,44 @@ Finally, I explored `ping`, one of the most fundamental network troubleshooting 
 ## 2. Intro to LAN
 
 
+###  Network Topologies
+A topology is simply the physical design or look of the network. I looked at the three main types:
+
+#### Star Topology
+*   This is the most common design today, where every device connects individually to a central device, like a switch or a hub.
+*   All data sent to any device must pass through this central hardware.
+*   **The Pros:** It is incredibly reliable and highly scalable, meaning it is very easy to add more devices as the network grows.
+*   **The Cons:** It is the most expensive option because it requires more cabling and dedicated hardware. As it scales, it requires more maintenance, making troubleshooting difficult. If the central switch fails, the entire network drops, though these devices are usually built to be robust.
+
+#### Bus Topology
+*   This setup relies on a single "backbone" cable, where devices branch off of it like leaves on a tree.
+*   **The Pros:** It is very cost-efficient and easy to set up because it requires less equipment and cabling.
+*   **The Cons:** It is highly prone to bottlenecking and slowing down if multiple devices request data at the same time, since everything shares one route. This also makes troubleshooting extremely difficult. It has a massive single point of failure: if the backbone cable breaks, no devices can send or receive data.
+
+#### Ring (Token) Topology
+*   Devices are connected directly to one another to form a continuous loop. 
+*   Data travels in one direction around the loop until it hits its target destination. Devices will only forward someone else's data if they don't have their own data to send first.
+*   **The Pros:** It requires very little cabling and no central hardware. Because data flows in one direction, troubleshooting faults is fairly easy, and it is less prone to bottlenecks compared to a bus topology.
+*   **The Cons:** It is inefficient because data might have to travel through multiple devices to reach its goal. Like the bus topology, a single broken cable or failed device will break the entire network.
+
+###  Networking Hardware
+*   **Switches:** These are dedicated devices used to aggregate multiple connections (like computers and printers) using Ethernet. They typically have anywhere from 4 to 64 ports and are common in larger networks like businesses. Unlike older "hubs" that blast data to every port, switches are efficient: they remember which device is plugged into which port and send data *only* to the intended target, cutting down on traffic.
+*   **Routers:** A router's job is to connect different networks together and pass data between them. It creates paths for data to travel successfully, a process literally called "routing". Connecting routers and switches together adds redundancy, so if one path drops, the data just takes another route.
+
+###  Subnetting
+Subnetting is the process of splitting a large network into smaller, miniature networks. I like to think of it like slicing a cake: there is limited space, and subnetting decides who gets which slice. Businesses use this to separate departments (like HR, Finance, and Accounting). 
+
+It uses a "subnet mask" (a 32-bit number ranging from 0-255) to divide things up. I learned three crucial address types within a subnet:
+*   **Network Address:** Identifies the start and existence of a network (e.g., `192.168.1.0`).
+*   **Host Address:** Identifies a specific, individual device on that network (e.g., `192.168.1.100`).
+*   **Default Gateway:** A special address (usually ending in `.1` or `.254`) assigned to the device that handles sending data to *other* networks.
+
+**Why Subnet?** It offers efficiency, full control, and most importantly, security. For example, a café can use subnetting to keep their employee cash register network completely separate and secure from their public guest Wi-Fi.
+
+###  Essential Protocols (ARP & DHCP)
+*   **ARP (Address Resolution Protocol):** This is how devices map a physical MAC address to a logical IP address. A device broadcasts an "ARP Request" asking the network who owns a specific IP. The owner sends an "ARP Reply" with its MAC address, and the requesting device saves this mapping in a ledger called an ARP cache for the future.
+*   **DHCP (Dynamic Host Configuration Protocol):** This is the server that automatically assigns IP addresses so we don't have to type them manually. I learned the four-step process:
+    1.  **DHCP Discover:** A new device asks the network, "Are there any DHCP servers here?".
+    2.  **DHCP Offer:** The server replies, "Yes, here is an IP address you can use.".
+    3.  **DHCP Request:** The device says, "I accept this IP address.".
+    4.  **DHCP ACK:** The server sends an acknowledgment, finalizing the process so the device can use the IP.
