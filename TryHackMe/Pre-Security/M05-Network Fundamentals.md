@@ -40,3 +40,7 @@ Finally, I explored `ping`, one of the most fundamental network troubleshooting 
 *   It uses **ICMP (Internet Control Message Protocol)** to test if a connection between devices exists and is reliable.
 *   It works by sending an "echo packet" to a target and waiting for an "echo reply". The time it takes for that round trip is measured in milliseconds.
 *   **Syntax:** `ping [IP address or URL]` (e.g., `ping 8.8.8.8`).
+
+## 2. Intro to LAN
+
+
