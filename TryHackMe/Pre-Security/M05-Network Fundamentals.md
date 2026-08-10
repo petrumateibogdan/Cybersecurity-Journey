@@ -156,4 +156,69 @@ This layer focuses on physical addressing. It takes the data from Layer 3 (which
 
 ### Layer 1: Physical
 The absolute lowest layer. This is the tangible hardware: ethernet cables, electrical signals, and raw binary data (1s and 0s).
+
+
+## 4. Packets & Frames
+
+
+**Objective:** 
+ I explored how data is actually packaged for travel, the specific rules (TCP vs. UDP) that govern that travel, and how ports ensure data reaches the correct application on a machine.
+
+### 1. Packets vs. Frames (The Mail Analogy)
+I learned that when data travels over a network, it doesn't go all at once (which would cause massive bottlenecks). It gets chopped up into small pieces. There is a crucial difference in what we call these pieces depending on where they are in the OSI model:
+*   **Packet (Layer 3 - Network):** This contains the actual data (payload) along with an IP header. 
+*   **Frame (Layer 2 - Data Link):** This encapsulates the packet and adds the physical MAC addresses. 
+
+> **The Analogy:** I like to think of it like mailing a letter. The **frame** is the envelope, which moves the contents to another place. The **packet** is the letter inside. Once the envelope (frame) is opened and stripped away, the recipient reads the letter (packet) to know what to do next.
+
+### 2. TCP (Transmission Control Protocol)
+TCP is a connection-based protocol. It is incredibly reliable because it establishes a strict connection between two devices before sending anything, and it guarantees delivery.
+
+#### The TCP/IP Model
+I noted that TCP/IP has its own simplified, 4-layer version of the OSI model:
+1.  Application
+2.  Transport
+3.  Internet
+4.  Network Interface
+
+#### The Three-Way Handshake
+Because TCP guarantees delivery, it has to set up a connection first using a process called the Three-Way Handshake. I broke down the sequence of messages used to establish and close this connection:
+
+| Step | Message | Description |
+| :--- | :--- | :--- |
+| 1 | **SYN** | Client sends this to initiate a connection and synchronize sequence numbers. |
+| 2 | **SYN/ACK** | Server acknowledges the attempt and sends its own synchronization number. |
+| 3 | **ACK** | Client acknowledges the server's response. The connection is now established! |
+| 4 | **DATA** | The actual bytes of the file are transmitted. |
+| 5 | **FIN** | Used to cleanly and properly close the connection when finished. |
+| *Fail* | **RST** | Abruptly kills all communication if there is a severe error. |
+
+*Note: TCP packets contain specific headers, such as Source/Destination IP, Source/Destination Port, a Checksum for integrity, and a Sequence Number to ensure chunks are reassembled in the exact right order.*
+
+### 3. UDP (User Datagram Protocol)
+I compared TCP with its counterpart, UDP. UDP is completely stateless. There is no Three-Way Handshake, no synchronization, and no guarantee that the data actually arrives. 
+
+| Advantages of UDP | Disadvantages of UDP |
+| :--- | :--- |
+| Incredibly fast compared to TCP. | Does not care if data is dropped or lost. |
+| Gives software developers flexibility over packet speed. | No continuous connection; bad for unstable networks. |
+
+> **Use Case:** Because it lacks complex headers and error checking, UDP is perfect for video streaming or voice chat, where losing a single packet just means a dropped pixel or a millisecond audio stutter, rather than stopping the entire stream to fix an error.
+
+### 4. Ports (The Harbour)
+Ports are numerical values (ranging from `0` to `65535`) that act as specific docking stations for data. 
+*   **The Analogy:** Think of a massive harbour. A giant cruise liner cannot dock at a tiny fishing port. Ports enforce what kind of traffic can "park" where, so a computer knows exactly which application should handle the incoming data.
+
+To prevent chaos, the industry agreed on standard **Common Ports** (ranging from 0 to 1024). I documented the most critical ones for cybersecurity:
+
+| Protocol | Port | Description |
+| :--- | :--- | :--- |
+| **FTP** | 21 | File Transfer Protocol (Downloading/sharing files). |
+| **SSH** | 22 | Secure Shell (Secure, text-based login to manage a remote system). |
+| **HTTP** | 80 | Powers the web! Used by browsers to download unencrypted web pages. |
+| **HTTPS** | 443 | The exact same as HTTP, but securely encrypted. |
+| **SMB** | 445 | Server Message Block (Sharing files and devices, like printers, locally). |
+| **RDP** | 3389 | Remote Desktop Protocol (Securely logging into a system with a visual GUI desktop). |
+
+
     
