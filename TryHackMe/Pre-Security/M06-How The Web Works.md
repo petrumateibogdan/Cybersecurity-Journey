@@ -180,4 +180,8 @@ This vulnerability occurs when a website takes user input but fails to **sanitiz
 *   The browser will execute my input as actual code instead of plain text, allowing me to alter the page's appearance, hijack functionality, or trick users into clicking bad links. 
 *   **The Golden Rule of Web Security:** Never trust user input. Developers must sanitize everything a user enters.
 
+## 4 - Putting it all together
+
+
+
 
