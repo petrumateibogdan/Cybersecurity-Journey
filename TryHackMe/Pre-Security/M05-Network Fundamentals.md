@@ -221,4 +221,8 @@ To prevent chaos, the industry agreed on standard **Common Ports** (ranging from
 | **RDP** | 3389 | Remote Desktop Protocol (Securely logging into a system with a visual GUI desktop). |
 
 
+## 5. Extending Your Network
+
+
+
     
