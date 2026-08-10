@@ -224,5 +224,42 @@ To prevent chaos, the industry agreed on standard **Common Ports** (ranging from
 ## 5. Extending Your Network
 
 
+###  Port Forwarding
+I learned that without port forwarding, applications (like a locally hosted web server) are completely invisible to the outside Internet; they only exist on the local intranet. 
+*   **What it does:** It opens specific ports on a router to allow outside, public Internet traffic to reach a specific device on the private network.
+*   **The distinction:** It is easy to confuse this with a firewall. Port forwarding *opens* the door, while a firewall determines *who* is allowed to walk through it.
 
+###  Firewalls (Network Border Security)
+A firewall acts as border security, inspecting packets to permit or deny traffic based on where it came from, where it is going, the port it is using, and the protocol (TCP/UDP). I compared the two main categories:
+
+| Firewall Type | Description | Pros & Cons |
+| :--- | :--- | :--- |
+| **Stateful** | Inspects the *entire* connection behavior, not just one packet. | **Pros:** Smart and dynamic. If a connection turns bad, it blocks the whole device. <br> **Cons:** Consumes a lot of system resources. |
+| **Stateless** | Uses a static, hard-coded set of rules to check individual packets. | **Pros:** Uses very few resources. Great for absorbing massive DDoS attacks. <br> **Cons:** Very "dumb." If a packet doesn't perfectly match a rule, the firewall is useless. |
+
+###  VPNs (Virtual Private Networks)
+A VPN creates a dedicated, encrypted path (a "tunnel") over the Internet, allowing devices on completely separate networks to communicate securely as if they were in the same room.
+
+**Why use a VPN?**
+*   **Geographical Connection:** Allows businesses to link multiple remote offices to one central server.
+*   **Privacy:** Encrypts data, making it unreadable to anyone trying to sniff the network (especially crucial on public Wi-Fi).
+*   **Anonymity:** Hides traffic from ISPs, allowing activists or journalists to bypass censorship (though it relies heavily on the VPN provider not keeping logs!).
+
+**VPN Technologies I Explored:**
+*   **PPP:** Uses a private key and public certificate for authentication and encryption.
+*   **PPTP (Point-to-Point Tunneling Protocol)**  :  Very easy to set up and widely supported, but uses weak encryption.
+*   **IPSec:** Encrypts data using the existing IP framework. It is difficult to configure, but boasts incredibly strong encryption.
+
+###  Routers vs. Switches
+I finalized my notes by comparing the two most important pieces of networking hardware.
+
+#### Routers (Layer 3)
+*   Their primary job is to connect *different* networks together.
+*   They decide the optimal path for data to travel based on the shortest route, the most reliable path, and the fastest physical medium (like fiber vs. copper).
+
+#### Switches (Layer 2 & Layer 3)
+*   Their job is to connect multiple specific devices *within the same* network using Ethernet cables.
+*   **Layer 2 Switches:** Forward frames strictly using physical MAC addresses.
+*   **Layer 3 Switches:** More advanced; they can route IP packets just like a router.
+*   **VLANs (Virtual Local Area Networks):** I learned that switches can use VLAN technology to virtually segregate a network. For example, the Sales team and Accounting team can plug into the exact same physical switch, but a VLAN ensures they cannot view each other's private data.
     
