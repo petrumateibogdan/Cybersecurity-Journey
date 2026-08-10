@@ -43,5 +43,96 @@ The final DNS record is sent back to the Recursive DNS Server, which saves a loc
 
 ## 2 - HTTP(Hypertext Transfer Protocol) in Detail
 
+**Objective:**
+I explored the  protocols of the web: HTTP and HTTPS. I learned how URLs are structured, how my browser communicates with web servers through requests and responses, and the specific roles of HTTP methods, status codes, headers, and cookies.
+
+### What are HTTP and HTTPS?
+*   **HTTP (HyperText Transfer Protocol):** Developed by Tim Berners-Lee between 1989-1991, this is the core set of rules used for communicating with web servers to transmit webpage data (HTML, images, videos, etc.).
+*   **HTTPS (HyperText Transfer Protocol Secure):** This is the secure, encrypted version of HTTP. It prevents attackers from intercepting or viewing my data and guarantees that I am communicating with the legitimate web server rather than an impersonator.
+
+### Anatomy of a URL
+A **URL (Uniform Resource Locator)** is essentially an instruction manual telling the browser how to access a specific resource. I broke down its main components:
+
+*   **Scheme:** Instructs what protocol to use (e.g., `http://`, `https://`, `ftp://`).
+*   **User:** Used for basic authentication (e.g., passing a username and password directly in the URL).
+*   **Host:** The domain name or IP address of the server I want to access.
+*   **Port:** The port to connect to (usually `80` for HTTP and `443` for HTTPS).
+*   **Path:** The specific file or location on the server I am trying to reach.
+*   **Query String:** Extra information sent to the path, usually starting with a `?` (e.g., `/blog?id=1`).
+*   **Fragment:** A reference to a specific location on the requested page, helping to jump straight to a certain section.
+
+### Making Requests and Responses
+To get a rich web experience, my browser and the server exchange detailed blocks of text. 
+
+**The HTTP Request:**
+When I ask a server for a webpage, my browser sends a request that looks like this:
+> `GET / HTTP/1.1` (The Method, Path, and Protocol Version)
+> `Host: tryhackme.com` (The specific website I want)
+> `User-Agent: Mozilla/5.0 Firefox/87.0` (Telling the server I am using Firefox)
+> `Referer: https://tryhackme.com/` (The page that linked me here)
+*Note: Requests always end with a blank line to tell the server the request is finished.*
+
+**The HTTP Response:**
+The server replies with a response that looks like this:
+> `HTTP/1.1 200 OK` (Protocol version and the Status Code confirming success)
+> `Server: nginx/1.15.8` (The server software)
+> `Content-Type: text/html` (Telling my browser to expect HTML data)
+> `Content-Length: 98` (The exact size of the response to ensure no data is missing)
+*Note: After a blank line, the actual requested data (like the HTML code) is delivered.*
+
+### HTTP Methods
+Methods are how I show my intended action when making a request to the server:
+*   **GET:** Used for retrieving/getting information from a web server.
+*   **POST:** Used for submitting data to the server (like filling out a form or creating a record).
+*   **PUT:** Used for submitting data to update existing information.
+*   **DELETE:** Used for deleting information or records from the server.
+
+### HTTP Status Codes
+The first line of an HTTP response contains a status code. I learned how they are grouped into five ranges:
+
+| Range | Meaning | Description |
+| :--- | :--- | :--- |
+| **100-199** | Information | The request was accepted; the client should continue sending the rest. |
+| **200-299** | Success | The request was successfully completed. |
+| **300-399** | Redirection | The request is redirected to another resource or website. |
+| **400-499** | Client Error | Something was wrong with my request (e.g., missing parameters, bad syntax). |
+| **500-599** | Server Error | The server encountered a major problem and couldn't handle the request. |
+
+**Most Common Status Codes:**
+*   **200 OK:** Everything was successful.
+*   **201 Created:** A resource (like a new user profile) was successfully created.
+*   **301 Moved Permanently:** The resource has permanently moved to a new location.
+*   **302 Found:** A temporary redirect to a new location.
+*   **400 Bad Request:** My browser sent a malformed or missing request.
+*   **401 Not Authorised:** I need to log in to view this resource.
+*   **403 Forbidden:** I do not have permission to view this, even if logged in.
+*   **404 Page Not Found:** The resource simply does not exist.
+*   **405 Method Not Allowed:** Using the wrong method (e.g., trying to `GET` a page that requires a `POST`).
+*   **500 Internal Service Error:** The server crashed or encountered an unhandled error.
+*   **503 Service Unavailable:** The server is overloaded or down for maintenance.
+
+### HTTP Headers
+Headers are extra bits of data sent between my browser and the server. 
+
+**Common Request Headers (From Me to the Server):**
+*   **Host:** Specifies which website I want if the server hosts multiple domains.
+*   **User-Agent:** Identifies my browser so the server can format the site correctly.
+*   **Content-Length:** Tells the server how much data I am sending in my request.
+*   **Accept-Encoding:** Tells the server what compression methods my browser supports.
+*   **Cookie:** Sends stored data back to the server to remind it who I am.
+
+**Common Response Headers (From the Server to Me):**
+*   **Set-Cookie:** Gives my browser data to store and send back on future requests.
+*   **Cache-Control:** Dictates how long my browser should save the response locally.
+*   **Content-Type:** Tells my browser what kind of file it is receiving (HTML, PDF, Image, etc.).
+*   **Content-Encoding:** Tells my browser how the data was compressed for transit.
+
+### Cookies
+Because HTTP is "stateless" (it forgets who I am after every single request), **Cookies** act as a memory bank. 
+*   When I log in, the server sends a `Set-Cookie` header containing a unique, secret token.
+*   My browser saves this token. On every subsequent request, my browser automatically sends a `Cookie` header back to the server.
+*   This is how the server remembers my authentication, my personal settings, or my shopping cart without making me log in on every single page click. I can inspect these at any time using my browser's Developer Tools under the "Network" tab.
+
+## 3 - How Websites Work
 
 
