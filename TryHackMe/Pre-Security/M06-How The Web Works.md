@@ -136,3 +136,48 @@ Because HTTP is "stateless" (it forgets who I am after every single request), **
 ## 3 - How Websites Work
 
 
+**Objective:**
+I explored the fundamental components of how websites are built, focusing on the differences between the front end and back end. I learned how HTML and JavaScript function together, and I was introduced to my first client-side vulnerabilities: Sensitive Data Exposure and HTML Injection.
+
+### The Two Major Components of a Website
+*   **Front End (Client-Side):** How my browser (like Chrome or Safari) renders the website so I can see and interact with it.
+*   **Back End (Server-Side):** A dedicated computer (server) somewhere else in the world that processes my requests and returns the necessary data.
+
+### The Building Blocks of the Web
+Websites are primarily created using three core languages:
+*   **HTML (HyperText Markup Language):** Builds the website and defines its core structure.
+*   **CSS (Cascading Style Sheets):** Makes the website visually appealing by adding styling options (colors, fonts, layouts).
+*   **JavaScript (JS):** Implements complex features and interactivity (animations, button clicks, dynamic updates).
+
+### HTML Structure and Attributes
+HTML uses elements (also known as tags) to tell the browser how to display content. I broke down the standard structure of an HTML document:
+*   `<!DOCTYPE html>`: Tells the browser to use HTML5 to interpret the page for standardization.
+*   `<html>`: The root element; all other elements sit inside this tag.
+*   `<head>`: Contains background information about the page, such as the page title.
+*   `<body>`: The actual visible content of the page. Only content inside the body is shown in the browser.
+*   `<h1>` and `<p>`: Elements used for large headings and paragraphs, respectively.
+
+**Attributes:** 
+Tags can contain extra data called attributes, which serve unique purposes:
+*   **class:** Used to style an element (e.g., `<p class="bold-text">`). Multiple elements can share the same class.
+*   **id:** A unique identifier for a specific element, used for styling or targeting with JavaScript (e.g., `<p id="example">`). Unlike classes, an ID must be unique to one element.
+*   **src (source):** Specifies the location of a resource, commonly used for displaying images (e.g., `<img src="img/cat.jpg">`).
+
+### JavaScript Interactivity
+Without JavaScript, a page is entirely static. JS allows the page to dynamically update in real-time.
+*   It can be loaded directly inside `<script>` tags or included remotely using the `src` (source) attribute.
+*   JS can target specific HTML elements to change them dynamically: `document.getElementById("demo").innerHTML = "Hack the Planet";`
+*   HTML elements can use **events** to trigger JS, such as `onclick` or `onhover` (e.g., `<button onclick='...'>Click Me!</button>`).
+
+### Vulnerability 1: Sensitive Data Exposure
+This occurs when a developer fails to protect or remove sensitive clear-text information from the front-end code. 
+*   By simply right-clicking and selecting "View Page Source," I can inspect a website's raw HTML and JS.
+*   Sometimes, developers accidentally leave HTML comments containing temporary login credentials, hidden links to private admin panels, or other sensitive data. Reviewing the page source code is one of the first steps in assessing web application security.
+
+### Vulnerability 2: HTML Injection
+This vulnerability occurs when a website takes user input but fails to **sanitize** it (filtering out malicious text or code before processing it).
+*   If a website implicitly trusts user input and displays it directly on the page, I can type raw HTML into a text box (like injecting a malicious hyperlink).
+*   The browser will execute my input as actual code instead of plain text, allowing me to alter the page's appearance, hijack functionality, or trick users into clicking bad links. 
+*   **The Golden Rule of Web Security:** Never trust user input. Developers must sanitize everything a user enters.
+
+
