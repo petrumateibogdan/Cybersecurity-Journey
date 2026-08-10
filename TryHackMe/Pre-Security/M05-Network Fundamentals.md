@@ -86,5 +86,74 @@ It uses a "subnet mask" (a 32-bit number ranging from 0-255) to divide things up
     3.  **DHCP Request:** The device says, "I accept this IP address.".
     4.  **DHCP ACK:** The server sends an acknowledgment, finalizing the process so the device can use the IP.
 
+
     ## 3.OSI Model (Open Systems Interconnection Model)
+
+
+**Objective:** 
+I tackled the OSI (Open Systems Interconnection) Model. It is basically the universal rulebook for how devices communicate over a network. By following this model, completely different devices can understand each other. I learned that as data travels through these layers, specific information is added in a process called **encapsulation**.
+
+### The 7 Layers (Top to Bottom)
+I wanted a quick visual reference for my notes, so here is a breakdown of the layers from 7 down to 1. 
+
+```yaml
+# THE OSI MODEL
+Layer_7: "Application"   # What I interact with (Browsers, GUI, Email)
+Layer_6: "Presentation"  # The Translator (Data formatting, HTTPS Encryption)
+Layer_5: "Session"       # The Connection (Maintains sessions, Checkpoints)
+Layer_4: "Transport"     # The Delivery (TCP vs. UDP)
+Layer_3: "Network"       # The GPS (Routing, IP Addresses, OSPF/RIP)
+Layer_2: "Data Link"     # The Hardware Identity (MAC Addresses, NICs)
+Layer_1: "Physical"      # The Real World (Cables, Electrical Signals, 1s & 0s)
+```
+
+---
+
+### Layer 7: Application
+This is the layer I am most familiar with because it is what the user actually sees. It provides the Graphical User Interface (GUI) for software like web browsers, email clients, and FTP tools (like FileZilla). It also handles protocols like DNS, which translates website names into IP addresses.
+
+### Layer 6: Presentation
+Because different software developers write code differently, this layer acts as a translator. It ensures that no matter what email client I use, the contents of the email display correctly. Crucially, this is also where security features like data encryption (HTTPS) happen.
+
+### Layer 5: Session
+Once data is formatted, this layer creates and maintains the connection (the "session") with the target computer. 
+*   It handles closing the connection if it times out.
+*   It creates "checkpoints." If data is lost, I don't have to restart the whole download; it just resumes from the last checkpoint, saving bandwidth.
+*   Data can only travel across its own unique session.
+
+### Layer 4: Transport (TCP vs. UDP)
+This layer decides exactly how the data is delivered. It uses one of two protocols: TCP or UDP.
+
+#### TCP (Transmission Control Protocol)
+TCP guarantees delivery. It reserves a constant connection and constantly checks for errors to make sure all the small chunks of data arrive and are reassembled in the perfect order. 
+
+| Advantages of TCP | Disadvantages of TCP |
+| :--- | :--- |
+| Guarantees 100% accuracy of data. | Requires a reliable connection; if one chunk fails, the whole file is useless. |
+| Synchronizes devices to prevent data flooding. | Slower, because reserving the connection can bottleneck devices. |
+| Built-in error checking. | Too much processing overhead for quick tasks. |
+
+> **Use Case:** File sharing, internet browsing, and emails (situations where having "half a file" is useless).
+
+#### UDP (User Datagram Protocol)
+UDP just throws the data at the target and hopes for the best. There is no error checking and no guaranteed delivery. 
+
+| Advantages of UDP | Disadvantages of UDP |
+| :--- | :--- |
+| Significantly faster than TCP. | Doesn't care if the data actually arrives. |
+| Leaves the application to decide packet speed (flexible for devs). | No reserved connection; terrible experience if the network is unstable. |
+
+> **Use Case:** Video streaming (where a dropped pixel is fine) and small network requests like ARP or DHCP.
+
+### Layer 3: Network
+This is where routing and IP addresses (like `192.168.1.100`) live. Layer 3 devices, like Routers, figure out the absolute best path to send data chunks. They decide this based on:
+1.  **Shortest Path:** Fewest devices to hop across.
+2.  **Reliability:** Avoiding paths where packets were lost before.
+3.  **Speed:** Prioritizing faster physical cables (like fiber over copper).
+
+### Layer 2: Data Link
+This layer focuses on physical addressing. It takes the data from Layer 3 (which has the IP address) and attaches the **MAC Address**. Every computer has a Network Interface Card (NIC) with a MAC address permanently burned into it by the manufacturer. While it can be spoofed, it is the physical identity used to send data across the local network.
+
+### Layer 1: Physical
+The absolute lowest layer. This is the tangible hardware: ethernet cables, electrical signals, and raw binary data (1s and 0s).
     
