@@ -40,3 +40,8 @@ When I type a website into my browser, my computer goes through a specific seque
 
 **The Return Trip & Caching:** 
 The final DNS record is sent back to the Recursive DNS Server, which saves a local copy for future requests, and then delivers it back to my computer. All DNS records come with a **TTL (Time To Live)** value—a number in seconds dictating exactly how long my computer should save (cache) this answer before it needs to perform this entire lookup process again.
+
+## 2 - HTTP(Hypertext Transfer Protocol) in Detail
+
+
+
