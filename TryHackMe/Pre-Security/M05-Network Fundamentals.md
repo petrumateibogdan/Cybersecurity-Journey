@@ -164,14 +164,14 @@ The absolute lowest layer. This is the tangible hardware: ethernet cables, elect
 **Objective:** 
  I explored how data is actually packaged for travel, the specific rules (TCP vs. UDP) that govern that travel, and how ports ensure data reaches the correct application on a machine.
 
-### 1. Packets vs. Frames (The Mail Analogy)
+###  Packets vs. Frames (The Mail Analogy)
 I learned that when data travels over a network, it doesn't go all at once (which would cause massive bottlenecks). It gets chopped up into small pieces. There is a crucial difference in what we call these pieces depending on where they are in the OSI model:
 *   **Packet (Layer 3 - Network):** This contains the actual data (payload) along with an IP header. 
 *   **Frame (Layer 2 - Data Link):** This encapsulates the packet and adds the physical MAC addresses. 
 
 > **The Analogy:** I like to think of it like mailing a letter. The **frame** is the envelope, which moves the contents to another place. The **packet** is the letter inside. Once the envelope (frame) is opened and stripped away, the recipient reads the letter (packet) to know what to do next.
 
-### 2. TCP (Transmission Control Protocol)
+###  TCP (Transmission Control Protocol)
 TCP is a connection-based protocol. It is incredibly reliable because it establishes a strict connection between two devices before sending anything, and it guarantees delivery.
 
 #### The TCP/IP Model
@@ -195,7 +195,7 @@ Because TCP guarantees delivery, it has to set up a connection first using a pro
 
 *Note: TCP packets contain specific headers, such as Source/Destination IP, Source/Destination Port, a Checksum for integrity, and a Sequence Number to ensure chunks are reassembled in the exact right order.*
 
-### 3. UDP (User Datagram Protocol)
+###  UDP (User Datagram Protocol)
 I compared TCP with its counterpart, UDP. UDP is completely stateless. There is no Three-Way Handshake, no synchronization, and no guarantee that the data actually arrives. 
 
 | Advantages of UDP | Disadvantages of UDP |
