@@ -47,3 +47,5 @@ I learned that the CIA Triad is not just a set of definitions; it is the fundame
 *   **Confidentiality:** Was sensitive data exposed to unauthorized individuals?
 *   **Integrity:** Was any data modified without permission?
 *   **Availability:** Were systems or services unavailable to users when they needed them?
+
+## 2. Cryptography Concepts
