@@ -183,5 +183,56 @@ This vulnerability occurs when a website takes user input but fails to **sanitiz
 ## 4 - Putting it all together
 
 
+**Objective:**
+I explored the remaining components that run behind the scenes of a website. I learned how heavy traffic is managed, how data is stored, how security is enforced before a request even reaches the server, and the difference between static and dynamic content.
+
+### Load Balancers
+When a website receives high traffic or needs high availability, one server might not be enough to handle it. Load balancers sit in front of the servers to provide two main features:
+*   **Traffic Management:** They receive my request first and forward it to one of multiple backend servers using algorithms like "round-robin" (sending to each server in turn) or "weighted" (sending to the least busy server).
+*   **Failover & Health Checks:** They perform periodic health checks on the servers. If a server stops responding, the load balancer stops routing traffic to it until it recovers.
+
+### CDN (Content Delivery Networks)
+A CDN cuts down traffic to a busy website by hosting static files (like JavaScript, CSS, images, and videos) across thousands of servers worldwide. When I request a file, the CDN finds the server physically closest to my location and serves it from there, drastically improving load times instead of routing me across the world.
+
+### Databases
+Web servers need a way to store and recall user information. Databases can be as simple as a plain text file or as complex as multi-server clusters for speed and resilience. Common databases I will encounter include MySQL, MSSQL, MongoDB, and Postgres.
+
+### WAF (Web Application Firewall)
+A WAF sits between my web request and the web server to protect against hacking or Denial of Service (DoS) attacks.
+*   It analyzes requests for common attack techniques and checks if the request comes from a real browser rather than an automated bot.
+*   It utilizes **rate limiting** to restrict the number of requests an IP can make per second.
+*   If my request is deemed malicious, the WAF drops it entirely before it ever reaches the web server.
+
+### Web Servers & Virtual Hosts
+A web server is simply software that listens for incoming connections and uses HTTP to deliver content. Common examples are Apache, Nginx, IIS, and NodeJS. 
+*   **Root Directory:** Files are delivered from a specific hard drive location defined in the software (e.g., `/var/www/html` on Linux for Apache/Nginx, or `C:\inetpub\wwwroot` on Windows for IIS).
+*   **Virtual Hosts:** Web servers can host multiple different websites on the same machine. The software reads the requested hostname from the HTTP headers and maps it to the correct hidden folder on the hard drive. If no match is found, a default website is provided.
+
+### Static vs. Dynamic Content
+*   **Static Content:** Content that never changes (like pictures, CSS, or plain HTML). It is served directly from the web server exactly as it exists on the hard drive.
+*   **Dynamic Content:** Content that changes based on the request (like a blog's latest posts or a customized search results page). 
+
+### Scripting and The Backend
+Dynamic changes are processed in the **Backend** (behind the scenes) using scripting languages like PHP, Python, Ruby, NodeJS, or Perl. 
+*   These languages can interact with databases, call external services, and process user input. 
+*   Once the backend script finishes processing, it generates standard HTML and sends it to my browser (the **Frontend**). Because the processing happens on the server, I can never see the raw backend code (like PHP) when I view the page source; I only see the final HTML result.
+
+### The Complete Web Request Journey
+Here is the exact step-by-step flow of what happens when I request a website, mapping out everything I learned in this module:
+
+```text
+1. Request tryhackme.com in your browser.
+2. Check Local Cache for IP Address.
+3. Check your recursive DNS Server for Address.
+4. Query root server to find authoritative DNS Server.
+5. Authoritative DNS server advises the IP address for the website.
+6. Request passes through a Web Application Firewall.
+7. Request passes through a Load Balancer.
+8. Connect to Webserver on port 80 or 443.
+9. Web server receives the GET request.
+10. Web Application talks to Database.
+11. Your Browser renders the HTML into a viewable website.
+
+
 
 
