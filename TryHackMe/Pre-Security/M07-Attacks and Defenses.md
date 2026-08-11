@@ -49,3 +49,40 @@ I learned that the CIA Triad is not just a set of definitions; it is the fundame
 *   **Availability:** Were systems or services unavailable to users when they needed them?
 
 ## 2. Cryptography Concepts
+
+**Objective:**
+I explored how cryptography protects confidentiality and integrity in the real world. I learned the fundamental differences between symmetric and asymmetric encryption, how keys and algorithms function together, and how they secure everyday web browsing through HTTPS.
+
+### Core Terminology
+Before diving into encryption types, I established the basic pattern of cryptography: `plaintext + encryption algorithm + key = ciphertext`.
+*   **Plaintext:** A message I can read normally (e.g., `HELLO`).
+*   **Ciphertext:** A scrambled version that looks like random nonsense and is not supposed to make sense without the key (e.g., `KHOOR`).
+*   **Key:** The secret ingredient that controls how the scrambling and unscrambling work.
+*   **Algorithm:** The public set of steps that explain how to use the key on the message. Security comes from keeping the key secret, not the algorithm.
+
+### Symmetric Encryption
+Symmetric encryption uses the exact same key to both encrypt (lock) and decrypt (unlock) the message.
+*   It is incredibly fast and efficient, making it perfect for encrypting large amounts of data like files or network traffic.
+*   **The Key Distribution Problem:** The major flaw is that both the sender and receiver need a copy of the exact same key. If they send the key over the internet in plain view, an eavesdropper can grab it and decrypt all future messages.
+
+### Asymmetric Encryption
+To solve the key distribution problem, asymmetric encryption uses two mathematically linked keys instead of one.
+*   **Public Key:** A key that anyone can know and use. If I encrypt something with a public key, only the corresponding private key can decrypt it.
+*   **Private Key:** A key that only one person keeps absolutely secret.
+*   This eliminates the need to securely share a secret key beforehand. I can share my public key openly (like a mail slot), and anyone can drop a message inside, but only I possess the private key (the door key) to open and read it.
+
+### HTTPS and Digital Certificates
+Real-world systems, like the HTTPS protocol powering secure websites, use a hybrid approach to get the best of both worlds:
+*   My browser requests the website's public key, which is wrapped in a **Certificate**.
+*   A trusted **Certificate Authority (CA)** digitally signs this certificate to prove the website is legitimate.
+*   My browser and the website use asymmetric encryption to securely agree on a shared symmetric key.
+*   They then switch to fast symmetric encryption using that shared secret for the remainder of the session.
+
+### Encryption Comparison
+
+| Feature | Symmetric Encryption | Asymmetric Encryption |
+| :--- | :--- | :--- |
+| **Number of keys** | One key for both encrypting and decrypting. | Two keys: public and private. |
+| **Key sharing** | Both people need the same secret key. | Public key can be shared openly. |
+| **Speed** | Very fast. | Slower (used for small amounts of data). |
+| **Main use** | Encrypting bulk data (files, network traffic). | Sharing keys securely and digital certificates. |
