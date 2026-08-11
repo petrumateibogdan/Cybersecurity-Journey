@@ -183,3 +183,5 @@ Completing this module highlighted several roles where defensive skills are used
 *   **Security Operations Center (SOC) Analyst:** Monitors networks and systems to detect and investigate suspicious activity.
 *   **Threat Intelligence Analyst:** Researches current threats, attackers, and trends to help prepare against potential attacks.
 *   **Digital Forensics & Incident Response (DFIR):** Investigates security incidents to understand how an attack happened and contains the threat to restore systems.
+
+--FINISHED PRE-SECURITY--
