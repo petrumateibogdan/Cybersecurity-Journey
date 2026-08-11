@@ -86,3 +86,6 @@ Real-world systems, like the HTTPS protocol powering secure websites, use a hybr
 | **Key sharing** | Both people need the same secret key. | Public key can be shared openly. |
 | **Speed** | Very fast. | Slower (used for small amounts of data). |
 | **Main use** | Encrypting bulk data (files, network traffic). | Sharing keys securely and digital certificates. |
+
+## 3. Become a Hacker
+
