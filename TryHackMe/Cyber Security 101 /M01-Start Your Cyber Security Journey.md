@@ -33,7 +33,6 @@ Shodan continuously scans the internet for networking equipment, industrial cont
   * *Complexity:* Is the vulnerability easy to exploit or not?
   * *Availability:* How likely is it that someone can exploit this?
 * **ExploitDB & PoCs:** Websites like ExploitDB compile vulnerability info alongside Proof of Concepts (PoCs)—scripts capable of demonstrating the vulnerability.
-
 ---
 
 ## 4. Documentation & Linux Man Pages
