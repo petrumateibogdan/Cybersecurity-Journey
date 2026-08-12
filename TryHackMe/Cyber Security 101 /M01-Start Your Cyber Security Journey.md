@@ -40,7 +40,6 @@ Shodan continuously scans the internet for networking equipment, industrial cont
 * **Official Documentation:** Always the most reliable and up-to-date first stop when troubleshooting or learning tool usage.
 * **Linux Man Pages:** Built-in terminal documentation accessible via `man <command>` for Linux commands and cybersecurity tooling.
 * **Netcat (`nc`):** A utility used for arbitrary TCP and UDP connections, sending UDP packets, listening on ports, and port scanning. Common uses include simple TCP proxies, script-based HTTP clients/servers, network daemon testing, and SSH ProxyCommands.
-
 ---
 
 ## 5. GitHub for Threat Intelligence
