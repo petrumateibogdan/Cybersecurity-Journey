@@ -6,8 +6,6 @@
 ## Overview
 Knowing where and how to search is just as important as knowing what to search for—whether hunting down an exploit, trying to understand a tool, or tracking a threat actor. Effective use of internet resources is a critical skill in cybersecurity.
 
-
-
 ---
 
 ## 1. Shodan
@@ -18,7 +16,6 @@ Shodan continuously scans the internet for networking equipment, industrial cont
   * `port:` - Filters by a specific port number or range (e.g., `port:22`).
   * `org:` - Scopes results to a named organization or ASN Identifier (e.g., `AS7224` for Amazon Web Services).
   * `hostname:` - Matches against a specific hostname or domain (e.g., `hostname:fakebank.thm`).
-
 ---
 
 ## 2. VirusTotal
