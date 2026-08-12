@@ -16,6 +16,7 @@ Shodan continuously scans the internet for networking equipment, industrial cont
   * `port:` - Filters by a specific port number or range (e.g., `port:22`).
   * `org:` - Scopes results to a named organization or ASN Identifier (e.g., `AS7224` for Amazon Web Services).
   * `hostname:` - Matches against a specific hostname or domain (e.g., `hostname:fakebank.thm`).
+    
 ---
 
 ## 2. VirusTotal
