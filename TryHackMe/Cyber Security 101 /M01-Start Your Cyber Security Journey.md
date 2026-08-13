@@ -6,7 +6,6 @@
 ## Overview
 Knowing where and how to search is just as important as knowing what to search for—whether hunting down an exploit, trying to understand a tool, or tracking a threat actor. Effective use of internet resources is a critical skill in cybersecurity.
 
-
 ---
 
 ## Shodan
