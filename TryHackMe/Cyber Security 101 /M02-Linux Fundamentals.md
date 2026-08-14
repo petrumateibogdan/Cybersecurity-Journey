@@ -1,5 +1,7 @@
 # Module 2: Linux Fundamentals
 
+ ## 1. Linux Fundaments part 1
+
 ## Overview of Linux
 * **Linux vs. Windows:** Linux is significantly more lightweight compared to operating systems like Windows.
 * **Daily Usage:** Linux powers everyday technologies in various forms, including:
@@ -46,3 +48,6 @@ Special characters can combine commands or handle output routing:
 * **`&&`:** Runs both commands sequentially, waiting for the first command to finish before executing the next.
 * **`>` (Redirection):** Takes the output of a command and sends it to a file, overwriting any existing content. For example, `echo "TryHackMe" > thm` creates or overwrites the file `thm`.
 * **`>>` (Append Redirection):** Adds output to the bottom of an existing file without replacing previous text. For example, using `>>` with the text `"thm"` appends it, which can be verified using `cat thm`.
+
+
+## 2. Linux Fundamentals part 2
