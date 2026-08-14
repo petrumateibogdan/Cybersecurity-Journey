@@ -75,7 +75,6 @@ Commands perform a default behavior that can be extended using arguments known a
 * **The `--help` Option:** Most commands accept a `--help` flag to list possible options, descriptions, and examples.
 * **The Manual (`man`):** The `man` command provides the formatted manual page for a command. It is the built-in documentation for system commands and applications.
   `man ls`
-
 ---
 
 ## 3. Advanced Filesystem Commands
