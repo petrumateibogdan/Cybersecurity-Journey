@@ -11,14 +11,14 @@
 
 ---
 
-## 2. Deploying a Linux Machine
+##  Deploying a Linux Machine
 * Rooms often provide a browser-based Ubuntu Linux machine that can be accessed using the "Start Machine" or "Start Lab Machine" buttons.
 * The management card displays essential information such as the IP address and expiry timer. 
 * Always remember to click "Terminate" once you are finished with the room.
 
 ---
 
-## 3. The Linux Terminal & Basic Commands
+##  The Linux Terminal & Basic Commands
 * Cybersecurity workflows rely heavily on the command line interface (CLI) rather than a mouse, from running hacking tools to tracking attackers.
 * **Command:** An instruction given to the computer to perform a specific task.
 * **`whoami`:** Tells you your current username on the system, which is critical when changing users to verify permissions.
@@ -27,7 +27,7 @@
 
 ---
 
-## 4. File Navigation & Searching
+##  File Navigation & Searching
 Essential commands for navigating the file system without a mouse include:
 * **`ls`:** List what is in the current folder. (Note: Folders typically display as blue on these systems).
 * **`cd`:** Change directory—move into a specified folder.
@@ -40,7 +40,7 @@ Efficient searching commands:
 
 ---
 
-## 5. Operators and Redirection
+##  Operators and Redirection
 Special characters can combine commands or handle output routing:
 * **`&`:** Runs the command in the background without waiting for it to finish. Useful for long-running processes.
 * **`&&`:** Runs both commands sequentially, waiting for the first command to finish before executing the next.
