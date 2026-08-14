@@ -58,6 +58,7 @@ Special characters can combine commands or handle output routing:
 This module transitions from in-browser terminals to a critical real-world skill: connecting to and controlling remote Linux machines. It expands on basic commands by introducing flags and arguments, advances filesystem manipulation, breaks down file permissions, and explores essential root directories.
 
 ---
+
 ## 1. Secure Shell (SSH)
 Secure Shell (SSH) is an encrypted protocol used to securely connect to and interact with the command line of a remote Linux machine.
 * **Encryption:** By using cryptography, any human-readable input sent over the network is encrypted during transit and decrypted once it reaches the remote machine.
