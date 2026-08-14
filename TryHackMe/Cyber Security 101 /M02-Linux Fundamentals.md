@@ -59,7 +59,7 @@ This module transitions from in-browser terminals to a critical real-world skill
 
 ---
 
-## 1. Secure Shell (SSH)
+##  Secure Shell (SSH)
 Secure Shell (SSH) is an encrypted protocol used to securely connect to and interact with the command line of a remote Linux machine.
 * **Encryption:** By using cryptography, any human-readable input sent over the network is encrypted during transit and decrypted once it reaches the remote machine.
 * **Syntax:** Connecting requires an IP address and valid credentials.
@@ -69,7 +69,7 @@ Secure Shell (SSH) is an encrypted protocol used to securely connect to and inte
 
 ---
 
-## 2. Flags, Switches, and the Manual
+##  Flags, Switches, and the Manual
 Commands perform a default behavior that can be extended using arguments known as flags or switches, typically identified by a hyphen (`-` or `--`).
 * **Hidden Files (`ls -a`):** By default, `ls` hides files and folders starting with a period (`.`). Using the `-a` (or `--all`) flag reveals them.
 * **The `--help` Option:** Most commands accept a `--help` flag to list possible options, descriptions, and examples.
@@ -78,7 +78,7 @@ Commands perform a default behavior that can be extended using arguments known a
   
 ---
 
-## 3. Advanced Filesystem Commands
+##  Advanced Filesystem Commands
 Interacting with the filesystem goes beyond basic navigation. These commands are essential for file and directory manipulation:
 * `touch <filename>`: Creates a blank file. (Content must be added later using tools like `echo` or `nano`).
 * `mkdir <directory>`: Creates a new folder (make directory).
@@ -90,7 +90,7 @@ Interacting with the filesystem goes beyond basic navigation. These commands are
 
 ---
 
-## 4. Users, Groups, and Permissions
+##  Users, Groups, and Permissions
 File access in Linux is highly granular. You can determine characteristics and permissions using `ls -lh` (long, human-readable format). 
 
 ### Switching Users
@@ -124,7 +124,7 @@ Permissions are frequently managed using numeric values with the `chmod` command
 
 ---
 
-## 5. Important Root Directories
+##  Important Root Directories
 Understanding the Linux root directory structure is essential for locating system configurations, user data, and temporary files.
 * `/etc`: (Etcetera) Stores vital system files and configurations used by the OS. 
   * `sudoers`: Lists users/groups permitted to run commands as root.
