@@ -133,3 +133,7 @@ Understanding the Linux root directory structure is essential for locating syste
 * `/root`: The dedicated home directory for the "root" system user (distinct from `/home/root`).
 * `/tmp`: (Temporary) A volatile directory used to store data temporarily. Its contents are cleared when the computer restarts. 
   * **Pentesting Note:** Any user can write to `/tmp` by default, making it an ideal location to store enumeration scripts when first gaining access to a machine.
+
+ ## 3. Linux Fundamentals Part 3
+
+ 
