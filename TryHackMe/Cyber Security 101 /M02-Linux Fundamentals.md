@@ -1,10 +1,8 @@
 # Module 2: Linux Fundamentals
 
-
-
-##  Overview of Linux
+## Overview of Linux
 * **Linux vs. Windows:** Linux is significantly more lightweight compared to operating systems like Windows.
-* **Ubiquitous Usage:** Linux powers everyday technologies in various forms, including:
+* **Daily Usage:** Linux powers everyday technologies in various forms, including:
   * Websites you visit
   * Car entertainment and control panels
   * Point of Sale (PoS) systems such as checkout tills and registers
