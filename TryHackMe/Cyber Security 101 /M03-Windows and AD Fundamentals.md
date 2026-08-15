@@ -51,7 +51,7 @@ Local Windows systems typically utilize two main account types:
 
 ---
 
-## 5. User Account Control (UAC)
+##  User Account Control (UAC)
 UAC is a critical security feature designed to protect administrators from accidentally executing malicious actions.
 * **Function:** When an administrator attempts to perform an operation requiring elevated privileges, UAC intercepts the request and prompts the user for confirmation.
 * **Identification:** Programs that require elevated privileges to run or install are marked with a small shield icon.
