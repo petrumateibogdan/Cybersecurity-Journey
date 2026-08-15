@@ -6,7 +6,7 @@
 # Windows Fundamentals Overview
 
 ## Overview
-Windows is the dominant operating system in home and corporate environments, making it a primary target for malware. Its history spans from early versions like XP and Vista, up through Windows 10, Windows 11, and Windows Server 2025. This module covers the core components, file systems, permissions, and management utilities essential for understanding the Windows environment.
+Windows is the dominant operating system in home and corporate environments, making it a primary target for malware. Its history spans from **1985** early versions like XP and Vista, up through Windows 10, Windows 11, and Windows Server 2025. This module covers the core components, file systems, permissions, and management utilities essential for understanding the Windows environment.
 
 ---
 
