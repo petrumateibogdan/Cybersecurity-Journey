@@ -62,3 +62,5 @@ UAC is a critical security feature designed to protect administrators from accid
 ##  System Configuration & Monitoring
 * **Settings vs. Control Panel:** Both are used to configure the system. The Settings menu (introduced in Windows 8) provides a modernized UI for primary configurations, while the legacy Control Panel handles more complex, deep-level system settings (like the "Programs and Features" menu to view installed applications).
 * **Task Manager:** Accessed by right-clicking the taskbar, it provides real-time data on running applications, background processes, and system performance utilization (CPU, RAM, Disk, Network).
+
+## 2. Windows Fundamentals 2
