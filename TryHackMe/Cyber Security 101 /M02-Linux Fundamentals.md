@@ -143,7 +143,7 @@ This section covers essential Linux administration skills: transferring files ac
 
 ---
 
-## 1. Transferring Files
+##  Transferring Files
 ### Downloading with `wget`
 * `wget` allows you to download files from the web via HTTP, similar to accessing a file in a browser.
 * **Syntax:** `wget <URL>`
@@ -164,7 +164,7 @@ This section covers essential Linux administration skills: transferring files ac
 
 ---
 
-## 2. Managing Processes
+##  Managing Processes
 Processes are running programs managed by the kernel. Each is assigned an incremental Process ID (PID).
 * **Viewing Processes:**
   * `ps`: Lists running processes for the current user's session.
@@ -186,7 +186,7 @@ Processes are running programs managed by the kernel. Each is assigned an increm
 
 ---
 
-## 3. Automation with Cron
+##  Automation with Cron
 The `cron` process facilitates scheduled tasks using special files called `crontabs`.
 * **Editing:** Use `crontab -e` to edit the current user's crontab file.
 * **Syntax:** Crontabs require 6 values: `MIN` `HOUR` `DOM (Day of Month)` `MON` `DOW (Day of Week)` `CMD`.
@@ -195,7 +195,7 @@ The `cron` process facilitates scheduled tasks using special files called `cront
 
 ---
 
-## 4. Software Package Management
+##  Software Package Management
 Software on Ubuntu is managed via `apt` (Advanced Package Tool), which securely retrieves tools from community and vendor repositories.
 * **Repositories:** A registry of available software. You can add third-party repositories using `add-apt-repository`.
 * **GPG Keys (Gnu Privacy Guard):** Ensure the integrity and authenticity of downloaded software. If a repository's GPG key doesn't match, the system will reject the download.
@@ -206,7 +206,7 @@ Software on Ubuntu is managed via `apt` (Advanced Package Tool), which securely 
 
 ---
 
-## 5. System Logs
+##  System Logs
 Located in `/var/log`, these files contain vital diagnostic and security information for the OS and running services.
 * **Common Service Logs:**
   * Apache2 (Web Server): Contains an `access log` (records all requests) and an `error log`.
