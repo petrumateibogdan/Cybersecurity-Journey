@@ -42,7 +42,7 @@ NTFS is the modern file system used by Windows, replacing older FAT16/32 formats
 
 ---
 
-## 4. User Accounts & Management
+##  User Accounts & Management
 Local Windows systems typically utilize two main account types:
 * **Administrator:** Has full privileges to make system-wide changes, add/remove users, and modify security settings.
 * **Standard User:** Can only make changes to their specific profile files and cannot perform system-level changes (like installing global software).
