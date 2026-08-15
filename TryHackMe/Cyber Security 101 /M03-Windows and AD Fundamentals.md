@@ -10,7 +10,7 @@ Windows is the dominant operating system in home and corporate environments, mak
 
 ---
 
-## 1. The Windows GUI
+##  The Windows GUI
 The Windows Desktop interface is composed of several key components that facilitate user interaction:
 * **The Desktop:** The main workspace for shortcuts to programs, folders, and files. Right-clicking allows for personalization (wallpaper, themes) and display settings (resolution, multi-monitor setups).
 * **The Start Menu:** Divided into three main sections:
