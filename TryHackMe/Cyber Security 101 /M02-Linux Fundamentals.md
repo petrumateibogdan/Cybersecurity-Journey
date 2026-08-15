@@ -136,4 +136,83 @@ Understanding the Linux root directory structure is essential for locating syste
 
  ## 3. Linux Fundamentals Part 3
 
+# Network Transfers, Processes, and System Management
+
+## Overview
+This section covers essential Linux administration skills: transferring files across networks, managing background processes, scheduling automated tasks, handling software packages, and reviewing system logs.
+
+---
+
+## 1. Transferring Files
+### Downloading with `wget`
+* `wget` allows you to download files from the web via HTTP, similar to accessing a file in a browser.
+* **Syntax:** `wget <URL>`
+  * *Example:* `wget https://assets.tryhackme.com/myfile.txt`
+
+### Secure Copy (`scp`)
+* `scp` copies files securely between two computers using the SSH protocol (providing both authentication and encryption).
+* **Syntax Structure:** `scp <SOURCE> <DESTINATION>`
+* **Local to Remote:**
+  `scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt`
+* **Remote to Local:**
+  `scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt`
+
+### Serving Files via Python
+* Ubuntu comes pre-packaged with Python 3, which includes a lightweight module called `http.server`.
+* Running `python3 -m http.server` instantly turns the current directory into a web server, allowing other computers to download your files using commands like `curl` or `wget`.
+* By default, it serves files on port 8000. *(Example download: `wget http://10.114.145.150:8000/file`)*
+
+---
+
+## 2. Managing Processes
+Processes are running programs managed by the kernel. Each is assigned an incremental Process ID (PID).
+* **Viewing Processes:**
+  * `ps`: Lists running processes for the current user's session.
+  * `ps aux`: Shows a detailed list of all processes, including those run by other users and system processes.
+  * `top`: Provides real-time, refreshing statistics about system processes.
+* **Terminating Processes:**
+  * Use the `kill <PID>` command to terminate a process (e.g., `kill 1337`).
+  * *Signals:*
+    * `SIGTERM`: Kills the process but allows it to clean up first.
+    * `SIGKILL`: Kills the process instantly with no cleanup.
+    * `SIGSTOP`: Suspends/stops the process.
+* **Process Origins (systemd):** On Ubuntu, `systemd` (PID 1) initializes the system. Any program started afterward runs as a child process of `systemd`.
+* **Managing Services:** Use `systemctl [option] [service]` to control services (e.g., `systemctl start apache2`). Options include start, stop, enable, disable, and status.
+
+### Backgrounding and Foregrounding
+* Commands typically run in the **foreground**, blocking the terminal until finished.
+* **Backgrounding:** Append the `&` operator to a command (e.g., `echo "Hi THM" &`) to run it in the background. If a script is already running, press `Ctrl + Z` to suspend/background it.
+* **Foregrounding:** Use the `fg` command to bring a backgrounded process back to the terminal focus.
+
+---
+
+## 3. Automation with Cron
+The `cron` process facilitates scheduled tasks using special files called `crontabs`.
+* **Editing:** Use `crontab -e` to edit the current user's crontab file.
+* **Syntax:** Crontabs require 6 values: `MIN` `HOUR` `DOM (Day of Month)` `MON` `DOW (Day of Week)` `CMD`.
+  * *Example:* `0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/` (Backs up the Documents folder every 12 hours).
+  * An asterisk (`*`) acts as a wildcard, meaning "every" or "any."
+
+---
+
+## 4. Software Package Management
+Software on Ubuntu is managed via `apt` (Advanced Package Tool), which securely retrieves tools from community and vendor repositories.
+* **Repositories:** A registry of available software. You can add third-party repositories using `add-apt-repository`.
+* **GPG Keys (Gnu Privacy Guard):** Ensure the integrity and authenticity of downloaded software. If a repository's GPG key doesn't match, the system will reject the download.
+* **Updating and Installing:**
+  * `apt update`: Updates your system's list of available packages.
+  * `apt install <software_name>`: Installs the specified package.
+  * `apt remove <software_name>`: Uninstalls the software.
+
+---
+
+## 5. System Logs
+Located in `/var/log`, these files contain vital diagnostic and security information for the OS and running services.
+* **Common Service Logs:**
+  * Apache2 (Web Server): Contains an `access log` (records all requests) and an `error log`.
+  * `fail2ban`: Monitors for intrusion attempts like brute-force attacks.
+  * UFW (Uncomplicated Firewall): Logs firewall activity.
+* Logs are crucial for developers diagnosing performance issues and administrators investigating suspicious activity or authentication attempts.
+ 
+
  
