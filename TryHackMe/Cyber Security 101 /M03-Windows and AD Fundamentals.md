@@ -24,7 +24,7 @@ The Windows Desktop interface is composed of several key components that facilit
 ##  NTFS (New Technology File System)
 NTFS is the modern file system used by Windows, replacing older FAT16/32 formats.
 * **Journaling:** NTFS can automatically repair files and folders on disk using a log file in the event of a system failure.
-* **Key Features:** Supports files larger than 4GB, folder/file compression, and encryption (EFS).
+* **Key Features:** Supports files larger than 4GB, folder/file compression, and encryption (EFS). (Encrypting File System)
 * **NTFS Permissions:** Access can be explicitly granted or denied using specific permissions:
   * Full control
   * Modify
