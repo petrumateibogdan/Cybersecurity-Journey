@@ -36,7 +36,7 @@ NTFS is the modern file system used by Windows, replacing older FAT16/32 formats
 
 ---
 
-## 3. Core Directories & Environment Variables
+## Core Directories & Environment Variables
 * **The Windows Folder (`C:\Windows`):** Houses the core operating system files. Its location is mapped to the `%windir%` system environment variable.
 * **System32 (`C:\Windows\System32`):** Contains the most critical files for the operating system. Modifying or deleting files here without extreme caution can render the OS completely inoperable.
 
