@@ -205,7 +205,6 @@ Software on Ubuntu is managed via `apt` (Advanced Package Tool), which securely 
   * `apt remove <software_name>`: Uninstalls the software.
 
 ---
-
 ##  System Logs
 Located in `/var/log`, these files contain vital diagnostic and security information for the OS and running services.
 * **Common Service Logs:**
