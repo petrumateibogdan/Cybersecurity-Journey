@@ -128,7 +128,7 @@ An advanced utility providing granular, real-time, per-process usage statistics.
 
 ---
 
-## 7. The Command Prompt (`cmd`)
+##  The Command Prompt (`cmd`)
 While the GUI is dominant, the command line remains a powerful tool for retrieving system and network information.
 * `hostname`: Outputs the name of the computer.
 * `whoami`: Outputs the name of the currently logged-in user.
