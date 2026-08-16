@@ -147,3 +147,63 @@ The central, hierarchical database that stores configurations for users, applica
 
 
 ## 3. Windows Fundamentals 3
+
+# Windows Security and System Protection
+
+## Overview
+This module explores built-in Windows features designed to keep systems secure and up-to-date. It covers how Microsoft delivers updates, the comprehensive protections offered by Windows Security (Defender), and data preservation features like Volume Shadow Copies.
+
+---
+
+## 1. Windows Update
+Windows Update is a critical service provided by Microsoft to deliver security updates, feature enhancements, and patches for the OS and associated products like Microsoft Defender.
+* **Patch Tuesday:** Updates are typically released on the 2nd Tuesday of each month. However, urgent or critical patches can be pushed out at any time via the update service.
+* **Update Enforcement:** Historically, users would delay updates to avoid system reboots. Starting with Windows 10, Microsoft mandated updates; they can be postponed temporarily but can no longer be completely ignored. They will eventually install and force a reboot to ensure device security.
+* **Access:** It can be found in the Settings menu or launched via the Run dialog/CMD using `control /name Microsoft.WindowsUpdate`.
+
+---
+
+## 2. Windows Security (Microsoft Defender)
+Windows Security serves as the central hub for managing tools that protect your device and data. It uses color-coded status icons:
+* **Green:** Device is protected; no actions needed.
+* **Yellow:** Safety recommendation requires review.
+* **Red:** A warning requiring immediate attention.
+
+### A. Virus & Threat Protection
+Divided into two main areas:
+* **Current Threats:** Allows you to run different scans:
+  * *Quick Scan:* Checks common threat locations.
+  * *Full Scan:* Checks all files and running programs (can take over an hour).
+  * *Custom Scan:* Allows checking specific files/locations.
+  * *Threat History:* Displays quarantined threats (isolated and prevented from running) and allowed threats (items identified as threats but explicitly permitted by the user).
+* **Manage Settings:**
+  * *Real-time Protection:* Locates and stops malware from running. (Note: Often disabled in secure VMs to improve performance, but critical for personal devices).
+  * *Controlled Folder Access:* Prevents unauthorized changes by unknown/malicious apps to protected files, folders, and memory areas. Must be manually enabled.
+  * *Exclusions:* Allows specific files/folders to bypass scanning to prevent false positives. Should only be used if 100% certain the excluded item is safe.
+* **On-Demand Scanning:** You can right-click any file or folder and select "Scan with Microsoft Defender."
+
+### B. Firewall & Network Protection
+A firewall controls what traffic is allowed to pass in and out of device ports, acting like a security guard checking IDs. Windows Firewall offers three profiles:
+* **Domain:** Applies when a host can authenticate to a domain controller.
+* **Private:** User-assigned profile for trusted home/private networks.
+* **Public:** Default profile for untrusted networks like coffee shop Wi-Fi.
+* **Management:** You can turn the firewall on/off, block all incoming connections, or specifically "Allow an app through firewall." (Advanced configuration shortcut: `WF.msc`).
+
+### C. App & Browser Control
+Features Microsoft Defender SmartScreen, which protects against phishing/malware websites and potentially malicious file downloads by checking for unrecognized apps on the web. It can be set to Warn, Block, or Off.
+* **Exploit Protection:** Built-in safeguards to protect against specific attack vectors. (Default settings should rarely be changed).
+
+### D. Device Security
+* **Core Isolation (Memory Integrity):** Prevents attacks from inserting malicious code into high-security processes.
+* **Trusted Platform Module (TPM):** A secure, hardware-based crypto-processor chip designed to carry out cryptographic operations and resist physical tampering.
+* **BitLocker:** A drive encryption feature that integrates with the OS to prevent data theft from lost or stolen computers. 
+  * It provides maximum protection when paired with a TPM chip (version 1.2 or later). 
+  * On systems *without* a TPM chip, BitLocker requires a removable drive (like a USB) containing a **startup key** to unlock the drive.
+
+---
+
+## 3. Volume Shadow Copy Service (VSS)
+The Volume Shadow Copy Service (VSS) coordinates the creation of consistent shadow copies (snapshots or point-in-time copies) of data to be backed up.
+* **Storage Location:** Shadow copies are stored in the "System Volume Information" folder on each protected drive.
+* **Capabilities:** If System Protection is turned on, you can create restore points, perform system restores, and manage existing restore points from the advanced system settings.
+* **Security Threat:** Ransomware authors specifically write code to seek out and delete Volume Shadow Copies to prevent victims from recovering their data without paying the ransom. Therefore, offline or off-site backups are essential.
