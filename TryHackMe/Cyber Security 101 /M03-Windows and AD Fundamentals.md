@@ -155,7 +155,7 @@ This module explores built-in Windows features designed to keep systems secure a
 
 ---
 
-## 1. Windows Update
+##  Windows Update
 Windows Update is a critical service provided by Microsoft to deliver security updates, feature enhancements, and patches for the OS and associated products like Microsoft Defender.
 * **Patch Tuesday:** Updates are typically released on the 2nd Tuesday of each month. However, urgent or critical patches can be pushed out at any time via the update service.
 * **Update Enforcement:** Historically, users would delay updates to avoid system reboots. Starting with Windows 10, Microsoft mandated updates; they can be postponed temporarily but can no longer be completely ignored. They will eventually install and force a reboot to ensure device security.
@@ -163,7 +163,7 @@ Windows Update is a critical service provided by Microsoft to deliver security u
 
 ---
 
-## 2. Windows Security (Microsoft Defender)
+##  Windows Security (Microsoft Defender)
 Windows Security serves as the central hub for managing tools that protect your device and data. It uses color-coded status icons:
 * **Green:** Device is protected; no actions needed.
 * **Yellow:** Safety recommendation requires review.
@@ -202,8 +202,10 @@ Features Microsoft Defender SmartScreen, which protects against phishing/malware
 
 ---
 
-## 3. Volume Shadow Copy Service (VSS)
+##  Volume Shadow Copy Service (VSS)
 The Volume Shadow Copy Service (VSS) coordinates the creation of consistent shadow copies (snapshots or point-in-time copies) of data to be backed up.
 * **Storage Location:** Shadow copies are stored in the "System Volume Information" folder on each protected drive.
 * **Capabilities:** If System Protection is turned on, you can create restore points, perform system restores, and manage existing restore points from the advanced system settings.
 * **Security Threat:** Ransomware authors specifically write code to seek out and delete Volume Shadow Copies to prevent victims from recovering their data without paying the ransom. Therefore, offline or off-site backups are essential.
+
+## 4. Active Directory (AD)  Basics 
