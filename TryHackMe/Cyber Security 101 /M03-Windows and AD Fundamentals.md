@@ -114,7 +114,7 @@ A consolidated console containing three primary sections: System Tools, Storage,
 
 ---
 
-## 5. System Information (`msinfo32`)
+##  System Information (`msinfo32`)
 A comprehensive view of your hardware, system components, and software environment. 
 * Displays granular hardware specifications.
 * **Environment Variables:** Stores data used by the OS and programs (e.g., `%windir%` points to the Windows installation directory). 
