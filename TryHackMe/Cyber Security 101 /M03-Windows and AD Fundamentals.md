@@ -145,4 +145,5 @@ The central, hierarchical database that stores configurations for users, applica
 * It contains user profiles, property sheet settings, and installed application data.
 * **Warning:** The registry is highly sensitive. Incorrectly editing keys or values can cause critical system failures.
 
+
 ## 3. Windows Fundamentals 3
