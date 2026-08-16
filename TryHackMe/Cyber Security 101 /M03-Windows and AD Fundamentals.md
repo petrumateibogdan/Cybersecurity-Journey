@@ -63,6 +63,7 @@ UAC is a critical security feature designed to protect administrators from accid
 * **Settings vs. Control Panel:** Both are used to configure the system. The Settings menu (introduced in Windows 8) provides a modernized UI for primary configurations, while the legacy Control Panel handles more complex, deep-level system settings (like the "Programs and Features" menu to view installed applications).
 * **Task Manager:** Accessed by right-clicking the taskbar, it provides real-time data on running applications, background processes, and system performance utilization (CPU, RAM, Disk, Network).
 
+
 ## 2. Windows Fundamentals 2
 
 
@@ -71,7 +72,7 @@ This section explores the core utilities used by administrators and power users 
 
 ---
 
-## 1. System Configuration (MSConfig)
+##  System Configuration (MSConfig)
 MSConfig is an advanced troubleshooting utility primarily used to diagnose startup issues. It requires local administrator rights to open.
 * **General:** Select what devices and services load upon boot (Normal, Diagnostic, or Selective).
 * **Boot:** Define various boot options for the operating system.
@@ -81,14 +82,14 @@ MSConfig is an advanced troubleshooting utility primarily used to diagnose start
 
 ---
 
-## 2. Advanced System Settings
+##  Advanced System Settings
 This menu provides control over system performance behavior and crash recovery.
 * **Performance (Page File):** Windows uses a "page file" as virtual memory when physical RAM is full to prevent crashes. Here, you can view or modify the page file's size and the drive where it is stored.
 * **Startup and Recovery:** Configures "crash dump" files, which are generated during a critical error (like a Blue Screen of Death). Administrators use these memory dumps (e.g., Kernel, Small, or Complete memory dumps) to investigate the cause of the crash.
 
 ---
 
-## 3. User Account Control (UAC) Settings
+##  User Account Control (UAC) Settings
 UAC controls how Windows alerts you when applications or users attempt to make system-level changes. It has four security levels:
 1. **Always notify:** Highest security; notifies for any change and dims the desktop (Secure Desktop).
 2. **Notify for apps (Default):** Notifies only when apps try to make changes; desktop dims.
