@@ -98,7 +98,7 @@ UAC controls how Windows alerts you when applications or users attempt to make s
 
 ---
 
-## 4. Computer Management (`compmgmt.msc`)
+##  Computer Management (`compmgmt.msc`)
 A consolidated console containing three primary sections: System Tools, Storage, and Services and Applications.
 
 ### System Tools
