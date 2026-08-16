@@ -121,7 +121,7 @@ A comprehensive view of your hardware, system components, and software environme
 
 ---
 
-## 6. Resource Monitor (`resmon`)
+##  Resource Monitor (`resmon`)
 An advanced utility providing granular, real-time, per-process usage statistics.
 * **Tabs:** CPU, Memory, Disk, and Network.
 * **Features:** Allows administrators to isolate specific applications to see their exact resource drain, analyze deadlocked processes, and force-close unresponsive applications.
