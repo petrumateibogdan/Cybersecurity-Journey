@@ -140,7 +140,7 @@ While the GUI is dominant, the command line remains a powerful tool for retrievi
 
 ---
 
-## 8. Windows Registry (`regedit`)
+##  Windows Registry (`regedit`)
 The central, hierarchical database that stores configurations for users, applications, and hardware devices. 
 * It contains user profiles, property sheet settings, and installed application data.
 * **Warning:** The registry is highly sensitive. Incorrectly editing keys or values can cause critical system failures.
