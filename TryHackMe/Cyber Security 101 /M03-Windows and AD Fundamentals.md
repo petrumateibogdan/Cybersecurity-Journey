@@ -64,3 +64,82 @@ UAC is a critical security feature designed to protect administrators from accid
 * **Task Manager:** Accessed by right-clicking the taskbar, it provides real-time data on running applications, background processes, and system performance utilization (CPU, RAM, Disk, Network).
 
 ## 2. Windows Fundamentals 2
+
+
+## Overview
+This section explores the core utilities used by administrators and power users to configure, troubleshoot, and manage a Windows environment. These tools provide deep visibility into hardware performance, background services, network connections, and automated tasks.
+
+---
+
+## 1. System Configuration (MSConfig)
+MSConfig is an advanced troubleshooting utility primarily used to diagnose startup issues. It requires local administrator rights to open.
+* **General:** Select what devices and services load upon boot (Normal, Diagnostic, or Selective).
+* **Boot:** Define various boot options for the operating system.
+* **Services:** Lists all background services configured on the system (both running and stopped).
+* **Startup:** On modern Windows (10/11), this redirects to Task Manager. On Windows Servers, user-level startup items are reliably managed via the Startup folder (accessible by running `shell:startup`).
+* **Tools:** Provides a list of shortcuts to launch other system administration utilities.
+
+---
+
+## 2. Advanced System Settings
+This menu provides control over system performance behavior and crash recovery.
+* **Performance (Page File):** Windows uses a "page file" as virtual memory when physical RAM is full to prevent crashes. Here, you can view or modify the page file's size and the drive where it is stored.
+* **Startup and Recovery:** Configures "crash dump" files, which are generated during a critical error (like a Blue Screen of Death). Administrators use these memory dumps (e.g., Kernel, Small, or Complete memory dumps) to investigate the cause of the crash.
+
+---
+
+## 3. User Account Control (UAC) Settings
+UAC controls how Windows alerts you when applications or users attempt to make system-level changes. It has four security levels:
+1. **Always notify:** Highest security; notifies for any change and dims the desktop (Secure Desktop).
+2. **Notify for apps (Default):** Notifies only when apps try to make changes; desktop dims.
+3. **Notify without dimming:** Same as default, but the screen does not dim.
+4. **Never notify:** Lowest security; no warnings are issued for any changes.
+
+---
+
+## 4. Computer Management (`compmgmt.msc`)
+A consolidated console containing three primary sections: System Tools, Storage, and Services and Applications.
+
+### System Tools
+* **Task Scheduler:** Automates tasks (running apps or scripts) at specified times, on login, or on recurring schedules. 
+* **Event Viewer:** An audit trail of system activity used for troubleshooting and security investigations. Logs include Application, Security, Setup, System, and Forwarded Events. Event types range from Information to Critical Errors and Audit Success/Failures.
+* **Shared Folders:** Displays all active network shares (including default admin shares like `C$` and `ADMIN$`), connected user sessions, and open files.
+* **Performance Monitor (`perfmon`):** Views real-time or log-based hardware performance data.
+* **Device Manager:** Views and configures attached hardware components.
+
+### Storage & Services
+* **Disk Management:** Advanced storage tasks, such as setting up drives, extending/shrinking partitions, and assigning drive letters.
+* **Services:** Manages background applications. The "Startup type" determines how a service launches: **Automatic** (on boot), **Manual** (triggered by a user/process), or **Disabled**.
+
+---
+
+## 5. System Information (`msinfo32`)
+A comprehensive view of your hardware, system components, and software environment. 
+* Displays granular hardware specifications.
+* **Environment Variables:** Stores data used by the OS and programs (e.g., `%windir%` points to the Windows installation directory). 
+
+---
+
+## 6. Resource Monitor (`resmon`)
+An advanced utility providing granular, real-time, per-process usage statistics.
+* **Tabs:** CPU, Memory, Disk, and Network.
+* **Features:** Allows administrators to isolate specific applications to see their exact resource drain, analyze deadlocked processes, and force-close unresponsive applications.
+
+---
+
+## 7. The Command Prompt (`cmd`)
+While the GUI is dominant, the command line remains a powerful tool for retrieving system and network information.
+* `hostname`: Outputs the name of the computer.
+* `whoami`: Outputs the name of the currently logged-in user.
+* `ipconfig`: Displays the network address settings.
+* `netstat`: Displays active TCP/IP network connections and protocol statistics. (Accepts parameters like `-a` or `-b`).
+* `net`: Used to manage network resources (e.g., `net user`, `net share`).
+* `/?`: Appending this to a command (e.g., `ipconfig /?`) opens the help manual detailing its syntax. (For `net`, use `net help`).
+* `cls`: Clears the command prompt screen.
+
+---
+
+## 8. Windows Registry (`regedit`)
+The central, hierarchical database that stores configurations for users, applications, and hardware devices. 
+* It contains user profiles, property sheet settings, and installed application data.
+* **Warning:** The registry is highly sensitive. Incorrectly editing keys or values can cause critical system failures.
