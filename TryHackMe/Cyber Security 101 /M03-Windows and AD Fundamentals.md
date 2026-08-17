@@ -217,7 +217,7 @@ Active Directory (AD) is the central backbone of identity and access management 
 
 ---
 
-## 1. Core Concepts
+##  Core Concepts
 * **Windows Domain:** A centralized group of users and computers under the administration of a single business.
 * **Domain Controller (DC):** The server that runs the Active Directory Domain Service (AD DS) and manages the network.
 * **Active Directory Domain Service (AD DS):** Acts as a catalogue holding network "objects" like users, groups, machines, and printers.
