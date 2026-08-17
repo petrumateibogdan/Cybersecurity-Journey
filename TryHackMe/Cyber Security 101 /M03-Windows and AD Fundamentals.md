@@ -266,7 +266,7 @@ GPOs are collections of settings used to push configurations and security baseli
 
 ---
 
-## 5. Domain Authentication Protocols
+##  Domain Authentication Protocols
 When authenticating to a service, the service verifies domain credentials against the Domain Controller.
 
 ### Kerberos (Default)
