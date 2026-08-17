@@ -83,3 +83,37 @@ To get maximum visibility into what my system is doing on the network, I combine
 * **`-o`:** Reveals the Process ID (PID) associated with the connection.
 * **`-n`:** Forces numerical output for IP addresses and port numbers (stopping it from trying to resolve hostnames, which speeds up the output).
 * **The Result:** Running `netstat -abon` gives me a comprehensive list showing exactly which programs are communicating on the network, what ports they are using, and their specific PIDs.
+
+# Navigating the Filesystem via Command Line
+
+##  Finding My Bearings and Exploring Directories
+When working strictly in the terminal, it is easy to lose track of where I am. 
+* **`cd` (Check Location):** Typing `cd` with no parameters acts like a compass—it outputs my exact current directory path (e.g., `C:\Users\strategos`).
+* **`dir` (List Contents):** This is the equivalent of opening a folder in the GUI to see what is inside. It lists all standard files and child directories. 
+  * I use `dir /a` to force it to show hidden and system files that normally wouldn't appear.
+  * I use `dir /s` to recursively display files in the current folder *and* all subfolders beneath it.
+* **`tree` (Visual Map):** Sometimes a flat list isn't enough. Typing `tree` draws a visual, hierarchical map of the current directory and all subdirectories, which is incredible for understanding the structure of an unfamiliar machine.
+
+##  Moving Around and Managing Folders
+Navigating through the system requires the `cd` (Change Directory) command.
+* **`cd <target>`:** Moves me into a specific child directory (e.g., `cd Documents`).
+* **`cd ..`:** Moves me exactly one level *up* in the directory tree (from `C:\Users\strategos` back to `C:\Users`).
+
+Creating and destroying folders is equally straightforward:
+* **`mkdir <name>`:** Makes a new directory.
+* **`rmdir <name>`:** Removes an existing directory. *(Note: By default, the folder must be empty for this to work).*
+
+##  Interacting With Files
+I cannot double-click a text file to open it in Notepad when working in a remote CLI session. Instead, I have to interact with the file contents directly in the terminal.
+* **`type <filename>`:** This command dumps the entire contents of a text file directly onto the screen. It is perfect for quickly reading small config files or logs.
+* **`more <filename>`:** If the file is massive, using `type` will just flood the screen. `more` opens the file one terminal-page at a time, allowing me to page through it using the Spacebar.
+
+Managing the files themselves requires three core commands:
+* **`copy <source> <destination>`:** Duplicates a file to a new location.
+* **`move <source> <destination>`:** Moves a file from one location to another (this is also how I rename files in the CLI by just moving them to a new filename).
+* **`del` or `erase <filename>`:** Permanently deletes a file.
+
+##  The Power of Wildcards (`*`)
+I quickly realized that typing out individual file names is tedious. The asterisk (`*`) acts as a wildcard, meaning "anything." 
+For example, if I want to move every single text file in my current directory to a backup folder, I don't have to move them one by one. I can just execute `move *.txt C:\backup_files`.
+
