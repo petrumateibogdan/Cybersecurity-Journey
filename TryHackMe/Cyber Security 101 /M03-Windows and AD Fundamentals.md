@@ -225,7 +225,7 @@ Active Directory (AD) is the central backbone of identity and access management 
 
 ---
 
-## 2. Active Directory Objects
+##  Active Directory Objects
 Objects within AD are generally categorized as "security principals," meaning they can be authenticated and assigned privileges.
 
 ### A. Users
