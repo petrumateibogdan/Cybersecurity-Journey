@@ -247,7 +247,7 @@ Used to assign access rights to resources (like files or printers) to entire gro
 
 ---
 
-## 3. Organizational Units (OUs) vs. Security Groups
+##  Organizational Units (OUs) vs. Security Groups
 While both classify users and computers, they serve distinct purposes:
 * **Organizational Units (OUs):** Container objects used to classify users and machines to apply specific policies (GPOs). OUs often mimic a business's departmental structure. *Note: A user can only belong to one OU at a time.*
 * **Security Groups:** Used explicitly to grant permissions over resources. A user can belong to multiple security groups.
