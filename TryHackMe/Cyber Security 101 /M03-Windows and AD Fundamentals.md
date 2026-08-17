@@ -211,7 +211,6 @@ The Volume Shadow Copy Service (VSS) coordinates the creation of consistent shad
 
 ## 4. Active Directory (AD)  Basics 
 
-
 # Overview
 Active Directory (AD) is the central backbone of identity and access management in modern corporate Windows environments. It eliminates the need to configure standalone computers by centralizing user, machine, and policy management into a single, scalable domain managed by a Domain Controller.
 
