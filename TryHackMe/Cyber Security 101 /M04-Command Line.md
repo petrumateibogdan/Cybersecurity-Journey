@@ -117,3 +117,54 @@ Managing the files themselves requires three core commands:
 I quickly realized that typing out individual file names is tedious. The asterisk (`*`) acts as a wildcard, meaning "anything." 
 For example, if I want to move every single text file in my current directory to a backup folder, I don't have to move them one by one. I can just execute `move *.txt C:\backup_files`.
 
+# Managing Windows Processes via CLI
+
+##  Ditching the GUI Task Manager
+I have always relied on the classic `Ctrl + Shift + Esc` to bring up the Windows Task Manager whenever an application freezes or when I want to see what is eating up my RAM. However, managing a remote server through an SSH shell requires a completely different, CLI-driven approach. 
+
+To see everything running on the system, I use the `tasklist` command. It essentially dumps the entire Task Manager "Processes" tab straight into my terminal. The output includes crucial details like the Image Name (the executable), the Process ID (PID), Session details, and Memory Usage for every active task.
+
+##  Filtering the Noise
+Running a raw `tasklist` command is overwhelming because a standard Windows environment runs dozens of background services simultaneously. To make it manageable and actually useful for troubleshooting, I have to filter the output.
+
+* **Checking the Manual:** Running `tasklist /?` shows all the available filtering options.
+* **Targeting a Specific Process:** If I am hunting down all running instances of the SSH daemon, I use the `/FI` (Filter) switch like this:
+  
+  `tasklist /FI "imagename eq sshd.exe"`
+  
+This exact syntax tells the command prompt to filter and return only the processes where the image name is strictly equal (`eq`) to `sshd.exe`. It instantly cuts out the noise and isolates the exact PIDs I need to look at.
+
+##  The Kill Switch (`taskkill`)
+Once I have used `tasklist` to hunt down the Process ID (PID) of a frozen, rogue, or malicious program, I need a way to forcefully terminate it without clicking an "End Task" button.
+
+* **The Command:** I use `taskkill /PID <target_pid>`
+* **Example Execution:** If the problematic process I found in the previous step has a PID of 4567, I simply execute `taskkill /PID 4567` to kill it immediately.
+
+# Wrapping Up: Extra Utilities & Key Takeaways
+
+##  The "Good to Know" System Commands
+While this module focused heavily on practical daily commands for navigation and networking, the Windows CLI has some heavy-duty administrative tools built in. I am keeping a note of these three commands because they are absolute lifesavers when a system starts acting up or failing:
+
+* **`chkdsk` (Check Disk):** This command scans the file system and physical disk volumes to find structural errors or bad sectors. It is the go-to tool when a hard drive starts failing or corrupting data.
+* **`driverquery`:** Just like the name implies, it dumps a complete list of all installed device drivers. This is incredibly useful for auditing a system or figuring out exactly which driver is causing hardware conflicts without digging through the GUI Device Manager.
+* **`sfc /scannow` (System File Checker):** If the Windows operating system itself feels broken or corrupted, this command scans all core system files, verifies their integrity, and automatically attempts to repair them if possible.
+
+##  My Golden Rules for the Command Line
+If there is anything I am taking away from this module, it boils down to how I handle getting stuck and how I handle terminal output:
+
+* **The Universal Help Switch (`/?`):** Memorizing every command parameter is impossible. Knowing that I can append `/?` to almost *any* Windows command to instantly pull up its manual and syntax examples is the ultimate cheat code.
+* **The Dual Nature of `more`:** I have learned to use `more` in two distinct, powerful ways:
+  1. **Reading Files:** `more file.txt` allows me to open and read lengthy text files directly in the terminal, paging through them safely without flooding the screen.
+  2. **Taming Output (Piping):** `[any_command] | more` takes a massive output (like a `netstat` or `driverquery` dump) and forces it to display page-by-page. 
+
+## Next Steps in My Journey
+Now that I have a solid grip on the legacy `cmd.exe` environment, it is time to graduate to the modern, significantly more powerful scripting engine: **Windows PowerShell**.
+
+# Managing System Power via CLI
+
+## Taking Control of Shutdowns and Restarts
+As a final touch on basic Windows CLI administration, I learned how to manage system power states directly from the prompt. This is incredibly useful when managing a remote server via SSH, where I don't have access to the physical power button or the GUI Start menu.
+
+* **`shutdown /s`:** This is the standard command to completely shut down the system.
+* **`shutdown /r`:** This command is used to reboot (restart) the machine. The `/r` flag simply stands for restart. 
+* **`shutdown /a`:** This is essentially the panic button. If a shutdown or restart is triggered (which usually gives a brief warning countdown before executing), I can quickly type `shutdown /a` to **abort** the scheduled shutdown and keep the system online.
