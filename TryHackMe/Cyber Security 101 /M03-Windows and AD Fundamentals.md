@@ -257,7 +257,7 @@ While both classify users and computers, they serve distinct purposes:
 
 ---
 
-## 4. Group Policy Objects (GPOs)
+##  Group Policy Objects (GPOs)
 GPOs are collections of settings used to push configurations and security baselines to OUs.
 * **Application:** GPOs can target users or computers. A GPO applied to an OU will also affect all its child OUs.
 * **Distribution:** GPOs are synced to computers via a network share called `SYSVOL`, stored on the DC (`C:\Windows\SYSVOL\sysvol\`).
