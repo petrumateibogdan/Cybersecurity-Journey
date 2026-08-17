@@ -208,4 +208,94 @@ The Volume Shadow Copy Service (VSS) coordinates the creation of consistent shad
 * **Capabilities:** If System Protection is turned on, you can create restore points, perform system restores, and manage existing restore points from the advanced system settings.
 * **Security Threat:** Ransomware authors specifically write code to seek out and delete Volume Shadow Copies to prevent victims from recovering their data without paying the ransom. Therefore, offline or off-site backups are essential.
 
+
 ## 4. Active Directory (AD)  Basics 
+
+
+# Overview
+Active Directory (AD) is the central backbone of identity and access management in modern corporate Windows environments. It eliminates the need to configure standalone computers by centralizing user, machine, and policy management into a single, scalable domain managed by a Domain Controller.
+
+---
+
+## 1. Core Concepts
+* **Windows Domain:** A centralized group of users and computers under the administration of a single business.
+* **Domain Controller (DC):** The server that runs the Active Directory Domain Service (AD DS) and manages the network.
+* **Active Directory Domain Service (AD DS):** Acts as a catalogue holding network "objects" like users, groups, machines, and printers.
+* **Centralized Management:** AD allows IT to manage all user identities and deploy security policies across the entire network from a single repository.
+
+---
+
+## 2. Active Directory Objects
+Objects within AD are generally categorized as "security principals," meaning they can be authenticated and assigned privileges.
+
+### A. Users
+* **People:** Represent human employees requiring network access.
+* **Services:** Specific accounts used to run applications like IIS or MSSQL, operating with restricted privileges specific to their service.
+
+### B. Machines
+* Every computer joined to the domain receives a machine account object.
+* Machine accounts act as local administrators on their respective computers.
+* Machine account names end with a dollar sign (e.g., `DC01$`).
+* Their passwords are automatically rotated and consist of 120 random characters.
+
+### C. Security Groups
+Used to assign access rights to resources (like files or printers) to entire groups of users, allowing members to inherit the group's privileges. Notable default groups include:
+* **Domain Admins:** Have administrative privileges over the entire domain.
+* **Server Operators:** Can administer Domain Controllers but cannot alter administrative group memberships.
+* **Backup Operators:** Can access any file (bypassing permissions) to perform data backups.
+* **Domain Users/Computers/Controllers:** Catch-all groups for all existing accounts, machines, and DCs in the domain.
+
+---
+
+## 3. Organizational Units (OUs) vs. Security Groups
+While both classify users and computers, they serve distinct purposes:
+* **Organizational Units (OUs):** Container objects used to classify users and machines to apply specific policies (GPOs). OUs often mimic a business's departmental structure. *Note: A user can only belong to one OU at a time.*
+* **Security Groups:** Used explicitly to grant permissions over resources. A user can belong to multiple security groups.
+
+### OU Management & Delegation
+* **Accidental Deletion Protection:** By default, OUs cannot be deleted. To delete an OU, "Advanced Features" must be enabled in the View menu, and the protection checkbox must be disabled in the object's properties.
+* **Delegation:** AD allows Domain Administrators to grant specific users control over specific OUs. For example, IT support can be delegated the right to reset passwords for the Sales department without needing full Domain Admin privileges.
+
+---
+
+## 4. Group Policy Objects (GPOs)
+GPOs are collections of settings used to push configurations and security baselines to OUs.
+* **Application:** GPOs can target users or computers. A GPO applied to an OU will also affect all its child OUs.
+* **Distribution:** GPOs are synced to computers via a network share called `SYSVOL`, stored on the DC (`C:\Windows\SYSVOL\sysvol\`).
+* **Forcing Updates:** While computers sync periodically, you can force an immediate GPO update by running `gpupdate /force` in PowerShell.
+
+---
+
+## 5. Domain Authentication Protocols
+When authenticating to a service, the service verifies domain credentials against the Domain Controller.
+
+### Kerberos (Default)
+The modern, default authentication protocol using a ticketing system.
+1. **TGT Request:** The user sends their username and an encrypted timestamp to the Key Distribution Center (KDC).
+2. **TGT Issued:** The KDC returns a Ticket Granting Ticket (TGT) and a Session Key. (The TGT is encrypted with the `krbtgt` account hash).
+3. **TGS Request:** To access a specific service, the user presents the TGT to request a Ticket Granting Service (TGS) ticket.
+4. **TGS Issued:** The KDC sends back the TGS, encrypted with a key derived from the specific Service Owner Hash.
+5. **Access:** The user presents the TGS to the service, which decrypts it using its own hash to authenticate the user.
+
+### NetNTLM (Legacy)
+A legacy challenge-response protocol kept for compatibility.
+1. The client requests access from a server.
+2. The server sends a random number (challenge) back to the client.
+3. The client combines their NTLM password hash with the challenge and sends the response to the server.
+4. The server forwards this to the DC.
+5. The DC recalculates the expected response and compares it. If it matches, the DC tells the server the user is authenticated.
+*Note: The user's password/hash is never transmitted over the network.*
+
+---
+
+## 6. Scaling: Trees and Forests
+As companies grow, a single domain may no longer suffice.
+* **Trees:** If a domain splits (e.g., `uk.thm.local` and `us.thm.local`), they can be joined into a Tree. They share the same namespace but can have independent DCs, policies, and local Domain Admins.
+* **Forests:** The union of several trees with completely different namespaces (e.g., merging `thm.local` and `mht.local` after a corporate acquisition).
+* **Enterprise Admins:** A specialized group granting administrative privileges over *all* domains within the entire enterprise tree/forest.
+
+### Trust Relationships
+Trusts connect domains within trees and forests, allowing them to authorize users from other domains.
+* **One-Way Trust:** If Domain AAA trusts Domain BBB, a user from BBB can access resources on AAA (the access flows opposite to the trust direction).
+* **Two-Way Trust:** Both domains mutually authorize users. (This is the default when joining domains under a tree/forest).
+* *Note: A trust does not automatically grant access to everything; it simply enables the ability to authorize specific cross-domain access.*
