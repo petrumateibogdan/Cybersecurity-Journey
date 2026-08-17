@@ -33,3 +33,4 @@ I am using this room to get completely comfortable with `cmd.exe`, the default c
 3. Since it was my first time connecting to this specific target, the system prompted me to verify the host key. I had to explicitly type `yes` to trust the connection.
 4. I entered the password (`Tryhackme123!`). 
    * *Self-Reminder:* Passwords never display on the screen when typing in an SSH prompt. Just type it out and hit Enter.
+
