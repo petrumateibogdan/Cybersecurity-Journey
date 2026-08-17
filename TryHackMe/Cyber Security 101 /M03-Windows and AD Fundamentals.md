@@ -288,7 +288,7 @@ A legacy challenge-response protocol kept for compatibility.
 
 ---
 
-## 6. Scaling: Trees and Forests
+##  Scaling: Trees and Forests
 As companies grow, a single domain may no longer suffice.
 * **Trees:** If a domain splits (e.g., `uk.thm.local` and `us.thm.local`), they can be joined into a Tree. They share the same namespace but can have independent DCs, policies, and local Domain Admins.
 * **Forests:** The union of several trees with completely different namespaces (e.g., merging `thm.local` and `mht.local` after a corporate acquisition).
