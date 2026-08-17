@@ -57,3 +57,29 @@ Terminals can easily get overwhelmed by walls of text. To control this, I learne
 Finally, a couple of basic utility commands to keep my workflow smooth:
 * **`help`:** If I forget the syntax or parameters for a specific tool, typing `help <command>` pulls up the built-in documentation.
 * **`cls`:** Standing for "clear screen", this wipes all previous outputs and text from my terminal. I use this constantly to keep my workspace clean and my mind focused on the next task.
+
+  # Windows Network Configuration & Troubleshooting
+
+##  Network Configuration (`ipconfig`)
+I am used to opening the Windows Control Panel to check network settings, but the CLI makes it instantaneous.
+* **`ipconfig`:** This command outputs my fundamental network details—specifically my current IPv4 address, Subnet Mask, and Default Gateway. 
+* **`ipconfig /all`:** When I need the full picture, appending `/all` reveals deeper configurations. It shows me my physical MAC address, confirms if DHCP is enabled (and when my IP lease expires), and lists my configured DNS servers.
+
+##  Network Troubleshooting Tools
+When a machine can't reach the internet or a specific server, these are the primary diagnostic tools I use:
+* **`ping <target>`:** This is my first step in network troubleshooting. It sends ICMP packets to the target and listens for a response. If I receive a reply, I know the target is reachable and my machine is properly connected. It also provides the round-trip time (latency) in milliseconds.
+* **`tracert <target>`:** If a `ping` fails or is unusually slow, I use `tracert` (Trace Route). It maps the exact path a packet takes through the network, listing every router (hop) it hits until it reaches the target. It relies on the "Time-to-Live" (TTL) packet drop mechanism to force routers along the path to identify themselves.
+
+##  Advanced Networking Commands
+Understanding the physical routing is important, but dealing with domains and current active connections is where I spend most of my time during security assessments.
+* **`nslookup <domain>`:** This command queries DNS to resolve a domain name (like `example.com`) into its IP address. 
+  * *Tip:* By default, it uses my machine's configured DNS server. However, I can force it to query a specific name server by appending it to the command (e.g., `nslookup example.com 1.1.1.1`).
+* **`netstat`:** This is incredibly useful for security profiling. Without any arguments, it lists all currently established connections (e.g., showing an active SSH connection bound to port 22).
+
+### Combining `netstat` Flags (`netstat -abon`)
+To get maximum visibility into what my system is doing on the network, I combine four specific flags:
+* **`-a`:** Displays all active connections AND listening ports (ports waiting for a connection).
+* **`-b`:** Shows the specific executable program (like `sshd.exe` or `svchost.exe`) associated with the port.
+* **`-o`:** Reveals the Process ID (PID) associated with the connection.
+* **`-n`:** Forces numerical output for IP addresses and port numbers (stopping it from trying to resolve hostnames, which speeds up the output).
+* **The Result:** Running `netstat -abon` gives me a comprehensive list showing exactly which programs are communicating on the network, what ports they are using, and their specific PIDs.
