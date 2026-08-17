@@ -2,7 +2,7 @@
 
 ## 1. Windows Command Line
 
-# Windows Command Line (cmd.exe) Fundamentals
+
 
 ## My Thoughts on GUI vs. CLI
 It is easy to rely on a Graphical User Interface (GUI) because it is so intuitive—you can usually just poke around and figure out a new interface by clicking. However, I am realizing that mastering the Command-Line Interface (CLI) is an absolute necessity. 
