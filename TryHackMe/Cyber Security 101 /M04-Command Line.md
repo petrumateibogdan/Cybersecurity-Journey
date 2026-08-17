@@ -152,7 +152,7 @@ While this module focused heavily on practical daily commands for navigation and
 ##  My Golden Rules for the Command Line
 If there is anything I am taking away from this module, it boils down to how I handle getting stuck and how I handle terminal output:
 
-* **The Universal Help Switch (`/?`):** Memorizing every command parameter is impossible. Knowing that I can append `/?` to almost *any* Windows command to instantly pull up its manual and syntax examples is the ultimate cheat code.
+* **The Universal Help Switch (`/?`):** Memorizing every command parameter is **almost** impossible. :) Knowing that I can append `/?` to almost *any* Windows command to instantly pull up its manual and syntax examples is the ultimate cheat code.
 * **The Dual Nature of `more`:** I have learned to use `more` in two distinct, powerful ways:
   1. **Reading Files:** `more file.txt` allows me to open and read lengthy text files directly in the terminal, paging through them safely without flooding the screen.
   2. **Taming Output (Piping):** `[any_command] | more` takes a massive output (like a `netstat` or `driverquery` dump) and forces it to display page-by-page. 
