@@ -1,6 +1,6 @@
 # Module 4: Command Line
 
-## 1. Windows Command Line
+# 1. Windows Command Line
 
 
 
@@ -167,4 +167,9 @@ As a final touch on basic Windows CLI administration, I learned how to manage sy
 
 * **`shutdown /s`:** This is the standard command to completely shut down the system.
 * **`shutdown /r`:** This command is used to reboot (restart) the machine. The `/r` flag simply stands for restart. 
+
+
+
 * **`shutdown /a`:** This is essentially the panic button. If a shutdown or restart is triggered (which usually gives a brief warning countdown before executing), I can quickly type `shutdown /a` to **abort** the scheduled shutdown and keep the system online.
+
+# 2. Windows PowerShell
