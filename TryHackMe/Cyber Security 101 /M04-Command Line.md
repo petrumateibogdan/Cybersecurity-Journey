@@ -154,8 +154,8 @@ If there is anything I am taking away from this module, it boils down to how I h
 
 * **The Universal Help Switch (`/?`):** Memorizing every command parameter is **almost** impossible. :) Knowing that I can append `/?` to almost *any* Windows command to instantly pull up its manual and syntax examples is the ultimate cheat code.
 * **The Dual Nature of `more`:** I have learned to use `more` in two distinct, powerful ways:
-  1. **Reading Files:** `more file.txt` allows me to open and read lengthy text files directly in the terminal, paging through them safely without flooding the screen.
-  2. **Taming Output (Piping):** `[any_command] | more` takes a massive output (like a `netstat` or `driverquery` dump) and forces it to display page-by-page. 
+   **Reading Files:** `more file.txt` allows me to open and read lengthy text files directly in the terminal, paging through them safely without flooding the screen.
+   **Taming Output (Piping):** `[any_command] | more` takes a massive output (like a `netstat` or `driverquery` dump) and forces it to display page-by-page. 
 
 ## Next Steps in My Journey
 Now that I have a solid grip on the legacy `cmd.exe` environment, it is time to graduate to the modern, significantly more powerful scripting engine: **Windows PowerShell**.
@@ -205,7 +205,7 @@ In programming, an object is a data structure that contains two things:
 
 # My First Steps into PowerShell
 
-## 1. Firing Up the Shell
+##  Firing Up the Shell
 Before I could even start hacking away at PowerShell, I had to figure out how to launch the thing. In this lab, I connected to the target VM (`10.113.155.83`) using an SSH connection. But honestly, if I were just sitting at a normal Windows machine, there are a bunch of ways I could open it locally:
 * **Start Menu:** Just search for `powershell`.
 * **Run Dialog:** Hit `Win + R`, type `powershell`, and smash Enter.
@@ -214,14 +214,14 @@ Before I could even start hacking away at PowerShell, I had to figure out how to
 
 Since I was SSH'd into a legacy `cmd.exe` terminal, I just typed `powershell` and hit Enter. The prompt flipped to `PS C:\Users\captain>`, letting me know I was finally in the right environment.
 
-## 2. The "Verb-Noun" Rule (Making Life Easy)
+##  The "Verb-Noun" Rule (Making Life Easy)
 The coolest thing I realized about PowerShell is that I don't have to memorize a bunch of cryptic garbage commands. It uses **cmdlets** (pronounced "command-lets") that follow a dead-simple **Verb-Noun** naming convention. 
 
 The Verb is what I want to do, and the Noun is what I want to do it to. It makes guessing commands incredibly intuitive:
 * `Get-Content`: Gets the text inside a file.
 * `Set-Location`: Changes my current directory.
 
-## 3. The Holy Trinity of Discovery Cmdlets
+##  The Holy Trinity of Discovery Cmdlets
 I quickly learned I don't need to know every cmdlet by heart. I just need these three built-in tools to figure out everything else on the fly:
 
 ### `Get-Command`
@@ -240,7 +240,7 @@ To save my muscle memory from my Linux and CMD days, PowerShell uses aliases (sh
 * Typing `dir` actually runs `Get-ChildItem` in the background.
 * Typing `cd` actually runs `Set-Location`.
 
-## 4. Upgrading My Arsenal (Downloading Modules)
+##  Upgrading My Arsenal (Downloading Modules)
 PowerShell isn't just limited to what comes in the box. I learned I can hunt down and install new modules (like plugins) from online repos like the PowerShell Gallery. *(Note: My lab VM didn't have internet, so I couldn't test it live, but the syntax is essential for real-world scenarios).*
 
 * **Hunting for tools:** If I want to find a module but only know part of the name, I use wildcards (`*`):
