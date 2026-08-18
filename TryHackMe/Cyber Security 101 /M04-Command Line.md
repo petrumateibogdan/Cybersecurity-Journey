@@ -305,3 +305,4 @@ The ultimate tool for remote administration is **`Invoke-Command`**, which lets 
   Invoke-Command -FilePath c:\scripts\test.ps1 -ComputerName Server01
 
   Invoke-Command -ComputerName Server01 -Credential Domain01\User01 -ScriptBlock { Get-Culture }
+
