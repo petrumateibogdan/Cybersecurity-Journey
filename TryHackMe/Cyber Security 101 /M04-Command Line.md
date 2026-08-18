@@ -306,3 +306,7 @@ The ultimate tool for remote administration is **`Invoke-Command`**, which lets 
 
   Invoke-Command -ComputerName Server01 -Credential Domain01\User01 -ScriptBlock { Get-Culture }
 
+# 3. Linux Shells
+
+
+
