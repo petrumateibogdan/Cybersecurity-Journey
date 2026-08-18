@@ -173,3 +173,30 @@ As a final touch on basic Windows CLI administration, I learned how to manage sy
 * **`shutdown /a`:** This is essentially the panic button. If a shutdown or restart is triggered (which usually gives a brief warning countdown before executing), I can quickly type `shutdown /a` to **abort** the scheduled shutdown and keep the system online.
 
 # 2. Windows PowerShell
+
+# Introduction to PowerShell
+
+## Stepping Up from the Command Prompt
+After getting comfortable with the legacy `cmd.exe` environment, diving into PowerShell feels like stepping into the future. I learned that PowerShell isn't just a command-line shell—it is a full-blown cross-platform task automation solution, a scripting language, and a configuration management framework all rolled into one. 
+
+Unlike the older command prompt, which is strictly tied to Windows, PowerShell was expanded to support macOS and Linux (known as PowerShell Core), making it an incredibly versatile tool to learn for modern IT and cybersecurity.
+
+## The History: Why Was PowerShell Created?
+The backstory of PowerShell actually helped me understand its architecture a lot better. 
+* **The Problem:** In the early 2000s, traditional tools like `cmd.exe` and batch scripts simply couldn't handle the complex administrative tasks required by modern enterprise Windows environments.
+* **The Unix vs. Windows Dilemma:** A Microsoft engineer named Jeffrey Snover realized a fundamental difference between operating systems: Unix treats everything as plain text files, whereas Windows relies heavily on structured data and APIs. Because of this, simply porting Unix command-line tools over to Windows was clunky and inefficient.
+* **The Solution:** Snover decided to build an entirely new, object-oriented shell backed by the power of the .NET framework. It officially released in 2006, and by 2016, Microsoft open-sourced it as a cross-platform tool.
+
+## The Secret Sauce: Objects vs. Text
+The absolute biggest "aha!" moment for me in this module was understanding **The Power in PowerShell**: the concept of Objects. 
+
+In traditional command shells (like Linux bash or Windows `cmd.exe`), commands output plain text. If I want to extract specific data from that output, I have to rely on complex text-parsing tools (like `grep` or `awk`) to slice and dice strings of text.
+
+PowerShell does **not** output plain text. Instead, its commands (called **cmdlets**) output **Objects**. 
+
+### What is an Object?
+In programming, an object is a data structure that contains two things:
+1. **Properties (Data/Characteristics):** e.g., A car's *Color*, *Model*, or *Fuel Level*. In PowerShell, a file object's properties would be its *Name*, *Size*, or *Creation Date*.
+2. **Methods (Actions):** e.g., A car's *Drive()* or *HonkHorn()* function. In PowerShell, a process object might have a *Kill()* or *Restart()* method.
+
+**Why this matters:** Because PowerShell passes full objects down the pipeline instead of raw text, I don't have to parse strings. I can directly manipulate the data, filter by specific properties, and execute methods on the results seamlessly. It is infinitely more powerful and flexible than string manipulation.
