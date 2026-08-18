@@ -353,7 +353,7 @@ read name
 echo "Welcome, $name"
 
 
-```bash
+
 #!/bin/bash
 # This prints numbers 1 through 10
 for i in {1..10}; do
