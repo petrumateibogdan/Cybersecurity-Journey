@@ -291,12 +291,12 @@ As someone studying Blue/Red teaming, these built-in system cmdlets are goldmine
 * **`Get-NetTCPConnection`**: Displays active network connections and ports. Perfect for spotting C2 backdoors.
 * **`Get-FileHash`**: Generates a cryptographic hash (like SHA256) of a file to check for tampering or to analyze malware.
 
-## 4. Hunting Alternate Data Streams (ADS)
+##  Hunting Alternate Data Streams (ADS)
 I learned that NTFS files have a default data stream (`:$DATA`), but attackers can hide malicious payloads in hidden Alternate Data Streams.
 * I can hunt for these by running: `Get-Item -Path "C:\file.txt" -Stream *`
 * If I see an extra stream name attached to the file (like `housinginfo`), it means extra hidden data is riding along with that file.
 
-## 5. Scripting & Remote Execution
+##  Scripting & Remote Execution
 PowerShell scripts (`.ps1` files) act like automated to-do lists, making them essential for SysAdmins, Blue Teamers (automating log analysis/malware reverse engineering), and Red Teamers (system enumeration/bypassing defenses).
 
 The ultimate tool for remote administration is **`Invoke-Command`**, which lets me run commands or scripts on remote machines over the network.
