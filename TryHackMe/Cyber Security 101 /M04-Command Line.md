@@ -250,3 +250,56 @@ PowerShell isn't just limited to what comes in the box. I learned I can hunt dow
   `Install-Module -Name "PowerShellGet"`
       
   *(Note to self: If the module is from an untrusted repo, PowerShell throws a warning prompt. I just type `Y` to accept and force it through).*
+
+  # Advanced PowerShell Notes: File Management, Piping & System Recon
+
+##  Ditching CMD for Universal File Management
+In legacy CMD, navigating and modifying files required a bunch of fragmented commands (`dir`, `cd`, `mkdir`, `del`). I learned that PowerShell simplifies this by treating files and folders uniformly as "Items."
+
+* **`Get-ChildItem`**: The modern replacement for `dir` or `ls`. It lists contents in my current directory or a specific path via `-Path`.
+* **`Set-Location`**: My new `cd`. Used to change my working directory.
+* **`New-Item`**: Creates both files and folders. I just specify the path and use `-ItemType "Directory"` or `-ItemType "File"`.
+* **`Remove-Item`**: Deletes items natively, completely replacing both `rmdir` and `del`.
+* **`Copy-Item` / `Move-Item`**: Duplicates or moves items around. Moving an item to a new name is also how I rename files here.
+* **`Get-Content`**: Reads text files (like `type` or `cat`). Since PowerShell is object-oriented, it actually returns the file's lines as an array of string objects, not just raw text!
+
+##  Unlocking the Pipeline (`|`) and Filtering
+This is where PowerShell blows standard CLI out of the water. Instead of piping raw text, the `|` symbol passes **entire objects** (data + properties + methods) from one cmdlet to the next.
+
+* **`Sort-Object`**: Sorts my piped objects by a specific property (e.g., `Get-ChildItem | Sort-Object Length`).
+* **`Where-Object`**: Filters objects based on conditions. For example, `Where-Object -Property "Extension" -eq ".txt"`.
+  * *Crucial Operators I need to memorize:* 
+    * `-eq` (equal) / `-ne` (not equal)
+    * `-gt` (greater than) / `-ge` (greater or equal)
+    * `-lt` (less than) / `-le` (less or equal)
+    * `-like` (pattern matching using wildcards like `*`)
+* **`Select-Object`**: Cleans up output by selecting specific properties (like just `Name` and `Length`) or limiting results (e.g., `-First 1` to find the largest file).
+* **`Select-String`**: PowerShell's `grep`. It searches for text patterns or full Regex inside files!
+
+##  System Recon & Dynamic Monitoring
+As someone studying Blue/Red teaming, these built-in system cmdlets are goldmines for reconnaissance and incident response.
+
+### Static System Info
+* **`Get-ComputerInfo`**: Dumps a massive snapshot of the OS build, hardware specs, and BIOS details.
+* **`Get-LocalUser`**: Lists all local accounts and shows if they are enabled/disabled.
+* **`Get-NetIPConfiguration`**: Shows active network interfaces, IP addresses, DNS, and gateways.
+* **`Get-NetIPAddress`**: A much deeper dive showing *all* IPs on the machine (including inactive ones or IPv6 link-local addresses).
+
+### Dynamic Monitoring
+* **`Get-Process`**: Dumps running processes, memory/CPU usage, and PIDs.
+* **`Get-Service`**: Checks the status (`Running`/`Stopped`) of all system services (crucial for hunting persistence).
+* **`Get-NetTCPConnection`**: Displays active network connections and ports. Perfect for spotting C2 backdoors.
+* **`Get-FileHash`**: Generates a cryptographic hash (like SHA256) of a file to check for tampering or to analyze malware.
+
+## 4. Hunting Alternate Data Streams (ADS)
+I learned that NTFS files have a default data stream (`:$DATA`), but attackers can hide malicious payloads in hidden Alternate Data Streams.
+* I can hunt for these by running: `Get-Item -Path "C:\file.txt" -Stream *`
+* If I see an extra stream name attached to the file (like `housinginfo`), it means extra hidden data is riding along with that file.
+
+## 5. Scripting & Remote Execution
+PowerShell scripts (`.ps1` files) act like automated to-do lists, making them essential for SysAdmins, Blue Teamers (automating log analysis/malware reverse engineering), and Red Teamers (system enumeration/bypassing defenses).
+
+The ultimate tool for remote administration is **`Invoke-Command`**, which lets me run commands or scripts on remote machines over the network.
+* **Executing a local script on a remote server:**
+  ```powershell
+  Invoke-Command -FilePath c:\scripts\test.ps1 -ComputerName Server01
