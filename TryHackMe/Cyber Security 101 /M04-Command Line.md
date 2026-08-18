@@ -200,3 +200,5 @@ In programming, an object is a data structure that contains two things:
 2. **Methods (Actions):** e.g., A car's *Drive()* or *HonkHorn()* function. In PowerShell, a process object might have a *Kill()* or *Restart()* method.
 
 **Why this matters:** Because PowerShell passes full objects down the pipeline instead of raw text, I don't have to parse strings. I can directly manipulate the data, filter by specific properties, and execute methods on the results seamlessly. It is infinitely more powerful and flexible than string manipulation.
+
+
