@@ -310,3 +310,91 @@ The ultimate tool for remote administration is **`Invoke-Command`**, which lets 
 
 
 
+
+##  The CLI Mindset: Cooking in the Kitchen
+The introduction to this module uses a perfect analogy: using a GUI is like sitting in a restaurant and ordering from a menu—the waiter (the OS) does the work, but I am limited to what is explicitly offered on that menu. 
+
+Using the CLI (Command Line Interface) means walking directly into the kitchen and cooking the meal myself. It requires more knowledge, but it gives me absolute power, efficiency, and control over the Linux system. 
+
+##  My Core Linux Arsenal
+Before diving into scripts, I need to make sure my basic navigation muscle memory is sharp. By default, opening a terminal drops me into my home directory.
+* **`pwd` (Print Working Directory):** Tells me exactly where I am in the filesystem (e.g., `/home/user`).
+* **`cd <directory>` (Change Directory):** Moves me around the filesystem (e.g., `cd Desktop`).
+* **`ls`:** Lists the contents of my current directory.
+* **`cat <filename>`:** Dumps the text contents of a file directly onto the screen.
+* **`grep <pattern> <filename>`:** My absolute favorite command. It searches massive files for a specific keyword and extracts just the lines I need (e.g., `grep THM dictionary.txt`).
+
+##  Exploring Different Shells
+The "terminal" is just the visual window; the *Shell* is the actual engine processing my commands. 
+* To see my current shell: `echo $SHELL`
+* To list all installed shells: `cat /etc/shells`
+* To permanently change my default shell: `chsh -s /path/to/shell`
+
+### The Big Three Shells:
+1. **Bash (Bourne Again Shell):** The default on almost every Linux distribution. It has rock-solid scripting capabilities, basic tab-completion, and command history (using the up/down arrows).
+2. **Fish (Friendly Interactive Shell):** Built purely for user-friendliness. It features auto-spell correction, incredible syntax highlighting (colors change based on command roles or errors), and advanced tab-completion based on history.
+3. **Zsh (Z Shell):** The modern powerhouse. It combines the reliability of Bash with the features of Fish. It supports intense customization (like the `oh-my-zsh` framework) and massive plugin support, though heavy customization can slow it down slightly.
+
+##  Shell Scripting 101
+Scripting is just writing a to-do list of commands for the computer to execute automatically. Instead of typing repetitive commands manually, I write them once in a `.sh` file.
+
+### The Setup
+1. **Create the file:** `nano script.sh`
+2. **The Shebang:** The absolute first line of *any* script must be `#!/bin/bash`. This tells the OS exactly which interpreter to use to run the code.
+3. **Execution Permissions:** Before running the script, I *must* make it executable using `chmod +x script.sh`.
+4. **Running it:** I execute it by typing `./script.sh` (the `./` forces the shell to look in my *current* directory rather than searching global system paths).
+
+### Variables & User Input
+I can store data in variables to reuse later, and I can prompt the user for input using the `read` command.
+```bash
+#!/bin/bash
+echo "Hey, what’s your name?"
+read name
+echo "Welcome, $name"
+
+
+```bash
+#!/bin/bash
+# This prints numbers 1 through 10
+for i in {1..10}; do
+    echo $i
+done
+
+#!/bin/bash
+echo "Please enter your name first:"
+read name
+
+if [ "$name" = "Stewart" ]; then
+        echo "Welcome Stewart! Here is the secret: THM_Script"
+else
+        echo "Sorry! You are not authorized to access the secret."
+fi
+
+
+#!/bin/bash 
+
+# Defining the variables
+username=""
+companyname=""
+pin=""
+
+# Defining the loop (giving the user 3 prompts)
+for i in {1..3}; do
+        if [ "$i" -eq 1 ]; then
+                echo "Enter your Username:"
+                read username
+        elif [ "$i" -eq 2 ]; then
+                echo "Enter your Company name:"
+                read companyname
+        else
+                echo "Enter your PIN:"
+                read pin
+        fi
+done
+
+# Checking if the user entered the correct details using AND (&&)
+if [ "$username" = "John" ] && [ "$companyname" = "Tryhackme" ] && [ "$pin" = "7385" ]; then
+        echo "Authentication Successful. You can now access your locker, John."
+else
+        echo "Authentication Denied!!"
+fi
