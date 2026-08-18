@@ -202,3 +202,51 @@ In programming, an object is a data structure that contains two things:
 **Why this matters:** Because PowerShell passes full objects down the pipeline instead of raw text, I don't have to parse strings. I can directly manipulate the data, filter by specific properties, and execute methods on the results seamlessly. It is infinitely more powerful and flexible than string manipulation.
 
 
+
+# My First Steps into PowerShell
+
+## 1. Firing Up the Shell
+Before I could even start hacking away at PowerShell, I had to figure out how to launch the thing. In this lab, I connected to the target VM (`10.113.155.83`) using an SSH connection. But honestly, if I were just sitting at a normal Windows machine, there are a bunch of ways I could open it locally:
+* **Start Menu:** Just search for `powershell`.
+* **Run Dialog:** Hit `Win + R`, type `powershell`, and smash Enter.
+* **File Explorer:** Typing `powershell` right into a folder's address bar. (I love this one because it drops you straight into that directory).
+* **Task Manager:** Going to **File > Run new task**.
+
+Since I was SSH'd into a legacy `cmd.exe` terminal, I just typed `powershell` and hit Enter. The prompt flipped to `PS C:\Users\captain>`, letting me know I was finally in the right environment.
+
+## 2. The "Verb-Noun" Rule (Making Life Easy)
+The coolest thing I realized about PowerShell is that I don't have to memorize a bunch of cryptic garbage commands. It uses **cmdlets** (pronounced "command-lets") that follow a dead-simple **Verb-Noun** naming convention. 
+
+The Verb is what I want to do, and the Noun is what I want to do it to. It makes guessing commands incredibly intuitive:
+* `Get-Content`: Gets the text inside a file.
+* `Set-Location`: Changes my current directory.
+
+## 3. The Holy Trinity of Discovery Cmdlets
+I quickly learned I don't need to know every cmdlet by heart. I just need these three built-in tools to figure out everything else on the fly:
+
+### `Get-Command`
+This is basically my master directory. It lists every cmdlet, function, and alias available. Since the output is huge, I can filter it. For example, to only see functions, I run:
+`Get-Command -CommandType "Function"`
+
+### `Get-Help`
+This is my built-in cheat sheet. If I don't know how a cmdlet works, I just ask for help. I can even slap flags on it to get exactly what I need:
+* `Get-Help Get-Date -examples` (Just show me how to use it in the real world).
+* `Get-Help Get-Date -detailed` 
+* `Get-Help Get-Date -full`
+* `Get-Help Get-Date -online` (Opens the official Microsoft docs directly in my browser).
+
+### `Get-Alias`
+To save my muscle memory from my Linux and CMD days, PowerShell uses aliases (shortcuts). Running `Get-Alias` showed me how my old commands map to PowerShell cmdlets. 
+* Typing `dir` actually runs `Get-ChildItem` in the background.
+* Typing `cd` actually runs `Set-Location`.
+
+## 4. Upgrading My Arsenal (Downloading Modules)
+PowerShell isn't just limited to what comes in the box. I learned I can hunt down and install new modules (like plugins) from online repos like the PowerShell Gallery. *(Note: My lab VM didn't have internet, so I couldn't test it live, but the syntax is essential for real-world scenarios).*
+
+* **Hunting for tools:** If I want to find a module but only know part of the name, I use wildcards (`*`):
+  `Find-Module -Name "PowerShell*"`
+    
+* **Installing them:** Once I find the one I want, I just install it:
+  `Install-Module -Name "PowerShellGet"`
+      
+  *(Note to self: If the module is from an untrusted repo, PowerShell throws a warning prompt. I just type `Y` to accept and force it through).*
