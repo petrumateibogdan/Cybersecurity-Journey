@@ -20,7 +20,7 @@ While the OSI model is great for learning, the real world largely runs on the **
 * **Internet Layer** (OSI Layer 3)
 * **Link Layer** (OSI Layer 1 and 2)
 
-## 3. IP Addressing and Subnets
+##  IP Addressing and Subnets
 Every device on a network needs a unique identifier—the **IP Address**. The standard IPv4 address is 32 bits long, divided into four octets (e.g., `192.168.66.89`).
 * The very first address (e.g., `192.168.1.0`) is reserved as the **Network Address**.
 * The very last address (e.g., `192.168.1.255`) is the **Broadcast Address** (sends data to everyone on the subnet).
