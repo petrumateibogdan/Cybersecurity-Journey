@@ -2,7 +2,7 @@
 
 # 1. Networking Concepts
 
-## 1. The OSI Model (The Theoretical Blueprint)
+##  The OSI Model (The Theoretical Blueprint)
 To understand how devices actually talk to each other, I first needed to grasp the **OSI (Open Systems Interconnection) Model**. It is a 7-layer theoretical framework. A great mnemonic to remember the layers from bottom to top (Layer 1 to Layer 7) is: **"Please Do Not Throw Spinach Pizza Away"**.
 
 * **Layer 1: Physical Layer** - The actual cables (Ethernet, fiber optic) and radio waves (WiFi). Data is just 1s and 0s here.
