@@ -67,4 +67,8 @@ GET / HTTP/1.1
 Host: telnet.thm
 # (Hit Enter twice to send the blank line ending the request)
 To exit a stuck telnet session, I hit CTRL + ], then type quit
+
+# 2. Networking Essentials
+
+
   
