@@ -9,7 +9,7 @@ To understand how devices actually talk to each other, I first needed to grasp t
 * **Layer 2: Data Link Layer** - Communication on the *same* local network segment. Devices use **MAC addresses** (Media Access Control) to identify each other. 
 * **Layer 3: Network Layer** - Communication *between* different networks. This is where routing and **IP Addresses** live (e.g., IPv4, ICMP, IPSec).
 * **Layer 4: Transport Layer** - End-to-end communication between applications. This is where **TCP** and **UDP** port numbers are assigned.
-* **Layer 5: Session Layer** - Establishes, maintains, and kills sessions between applications (e.g., NFS ( Network File System ) , RPC ( Remote Procedure Cal )).
+* **Layer 5: Session Layer** - Establishes, maintains, and kills sessions between applications (e.g., NFS ( Network File System ) , RPC ( Remote Procedure Call) ).
 * **Layer 6: Presentation Layer** - Data translation, compression, and encryption. It formats data so the application can read it (e.g., JPEG, MIME, Unicode).
 * **Layer 7: Application Layer** - The layer closest to me, the user. This is where my web browser operates using protocols like HTTP, DNS, FTP, and SMTP.
 
