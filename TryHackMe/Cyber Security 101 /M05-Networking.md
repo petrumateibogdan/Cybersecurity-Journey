@@ -57,7 +57,11 @@ I learned I can use `telnet` to manually connect to open TCP ports and talk dire
 * **Echo Server (Port 7):** Repeats whatever I type.
   ```bash
   telnet MACHINE_IP 7
+  
+  Daytime Server (Port 13): Spits out the current date and immediately closes the connection.
   telnet MACHINE_IP 13
+  
+  HTTP Web Server (Port 80): I can manually request a webpage without a browser!
   telnet MACHINE_IP 80
 GET / HTTP/1.1
 Host: telnet.thm
