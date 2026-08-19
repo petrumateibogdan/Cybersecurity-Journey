@@ -51,7 +51,7 @@ When I send a message, it travels down the OSI layers, getting "wrapped" in new 
 4. **Frame (Data Link Layer):** A MAC header and trailer are wrapped around the packet for physical delivery.
 *(When the server receives the Frame, it strips these headers off one by one, reading it backward until it gets the original Application Data).*
 
-## 6. Practical Action: Talking to Ports via Telnet
+##  Practical Action: Talking to Ports via Telnet
 I learned I can use `telnet` to manually connect to open TCP ports and talk directly to the services running there.
 
 * **Echo Server (Port 7):** Repeats whatever I type.
