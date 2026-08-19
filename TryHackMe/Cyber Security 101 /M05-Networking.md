@@ -57,3 +57,10 @@ I learned I can use `telnet` to manually connect to open TCP ports and talk dire
 * **Echo Server (Port 7):** Repeats whatever I type.
   ```bash
   telnet MACHINE_IP 7
+  telnet MACHINE_IP 13
+  telnet MACHINE_IP 80
+GET / HTTP/1.1
+Host: telnet.thm
+# (Hit Enter twice to send the blank line ending the request)
+To exit a stuck telnet session, I hit CTRL + ], then type quit
+  
