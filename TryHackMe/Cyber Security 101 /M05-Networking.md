@@ -33,7 +33,7 @@ Most IP addresses are public (like a home postal address). However, there are sp
 * **`172.16.0.0` - `172.31.255.255`** (The `172.16.0.0/12` range)
 * **`192.168.0.0` - `192.168.255.255`** (The `192.168.0.0/16` range)
 
-## 4. Transport Protocols: UDP vs. TCP
+##  Transport Protocols: UDP vs. TCP
 At Layer 4, the network uses port numbers (ranging from 1 to 65535) to figure out which exact application should receive the data. 
 
 * **UDP (User Datagram Protocol):** Connectionless and fast. It just fires data at the target and doesn't care if it actually arrives. Think of it like standard snail mail with no tracking. Great for video streaming or gaming where speed beats reliability.
