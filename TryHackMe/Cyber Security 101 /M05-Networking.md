@@ -43,7 +43,7 @@ At Layer 4, the network uses port numbers (ranging from 1 to 65535) to figure ou
     2. **SYN-ACK:** Server says "I hear you, let's connect."
     3. **ACK:** Client says "Great, acknowledging your reply."
 
-## 5. Encapsulation (The Life of a Packet)
+##  Encapsulation (The Life of a Packet)
 When I send a message, it travels down the OSI layers, getting "wrapped" in new headers at each step. This is **Encapsulation**.
 1. **Application Data:** I type a search query.
 2. **Segment (Transport Layer):** A TCP header (with source/dest ports) is added to the data.
