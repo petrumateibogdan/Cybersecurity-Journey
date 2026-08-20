@@ -89,7 +89,7 @@ I learned that while I use IP addresses (Layer 3) to target machines across the 
 * If my device knows a target's IP but not its MAC address, it broadcasts an **ARP Request**: *"Who has 192.168.1.5? Tell 192.168.1.10."*
 * The target machine responds with an **ARP Reply**, providing its MAC address directly to my machine. From then on, they can exchange Layer 2 frames.
 
-## 3. Network Diagnostics: ICMP
+##  Network Diagnostics: ICMP
 **Internet Control Message Protocol (ICMP)** is the backbone of error reporting and network diagnostics. It doesn't use ports; it uses "Types".
 
 ### `ping`
