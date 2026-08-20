@@ -14,7 +14,7 @@ To understand how devices actually talk to each other, I first needed to grasp t
 * **Layer 7: Application Layer** - The layer closest to me, the user. This is where my web browser operates using protocols like HTTP, DNS, FTP, and SMTP.
 
 
-##  The TCP/IP Model (The Practical Realit)
+##  The TCP/IP Model (The Practical Reality)
 While the OSI model is great for learning, the real world largely runs on the **TCP/IP Model**. It condenses the 7 layers down into 4 (or sometimes 5, if counting physical):
 * **Application Layer** (Combines OSI Layers 5, 6, and 7)
 * **Transport Layer** (OSI Layer 4)
