@@ -82,7 +82,7 @@ DHCP operates at the application layer using **UDP port 67 (Server)** and **UDP 
 * **[R]equest:** My device replies (`DHCPREQUEST`) saying, "I accept this IP."
 * **[A]cknowledge:** The server confirms (`DHCPACK`) the lease is officially mine.
 
-## 2. Bridging the Gap Between IP and MAC: ARP
+##  Bridging the Gap Between IP and MAC: ARP
 I learned that while I use IP addresses (Layer 3) to target machines across the internet, devices on the *same local network* must use MAC addresses (Layer 2) to physically communicate over Ethernet or WiFi. 
 
 **ARP (Address Resolution Protocol)** acts as the translator between these two layers. 
