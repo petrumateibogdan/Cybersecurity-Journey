@@ -131,4 +131,50 @@ When a router performs NAT (specifically PAT - Port Address Translation), it map
 
 
 
-  
+  ## Domain Resolution & Registration
+I use the Domain Name System (DNS, Layer 7) to map domain names to IPs. It uses UDP port 53 by default, with TCP 53 as a fallback. It relies on specific records:
+* **A Record:** Maps a hostname to an IPv4 address.
+* **AAAA Record:** Maps a hostname to an IPv6 address.
+* **CNAME Record:** Maps a domain to another domain name.
+* **MX Record:** Specifies the mail server for a domain.
+
+I can query DNS records and check public domain registration (WHOIS) directly from the command line:
+* **Query DNS records:** `nslookup www.example.com`
+* **Analyze DNS packets:** `tshark -r dns-query.pcapng -Nn`
+* **Check domain registration:** `whois example.com` (Note: Privacy services can mask registrant contact info).
+
+---
+
+## Web & File Transfer Protocols
+**HTTP/HTTPS** (TCP 80/443, and less commonly 8080/8443) retrieves web elements. **FTP** (TCP 21) transfers files efficiently. Note that FTP listens for commands on port 21, but data transfer happens over a separate connection.
+
+I can interact with these services manually to troubleshoot or transfer files:
+* **Manual HTTP GET Request:** `telnet <ip> 80` then type `GET / HTTP/1.1` and `Host: anything`. (Other methods include POST, PUT, and DELETE).
+* **Connect to FTP:** `ftp <ip>`
+* **Common FTP Commands:** `USER` (e.g., anonymous), `PASS`, `ls` (list files), `type ascii` (switch to text mode), `RETR` or `get` (download), and `STOR` (upload).
+
+---
+
+## Email Protocols
+Sending and receiving emails involves distinct protocols. I can manually test mail servers by connecting to their respective ports via `telnet`:
+
+* **SMTP (Sending - TCP 25):** `telnet <ip> 25`
+  * *Workflow:* `HELO` or `EHLO client.thm` > `MAIL FROM: <user@client.thm>` > `RCPT TO: <strategos@server.thm>` > `DATA` > type message > end with a single `.` > `QUIT`.
+* **POP3 (Receiving - TCP 110):** `telnet <ip> 110` (Downloads and typically deletes from the remote server to save storage).
+  * *Workflow:* `USER <username>` > `PASS <password>` > `STAT` (check size/messages) > `LIST` > `RETR <msg_number>` > `DELE <msg_number>` > `QUIT`.
+* **IMAP (Syncing - TCP 143):** `telnet <ip> 143` (Keeps messages on the server, syncing read, moved, and deleted statuses across multiple devices).
+  * *Workflow:* `A LOGIN <username> <password>` > `B SELECT inbox` > `C FETCH 3 body[]`. (Other useful commands: `MOVE` and `COPY`). `D LOGOUT`.
+
+---
+
+## Quick Reference Summary
+| Protocol | Transport | Port |
+| :--- | :--- | :--- |
+| **FTP** | TCP | 21 |
+| **TELNET** | TCP | 23 |
+| **SMTP** | TCP | 25 |
+| **DNS** | UDP / TCP | 53 |
+| **HTTP** | TCP | 80 |
+| **POP3** | TCP | 110 |
+| **IMAP** | TCP | 143 |
+| **HTTPS**| TCP | 443 |
