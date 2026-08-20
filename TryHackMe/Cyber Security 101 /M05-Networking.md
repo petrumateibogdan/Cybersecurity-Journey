@@ -102,7 +102,7 @@ This command maps the exact path of routers my packet takes to reach a destinati
 * **How it works:** It manipulates the **TTL (Time-to-Live)** field in the IP header. TTL represents the maximum number of routers ("hops") a packet can pass through. 
 * `traceroute` starts by sending a packet with a TTL of 1. The first router drops it and sends back an **ICMP Time Exceeded (Type 11)** message, revealing its IP. The command increments the TTL to 2, 3, 4, etc., mapping every single router along the way until the target is reached!
 
-## 4. The Pathfinders: Routing Protocols
+##  The Pathfinders: Routing Protocols
 The internet is a web of millions of routers. To figure out the fastest or most efficient path for my data, routers communicate with each other using routing protocols:
 * **OSPF (Open Shortest Path First):** Routers share network maps and calculate the most efficient path based on link states.
 * **EIGRP:** A proprietary Cisco protocol that factors in bandwidth and delay.
