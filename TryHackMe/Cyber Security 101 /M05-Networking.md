@@ -73,7 +73,7 @@ To exit a stuck telnet session, I hit CTRL + ], then type quit
 
 # Network Essentials: DHCP, ARP, ICMP, Routing, and NAT
 
-## 1. How I Automatically Get My Network Config: DHCP
+##  How I Automatically Get My Network Config: DHCP
 Whenever I connect to a new WiFi network, I don't have to manually configure my IP address, Subnet Mask, Default Gateway, or DNS server. This magic is handled by **DHCP (Dynamic Host Configuration Protocol)**. 
 
 DHCP operates at the application layer using **UDP port 67 (Server)** and **UDP port 68 (Client)**. The entire automated negotiation process is easily remembered using the acronym **DORA**:
