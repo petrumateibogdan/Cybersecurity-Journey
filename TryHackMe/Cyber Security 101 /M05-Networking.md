@@ -126,4 +126,9 @@ When I browse the web, the NAT router intercepts my traffic, replaces my interna
 When a router performs NAT (specifically PAT - Port Address Translation), it maps internal connections to its single public IP address using unique **source port numbers**. Because TCP (and UDP) port numbers are 16-bit values, the maximum possible number of ports is 65,535 ($2^{16} - 1$, excluding port 0). Therefore, the router has a hard limit of approximately 65,000 available ports to assign to outgoing connections at any given time. Once all 65,000 ports are mapped in the NAT translation table, the router cannot establish any new TCP connections until some of the existing ones are closed and their ports are freed up.
 
 
+
+# 3. Networking Core Protocols
+
+
+
   
