@@ -105,7 +105,7 @@ This command maps the exact path of routers my packet takes to reach a destinati
 ##  The Pathfinders: Routing Protocols
 The internet is a web of millions of routers. To figure out the fastest or most efficient path for my data, routers communicate with each other using routing protocols:
 * **OSPF (Open Shortest Path First):** Routers share network maps and calculate the most efficient path based on link states.
-* **EIGRP:** A proprietary Cisco protocol that factors in bandwidth and delay.
+* **EIGRP (Enhanced Interior Gateway Routing Protocol) : ** A proprietary Cisco protocol that factors in bandwidth and delay.
 * **RIP (Routing Information Protocol):** A simpler protocol for small networks that just counts the number of "hops".
 * **BGP (Border Gateway Protocol):** The massive protocol that actually runs the backbone of the Internet, routing data between different ISPs.
 
