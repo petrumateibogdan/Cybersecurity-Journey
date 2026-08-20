@@ -109,7 +109,7 @@ The internet is a web of millions of routers. To figure out the fastest or most 
 * **RIP (Routing Information Protocol):** A simpler protocol for small networks that just counts the number of "hops".
 * **BGP (Border Gateway Protocol):** The massive protocol that actually runs the backbone of the Internet, routing data between different ISPs.
 
-## 5. Saving IPv4: Network Address Translation (NAT)
+##  Saving IPv4: Network Address Translation (NAT)
 Since there are only about 4 billion IPv4 addresses, we would have run out years ago if every device needed a public IP. **NAT** solves this.
 
 Instead of my phone, laptop, and smart TV all having public IPs, my home router gets *one* public IP. All my internal devices use Private IPs (like `192.168.x.x`). 
