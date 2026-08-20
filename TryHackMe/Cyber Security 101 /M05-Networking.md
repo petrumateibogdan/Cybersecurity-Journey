@@ -68,7 +68,62 @@ Host: telnet.thm
 # (Hit Enter twice to send the blank line ending the request)
 To exit a stuck telnet session, I hit CTRL + ], then type quit
 
+
 # 2. Networking Essentials
+
+# Network Essentials: DHCP, ARP, ICMP, Routing, and NAT
+
+## 1. How I Automatically Get My Network Config: DHCP
+Whenever I connect to a new WiFi network, I don't have to manually configure my IP address, Subnet Mask, Default Gateway, or DNS server. This magic is handled by **DHCP (Dynamic Host Configuration Protocol)**. 
+
+DHCP operates at the application layer using **UDP port 67 (Server)** and **UDP port 68 (Client)**. The entire automated negotiation process is easily remembered using the acronym **DORA**:
+* **[D]iscover:** My device broadcasts a message (`DHCPDISCOVER`) asking, "Are there any DHCP servers out here?" (Source IP: `0.0.0.0`, Destination: `255.255.255.255`).
+* **[O]ffer:** The DHCP server replies (`DHCPOFFER`) with a proposed IP address.
+* **[R]equest:** My device replies (`DHCPREQUEST`) saying, "I accept this IP."
+* **[A]cknowledge:** The server confirms (`DHCPACK`) the lease is officially mine.
+
+## 2. Bridging the Gap Between IP and MAC: ARP
+I learned that while I use IP addresses (Layer 3) to target machines across the internet, devices on the *same local network* must use MAC addresses (Layer 2) to physically communicate over Ethernet or WiFi. 
+
+**ARP (Address Resolution Protocol)** acts as the translator between these two layers. 
+* If my device knows a target's IP but not its MAC address, it broadcasts an **ARP Request**: *"Who has 192.168.1.5? Tell 192.168.1.10."*
+* The target machine responds with an **ARP Reply**, providing its MAC address directly to my machine. From then on, they can exchange Layer 2 frames.
+
+## 3. Network Diagnostics: ICMP
+**Internet Control Message Protocol (ICMP)** is the backbone of error reporting and network diagnostics. It doesn't use ports; it uses "Types".
+
+### `ping`
+This command tests connectivity to a target.
+* My machine sends an **ICMP Echo Request (Type 8)**.
+* If the target is alive and firewalls permit it, it responds with an **ICMP Echo Reply (Type 0)**.
+
+### `traceroute` (or `tracert` on Windows)
+This command maps the exact path of routers my packet takes to reach a destination. 
+* **How it works:** It manipulates the **TTL (Time-to-Live)** field in the IP header. TTL represents the maximum number of routers ("hops") a packet can pass through. 
+* `traceroute` starts by sending a packet with a TTL of 1. The first router drops it and sends back an **ICMP Time Exceeded (Type 11)** message, revealing its IP. The command increments the TTL to 2, 3, 4, etc., mapping every single router along the way until the target is reached!
+
+## 4. The Pathfinders: Routing Protocols
+The internet is a web of millions of routers. To figure out the fastest or most efficient path for my data, routers communicate with each other using routing protocols:
+* **OSPF (Open Shortest Path First):** Routers share network maps and calculate the most efficient path based on link states.
+* **EIGRP:** A proprietary Cisco protocol that factors in bandwidth and delay.
+* **RIP (Routing Information Protocol):** A simpler protocol for small networks that just counts the number of "hops".
+* **BGP (Border Gateway Protocol):** The massive protocol that actually runs the backbone of the Internet, routing data between different ISPs.
+
+## 5. Saving IPv4: Network Address Translation (NAT)
+Since there are only about 4 billion IPv4 addresses, we would have run out years ago if every device needed a public IP. **NAT** solves this.
+
+Instead of my phone, laptop, and smart TV all having public IPs, my home router gets *one* public IP. All my internal devices use Private IPs (like `192.168.x.x`). 
+When I browse the web, the NAT router intercepts my traffic, replaces my internal Private IP with its external Public IP, and assigns the connection a random external port number. It keeps a **Translation Table** so that when the web server replies, the router knows exactly which internal device to forward the data back to.
+
+---
+
+### Challenge Question Answered
+> **Question:** Assuming that the router has infinite processing power, approximately speaking, how many thousand simultaneous TCP connections can it maintain?
+
+**Answer:** **65**
+
+**Explanation:** 
+When a router performs NAT (specifically PAT - Port Address Translation), it maps internal connections to its single public IP address using unique **source port numbers**. Because TCP (and UDP) port numbers are 16-bit values, the maximum possible number of ports is 65,535 ($2^{16} - 1$, excluding port 0). Therefore, the router has a hard limit of approximately 65,000 available ports to assign to outgoing connections at any given time. Once all 65,000 ports are mapped in the NAT translation table, the router cannot establish any new TCP connections until some of the existing ones are closed and their ports are freed up.
 
 
   
