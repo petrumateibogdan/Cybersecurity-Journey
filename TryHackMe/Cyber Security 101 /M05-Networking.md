@@ -245,7 +245,7 @@ When I connect to a commercial VPN to browse the web, my local ISP can only see 
 
 ---
 
-## 6. Practical Lab: Decrypting TLS Traffic in Wireshark
+##  Practical Lab: Decrypting TLS Traffic in Wireshark
 I ran an incredible practical exercise in the lab to prove how TLS works. 
 By default, Wireshark cannot read HTTPS traffic. However, browsers like Chromium can be forced to log the session's TLS encryption keys to a file using the flag:
 `chromium --ssl-key-log-file=~/ssl-key.log`
