@@ -461,7 +461,7 @@ There are two basic ways to filter based on a specific protocol:
 2. **By protocol port number:** Use the structure `tcp.port == <port number>` or `udp.port == <port number>`. For example, to see only HTTP packets, you would use the filter `tcp.port == 80`.
 
 ### Filter By IP
-To filter for a specific IP, you can use the structure `ip.addr == <IP address>`. If you need to search for the IP 192.168.1.2, your filter would be `ip.addr == 192.168.1.2`
+To filter for a specific IP, you can use the structure `ip.addr == <IP address>`. If you need to search for the IP 192.168.1.2, your filter would be `ip.addr == 192.168.1.2`.
 
 
 # 6. Tcpdump: The Basics
