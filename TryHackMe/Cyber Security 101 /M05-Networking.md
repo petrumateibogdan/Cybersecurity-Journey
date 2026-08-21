@@ -235,7 +235,7 @@ FTP (Port 21) is also insecure. While FTPS (FTP over TLS on Port 990) exists, it
 
 ---
 
-## 5. Virtual Private Networks (VPNs)
+##  Virtual Private Networks (VPNs)
 The internet was built to deliver packets reliably, not privately. A **VPN** fixes this by creating a secure, encrypted "tunnel" over the public internet.
 
 * **Site-to-Site VPN:** Connects two physical locations (like a branch office to a headquarters) so all devices can securely share resources as if they were in the same building.
