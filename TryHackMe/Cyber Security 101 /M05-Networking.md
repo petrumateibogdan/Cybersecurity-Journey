@@ -317,7 +317,7 @@ Wireshark color-codes traffic so I can spot protocols and anomalies instantly.
 | **Warn** | Yellow | Warnings like unusual error codes. |
 | **Error** | Red | Major problems (e.g., malformed packets). |
 
-## 7. Traffic Filtering (The Golden Rule)
+##  Traffic Filtering (The Golden Rule)
 The golden rule for Wireshark analysis is: **"If you can click on it, you can filter and copy it."** 
 
 There are two main types of filters:
@@ -337,7 +337,7 @@ If I want to read the raw application data (like intercepted passwords or raw HT
 * **Blue text** = Data originating from the Server.
 *(Note: Following a stream auto-applies a filter. I have to click the 'X' in the filter bar to see all traffic again).*
 
-## 8. Essential Filter Syntax Cheat Sheet
+##  Essential Filter Syntax Cheat Sheet
 To filter traffic manually using the Display Filter Bar:
 * **By Protocol:** Just type the name (e.g., `http`, `arp`, `dhcp`, `ftp`, `smtp`, `dns`).
 * **By TCP Port:** `tcp.port == 80`
