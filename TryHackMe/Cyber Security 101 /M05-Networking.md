@@ -254,5 +254,7 @@ By opening a `.pcapng` capture file in Wireshark and loading that exact `ssl-key
 What was once total gibberish instantly turned back into cleartext HTTP `POST` requests, revealing the user's plaintext login credentials hiding inside the packet!
 
 
+# 5. Wireshark: The Basics
+
 
 
