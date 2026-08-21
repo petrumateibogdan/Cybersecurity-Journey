@@ -256,213 +256,76 @@ What was once total gibberish instantly turned back into cleartext HTTP `POST` r
 
 # 5. Wireshark: The Basics
 
-Wireshark is an open-source, cross-platform network packet analyser tool capable of sniffing and investigating live traffic and inspecting packet captures (PCAP). It is commonly used as one of the best packet analysis tools. In this room, we will look at the basics of Wireshark and use it to perform fundamental packet analysis.
+# University Study Notes: Wireshark Fundamentals (Subject 1)
 
-## Learning Objectives
-* Navigate and configure Wireshark
-* Inspect packets and discover information from the different layers of TCP/IP
-* Apply display filters
+I just finished my university lab on Wireshark. Since I need to review this for my finals, I've summarized everything I learned about how to use it for packet analysis. 
 
-## Prerequisites
-* Networking Module
+##  What I Learned About Wireshark
+I learned that Wireshark is a network packet analyzer that lets me sniff live traffic or inspect PCAP files. 
+* **Crucial distinction:** It is **not** an Intrusion Detection System (IDS). It just reads packets without modifying them. Finding anomalies relies entirely on my own analytical skills.
 
-## Environment Setup
-Press the **Start Lab Machine** button to start the lab machine. The machine will start in Split-Screen view. If it is not visible, use the blue **Show Split View** button at the top of the page.
+##  The Interface & GUI
+When I load a `.pcap` file, I primarily work within three main panes:
+* **Packet List Pane:** A quick summary of every packet (Source, Destination, Protocol).
+* **Packet Details Pane:** The deep-dive protocol breakdown (this maps to the OSI layers).
+* **Packet Bytes Pane:** The raw Hex and ASCII data of the packet.
 
-There are two capture files given in the VM. You can use the `http1.pcapng` file to simulate the actions shown in the screenshots. Please note that you need to use the `Exercise.pcapng` file to answer the questions.
+### Quick Settings I Need to Remember:
+* **Time Format:** By default, it shows "Seconds Since Beginning of Capture". For real-world analysis, I should always change this to **UTC** (`View --> Time Display Format`).
+* **Merging PCAPs:** I can combine two captures into one via `File --> Merge`.
+* **File Details:** I can check the file hash, capture time, and stats via `Statistics --> Capture File Properties`.
 
----
+##  Packet Dissection & The OSI Model
+I found it really helpful how the **Packet Details Pane** breaks down the packet exactly according to the OSI model:
+1. **Frame (Layer 1):** Physical layer details (wire/interface info).
+2. **Source [MAC] (Layer 2):** Data Link layer (Source & Destination MAC addresses).
+3. **Source [IP] (Layer 3):** Network layer (IPv4/IPv6 addresses).
+4. **Protocol (Layer 4):** Transport layer (TCP/UDP and Port numbers).
+5. **Application Protocol (Layer 5+):** HTTP, FTP, SMB, etc.
+6. **Application Data:** The actual payload/content.
 
-## Use Cases
-Wireshark is one of the most potent traffic analyser tools available in the wild. There are multiple purposes for its use:
-* Detecting and troubleshooting network problems, such as network load failure points and congestion.
-* Detecting security anomalies, such as rogue hosts, abnormal port usage, and suspicious traffic.
-* Investigating and learning protocol details, such as response codes and payload data.
+##  Navigation, Searching & Extracting
+When dealing with massive PCAP files, I learned a few tricks to manage the noise:
+* **Find Packets (`CTRL+F`):** I can search using Display Filters, Hex, String, or Regex. *Note to self: I must select the correct pane (List, Details, or Bytes) otherwise the search won't find it!*
+* **Marking:** I can right-click to "Mark" a packet. It turns black, making it easy to spot. This is **temporary** and vanishes when I close the file.
+* **Commenting:** I can add written comments to packets. Unlike marking, these are **saved permanently** inside the PCAP file.
+* **Exporting Objects:** If someone transferred a file over the network, I can actually extract it! (`File --> Export Objects`). This works for HTTP, SMB, TFTP, etc.
 
-> **Note:** Wireshark is not an Intrusion Detection System (IDS). It only allows analysts to discover and investigate the packets in depth. It also doesn't modify packets; it reads them. Hence, detecting any anomaly or network problem highly relies on the analyst's knowledge and investigation skills.
+##  Packet Coloring & Expert Info
+Wireshark color-codes traffic so I can spot protocols and anomalies instantly.
+* **Coloring Rules:** I can set temporary rules for my current session, or permanent rules via `View --> Coloring Rules`.
+* **Expert Info:** Wireshark automatically flags suspicious protocol states. I can view these via `Analyze --> Expert Information`. 
 
----
-
-## GUI and Data
-Wireshark GUI opens with a single all-in-one page, which helps users investigate the traffic in multiple ways. At first glance, five sections stand out.
-
-| Section | Description |
-| :--- | :--- |
-| **Toolbar** | The main toolbar contains multiple menus and shortcuts for packet sniffing and processing, including filtering, sorting, summarising, exporting and merging. |
-| **Display Filter Bar** | The main query and filtering section. |
-| **Recent Files** | List of the recently investigated files. You can recall listed files with a double-click. |
-| **Capture Filter and Interfaces** | Capture filters and available sniffing points (network interfaces). The network interface is the connection point between a computer and a network. The software connection (e.g., `lo`, `eth0` and `ens33`) enables networking hardware. |
-| **Status Bar** | Tool status, profile and numeric packet information. |
-
-*(The picture below shows Wireshark's main window. The sections explained in the table are highlighted. Now open Wireshark and follow along with the walkthrough.)*
-
----
-
-## Loading PCAP Files
-The empty interface only displays recently processed files. You can load a file by using the **File** menu, dragging and dropping the file, or double-clicking on the file to load a pcap.
-
-Now, we can see the processed filename, detailed number of packets, and packet details. Packet details are shown in three different panes, which allow us to discover them in different formats. 
-
-| Pane | Description |
-| :--- | :--- |
-| **Packet List Pane** | Summary of each packet (source and destination addresses, protocol, and packet info). You can click on the list to choose a packet for further investigation. Once you select a packet, the details will appear in the other panels. |
-| **Packet Details Panel** | Detailed protocol breakdown of the selected packet. |
-| **Packet Bytes Pane** | Hex and decoded ASCII representation of the selected packet. It highlights the packet field depending on the clicked section in the details pane. |
-
----
-
-## Colouring Packets
-Along with quick packet information, Wireshark also colours packets in order of different conditions and the protocol to spot anomalies and protocols in captures quickly (this explains why almost everything is green in typical HTTP captures). This glance at packet information can help track down exactly what you're looking for during analysis. You can create custom colour rules to spot events of interest by using display filters. 
-
-Wireshark has two types of packet colouring methods: 
-1. **Temporary rules:** Only available during a program session. Done with the "right-click menu" or **View --> Conversation Filter** menu.
-2. **Permanent rules:** Saved under the preference file (profile) and available for the next program session. You can use the "right-click menu" or **View --> Coloring Rules** menu to create permanent colouring rules. 
-
-The **Colourise Packet List** menu activates/deactivates the colouring rules.
-
----
-
-## Traffic Sniffing
-You can use the blue **shark button** to start network sniffing (capturing traffic), the red button will stop the sniffing, and the green button will restart the sniffing process. The status bar will also provide the used sniffing interface and the number of collected packets.
-
----
-
-## Merge PCAP Files
-Wireshark can combine two pcap files into one single file. You can use the **File --> Merge** menu path to merge a pcap with the processed one. When you choose the second file, Wireshark will show the total number of packets in the selected file. Once you click "open", it will merge the existing pcap file with the chosen one and create a new pcap file. Note that you need to save the "merged" pcap file before working on it. *(See GIF)*
-
----
-
-## View File Details
-Knowing the file details is helpful. Especially when working with multiple pcap files, sometimes you will need to know and recall the file details (File hash, capture time, capture file comments, interface and statistics) to identify the file, classify and prioritise it. You can view the details by following **Statistics --> Capture File Properties** or by clicking the **pcap icon located on the left bottom**.
-
----
-
-## Packet Dissection
-Packet dissection is also known as protocol dissection, which investigates packet details by decoding available protocols and fields. Wireshark supports a long list of protocols for dissection, and you can also write your dissection scripts. 
-
-> **Note:** This section covers how Wireshark uses OSI layers to break down packets and how to use these layers for analysis. It is expected that you already have background knowledge of the OSI model and how it works. 
-
-### Packet Details
-You can click on a packet in the packet list pane to open its details (double-click will open details in a new window). Packets consist of 5 to 7 layers based on the OSI model. We will go over all of them in an HTTP packet from a sample capture. 
-
-Each time you click a detail, it will highlight the corresponding part in the packet bytes pane. We can see seven distinct layers to the packet: frame/packet, source [MAC], source [IP], protocol, protocol errors, application protocol, and application data.
-
-* **The Frame (Layer 1):** This will show you what frame/packet you are looking at and details specific to the Physical layer of the OSI model.
-* **Source [MAC] (Layer 2):** This will show you the source and destination MAC Addresses; from the Data Link layer of the OSI model.
-* **Source [IP] (Layer 3):** This will show you the source and destination IPv4 Addresses; from the Network layer of the OSI model.
-* **Protocol (Layer 4):** This will show you details of the protocol used (UDP/TCP) and source and destination ports; from the Transport layer of the OSI model.
-* **Protocol Errors:** This continuation of the 4th layer shows specific segments from TCP that needed to be reassembled.
-* **Application Protocol (Layer 5):** This will show details specific to the protocol used, such as HTTP, FTP, and SMB. From the Application layer of the OSI model.
-* **Application Data:** This extension of the 5th layer can show the application-specific data.
-
-Wireshark calculates the number of investigated packets and assigns a unique number for each packet. This helps the analysis process for big captures and makes it easy to go back to a specific point of an event.
-
----
-
-## Go to Packet
-Packet numbers do not only help to count the total number of packets or make it easier to find/investigate specific packets. This feature not only navigates between packets up and down; it also provides in-frame packet tracking and finds the next packet in the particular part of the conversation. You can use the **Go** menu and toolbar to view specific packets.
-
----
-
-## Find Packets
-Apart from packet number, Wireshark can find packets by packet content. You can use the **Edit --> Find Packet** menu to make a search inside the packets for a particular event of interest. This helps analysts and administrators to find specific intrusion patterns or failure traces.
-
-There are two crucial points in finding packets:
-1. **Knowing the input type:** This functionality accepts four types of inputs (Display filter, Hex, String and Regex). String and regex searches are the most commonly used search types. Searches are case insensitive, but you can set the case sensitivity in your search by clicking the radio button.
-2. **Choosing the search field:** You can conduct searches in the three panes (packet list, packet details, and packet bytes). If you try to find information available in the packet details pane and conduct the search in the packet list pane, Wireshark won't find it even if it exists.
-
----
-
-## Mark Packets
-Marking packets is another helpful functionality for analysts. You can find/point to a specific packet for further investigation by marking it. It helps analysts point to an event of interest or export particular packets from the capture. You can use the **Edit** or the **right-click** menu to mark/unmark packets.
-
-Marked packets will be shown in black regardless of the original colour representing the connection type. Note that marked packet information is renewed every file session, so marked packets will be lost after closing the capture file.
-
----
-
-## Packet Comments
-Similar to packet marking, commenting is another helpful feature for analysts. You can add comments for particular packets that will help the further investigation or remind and point out important/suspicious points for other layer analysts. Unlike packet marking, the comments can stay within the capture file until the operator removes them.
-
----
-
-## Export Packets
-Capture files can contain thousands of packets in a single file. As mentioned earlier, Wireshark is not an IDS, so sometimes, it is necessary to separate specific packages from the file and dig deeper to resolve an incident. This functionality helps analysts share only the suspicious packages (decided scope). Thus redundant information is not included in the analysis process. You can use the **File** menu to export packets.
-
----
-
-## Export Objects (Files)
-Wireshark can extract files transferred through the wire. For a security analyst, it is vital to discover shared files and save them for further investigation. Exporting objects are available only for selected protocol's streams (DICOM, HTTP, IMF, SMB and TFTP).
-
----
-
-## Time Display Format
-Wireshark lists the packets as they are captured, so investigating the default flow is not always the best option. By default, Wireshark shows the time in "Seconds Since Beginning of Capture", the common usage is using the UTC Time Display Format for a better view. You can use the **View --> Time Display Format** menu to change the time display format.
-
----
-
-## Expert Info
-Wireshark also detects specific states of protocols to help analysts easily spot possible anomalies and problems. Note that these are only suggestions, and there is always a chance of having false positives/negatives. Expert info can provide a group of categories in three different severities:
-
-| Severity | Colour | Info |
+**Expert Info Severities:**
+| Severity | Color | What it means |
 | :--- | :--- | :--- |
-| **Chat** | Blue | Information on usual workflow. |
-| **Note** | Cyan | Notable events like application error codes. |
-| **Warn** | Yellow | Warnings like unusual error codes or problem statements. |
-| **Error** | Red | Problems like malformed packets. |
+| **Chat** | Blue | Normal workflow. |
+| **Note** | Cyan | Notable events (e.g., application error codes). |
+| **Warn** | Yellow | Unusual errors or problem statements. |
+| **Error** | Red | Major problems (e.g., malformed packets). |
 
-Frequently encountered information groups are listed below:
+##  Traffic Filtering (The Golden Rule)
+The golden rule my professor taught us: **"If you can click on it, you can filter and copy it."** 
 
-| Group | Info |
-| :--- | :--- |
-| **Checksum** | Checksum errors |
-| **Deprecated** | Deprecated protocol usage |
-| **Comment** | Packet comment detection |
-| **Malformed** | Malformed packet detection |
+There are two main types of filters:
+1. **Capture Filters:** Set *before* capturing to only record specific traffic.
+2. **Display Filters:** Applied *after* capturing to hide noise and view specific traffic.
 
-You can use the **lower left bottom section** in the status bar or **Analyse --> Expert Information** menu to view all available information entries via a dialogue box. It will show the packet number, summary, group protocol and total occurrence.
+### Quick GUI Filtering Tools:
+* **Apply as Filter:** Right-click any field and apply it as a display filter.
+* **Conversation Filter:** Isolates a specific communication stream between two IP/Port pairs.
+* **Prepare as Filter:** Builds the query in the search bar but waits for me to hit Enter (great for building complex `AND`/`OR` queries).
+* **Apply as Column:** Takes a deep protocol field and adds it as a visible column in the Packet List Pane.
 
----
+### Reconstructing Data (Follow Stream)
+If I want to read the raw application data (like intercepted passwords or raw HTML), I right-click a packet and select **Follow TCP/UDP/HTTP Stream**. 
+* **Red text** = Data from the Client.
+* **Blue text** = Data from the Server.
 
-## Filters
-Wireshark has a powerful filter engine that helps analysts to narrow down the traffic and focus on the event of interest. Wireshark has two types of filtering approaches: 
-1. **Capture filters:** Used for "capturing" only the packets valid for the used filter. 
-2. **Display filters:** Used for "viewing" the packets valid for the used filter. 
-
-There is a golden rule for analysts who don't want to write queries for basic tasks: *"If you can click on it, you can filter and copy it"*.
-
-### Apply as Filter
-This is the most basic way of filtering traffic. While investigating a capture file, you can click on the field you want to filter and use the **right-click menu** or **Analyse --> Apply as Filter** menu to filter the specific value. Note that the number of total and displayed packets are always shown on the status bar.
-
-### Conversation Filter
-When you use the "Apply as a Filter" option, you will filter only a single entity of the packet. However, if you want to investigate a specific packet number and all linked packets by focusing on IP addresses and port numbers, the "Conversation Filter" option helps you view only the related packets. You can use the **right-click menu** or **Analyse --> Conversation Filter** menu to filter conversations.
-
-### Colourise Conversation
-This option is similar to the "Conversation Filter" with one difference. It highlights the linked packets without applying a display filter and decreasing the number of viewed packets. You can use the **right-click menu** or **View --> Colourise Conversation** menu to colourise a linked packet in a single click. (Use **View --> Colourise Conversation --> Reset Colourisation** to undo).
-
-### Prepare as Filter
-Similar to "Apply as Filter", this option helps analysts create display filters using the "right-click" menu. However, this model doesn't apply the filters immediately. It adds the required query to the pane and waits for the execution command (enter) or another chosen filtering option by using the ".. and/or.." logic.
-
-### Apply as Column
-You can use the **right-click menu** or **Analyse --> Apply as Column** menu to add columns to the packet list pane. Once you click on a value and apply it as a column, it will be visible on the packet list pane. This helps analysts examine the appearance of a specific value/field across the available packets.
-
-### Follow Stream
-Following the protocol streams helps analysts recreate the application-level data and understand the event of interest. It is possible to reconstruct streams to view unencrypted protocol data like usernames, passwords and other transferred data.
-
-You can use the **right-click menu** or **Analyse --> Follow TCP/UDP/HTTP Stream** menu to follow traffic streams. Packets originating from the server are highlighted in blue, and those originating from the client are highlighted in red. Once you follow a stream, Wireshark automatically creates and applies the required filter. You will need to use the "X button" located on the right side of the display filter bar to remove it.
-
----
-
-## Simple Display Filter Queries
-The easiest way to filter quickly the huge amount of packets is by applying a display filter using the "Apply a display filter" bar. 
-
-### Filter By Protocol Name or Port
-There are two basic ways to filter based on a specific protocol:
-1. **By protocol name:** Simply type in the protocol name (e.g., `http`, `arp`, `dhcp`, `ftp`, `smtp`, `pop`, `imap`) and hit enter. 
-2. **By protocol port number:** Use the structure `tcp.port == <port number>` or `udp.port == <port number>`. For example, to see only HTTP packets, you would use the filter `tcp.port == 80`.
-
-### Filter By IP
-To filter for a specific IP, you can use the structure `ip.addr == <IP address>`. If you need to search for the IP 192.168.1.2, your filter would be `ip.addr == 192.168.1.2`.
-
+### Essential Filter Syntax I Need to Memorize:
+* **By Protocol:** Just type the name (e.g., `http`, `arp`, `ftp`, `dns`).
+* **By Port:** `tcp.port == 80` or `udp.port == 53`
+* **By IP Address:** `ip.addr == 192.168.1.2`
 
 # 6. Tcpdump: The Basics
 
