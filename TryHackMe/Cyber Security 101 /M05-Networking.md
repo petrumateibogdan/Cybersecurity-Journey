@@ -186,7 +186,7 @@ Sending and receiving emails involves distinct protocols. I can manually test ma
 
 # Networking Secure Protocols: Protecting the Web
 
-## 1. Why We Needed "S" (The Problem with Plaintext)
+##  Why We Needed "S" (The Problem with Plaintext)
 In the previous modules, I learned how core protocols like HTTP, POP3, and TELNET function. The massive, glaring problem with them is that they were designed without any security. They operate in **plaintext**, meaning any adversary sitting on the network (using a packet sniffer like Wireshark in promiscuous mode) can read every password, email, and credit card number sent over the wire. They also lack **integrity** (an attacker can alter the data in transit) and **authenticity** (I have no proof the server I'm talking to is who they claim to be).
 
 To fix this, the internet needed a cryptographic blanket to wrap around these protocols.
