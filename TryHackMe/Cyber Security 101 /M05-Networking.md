@@ -203,7 +203,7 @@ To fix this, the internet needed a cryptographic blanket to wrap around these pr
 
 Once TLS is negotiated, all data sent between the client and server is completely encrypted. Without the private key, an attacker sniffing the traffic only sees gibberish.
 
-## 3. Securing Core Protocols
+##  Securing Core Protocols
 Adding TLS to a protocol usually involves shifting it to a new port number and appending an "S" (for Secure) to the name.
 
 ### HTTPS (HTTP over TLS)
@@ -221,7 +221,7 @@ I need to memorize how the core ports shift when TLS is applied:
 
 ---
 
-## 4. SSH and SFTP (Killing TELNET and FTP)
+##  SSH and SFTP (Killing TELNET and FTP)
 
 ### SSH (Secure Shell)
 TELNET (Port 23) was the original way to remotely access systems, but it sent entire sessions—including passwords—in cleartext. **SSH (Port 22)** was created to replace it. 
