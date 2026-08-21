@@ -258,71 +258,90 @@ What was once total gibberish instantly turned back into cleartext HTTP `POST` r
 
 
 
+# Wireshark: The Basics
+
+I just finished the Wireshark basics room on TryHackMe. Since I need to retain this for future packet analysis and CTFs, I've summarized every technical detail and feature I learned about the tool.
+
 ##  What I Learned About Wireshark
-I learned that Wireshark is a network packet analyzer that lets me sniff live traffic or inspect PCAP files. 
-* **Crucial distinction:** It is **not** an Intrusion Detection System (IDS). It just reads packets without modifying them. Finding anomalies relies entirely on my own analytical skills.
+I learned that Wireshark is an open-source network packet analyzer used to sniff live traffic and inspect `.pcap` files. 
+* **Crucial distinction:** It is **not** an Intrusion Detection System (IDS). It does not flag alerts or modify packets; it only reads them. Detecting anomalies relies entirely on my own investigation skills.
 
-##  The Interface & GUI
-When I load a `.pcap` file, I primarily work within three main panes:
-* **Packet List Pane:** A quick summary of every packet (Source, Destination, Protocol).
-* **Packet Details Pane:** The deep-dive protocol breakdown (this maps to the OSI layers).
-* **Packet Bytes Pane:** The raw Hex and ASCII data of the packet.
+##  The GUI & Loading PCAPs
+The main interface is split into five key sections:
+1. **Toolbar:** Shortcuts for sniffing, filtering, and exporting.
+2. **Display Filter Bar:** The main query bar for filtering traffic.
+3. **Recent Files:** Quick access to recently opened PCAPs.
+4. **Capture Filter and Interfaces:** Where I select the network interface (e.g., `eth0`, `wlan0`) to start sniffing.
+5. **Status Bar:** Shows tool status and packet counts.
 
-### Quick Settings I Need to Remember:
-* **Time Format:** By default, it shows "Seconds Since Beginning of Capture". For real-world analysis, I should always change this to **UTC** (`View --> Time Display Format`).
-* **Merging PCAPs:** I can combine two captures into one via `File --> Merge`.
-* **File Details:** I can check the file hash, capture time, and stats via `Statistics --> Capture File Properties`.
+When I open a `.pcap` file, the data is split into three highly detailed panes:
+* **Packet List Pane:** A summary of each packet (Source, Destination, Protocol). Clicking one loads it into the other panes.
+* **Packet Details Pane:** The deep-dive protocol breakdown (this directly maps to the OSI layers).
+* **Packet Bytes Pane:** The raw Hex and ASCII data. Highlighting a field in the Details pane highlights the exact hex bytes here.
+
+##  Core Sniffing & File Management
+* **Sniffing:** I use the blue "shark fin" button to start capturing, the red square to stop, and the green button to restart.
+* **Merging PCAPs:** If I have multiple captures, I can combine them into one file via `File --> Merge`.
+* **File Details:** I can check the file hash, capture time, and interface statistics via `Statistics --> Capture File Properties`.
+* **Time Format:** By default, Wireshark shows "Seconds Since Beginning of Capture". For real-world analysis, I should always change this to **UTC** (`View --> Time Display Format`).
 
 ##  Packet Dissection & The OSI Model
-I found it really helpful how the **Packet Details Pane** breaks down the packet exactly according to the OSI model:
+I found it really helpful how the **Packet Details Pane** breaks down the packet exactly according to the OSI model. When I inspect an HTTP packet, I see:
 1. **Frame (Layer 1):** Physical layer details (wire/interface info).
 2. **Source [MAC] (Layer 2):** Data Link layer (Source & Destination MAC addresses).
 3. **Source [IP] (Layer 3):** Network layer (IPv4/IPv6 addresses).
 4. **Protocol (Layer 4):** Transport layer (TCP/UDP and Port numbers).
-5. **Application Protocol (Layer 5+):** HTTP, FTP, SMB, etc.
-6. **Application Data:** The actual payload/content.
+5. **Protocol Errors:** Reassembled TCP segments.
+6. **Application Protocol (Layer 5+):** Details for HTTP, FTP, SMB, etc.
+7. **Application Data:** The actual payload/content.
 
 ##  Navigation, Searching & Extracting
-When dealing with massive PCAP files, I learned a few tricks to manage the noise:
-* **Find Packets (`CTRL+F`):** I can search using Display Filters, Hex, String, or Regex. *Note to self: I must select the correct pane (List, Details, or Bytes) otherwise the search won't find it!*
+When dealing with massive PCAP files containing thousands of packets, I learned a few tricks to manage the noise:
+* **Find Packets (`CTRL+F`):** I can search using Display Filters, Hex, String, or Regex. *Crucial note:* I must select the correct pane (List, Details, or Bytes) before searching, otherwise Wireshark won't find the data!
 * **Marking:** I can right-click to "Mark" a packet. It turns black, making it easy to spot. This is **temporary** and vanishes when I close the file.
 * **Commenting:** I can add written comments to packets. Unlike marking, these are **saved permanently** inside the PCAP file.
-* **Exporting Objects:** If someone transferred a file over the network, I can actually extract it! (`File --> Export Objects`). This works for HTTP, SMB, TFTP, etc.
+* **Exporting Packets:** I can isolate and save specific suspicious packets into a new, smaller PCAP file (`File --> Export Specified Packets`).
+* **Exporting Objects:** If a file was transferred over the network, I can extract and save it! (`File --> Export Objects`). This works for HTTP, SMB, TFTP, IMF, and DICOM.
 
 ##  Packet Coloring & Expert Info
 Wireshark color-codes traffic so I can spot protocols and anomalies instantly.
 * **Coloring Rules:** I can set temporary rules for my current session, or permanent rules via `View --> Coloring Rules`.
-* **Expert Info:** Wireshark automatically flags suspicious protocol states. I can view these via `Analyze --> Expert Information`. 
+
+**Expert Info:** Wireshark automatically flags suspicious protocol states (like checksum errors, deprecated protocols, or malformed packets). I can view these via `Analyze --> Expert Information`. 
 
 **Expert Info Severities:**
 | Severity | Color | What it means |
 | :--- | :--- | :--- |
 | **Chat** | Blue | Normal workflow. |
 | **Note** | Cyan | Notable events (e.g., application error codes). |
-| **Warn** | Yellow | Unusual errors or problem statements. |
+| **Warn** | Yellow | Warnings like unusual error codes. |
 | **Error** | Red | Major problems (e.g., malformed packets). |
 
-##  Traffic Filtering (The Golden Rule)
-The golden rule my professor taught us: **"If you can click on it, you can filter and copy it."** 
+## 7. Traffic Filtering (The Golden Rule)
+The golden rule for Wireshark analysis is: **"If you can click on it, you can filter and copy it."** 
 
 There are two main types of filters:
-1. **Capture Filters:** Set *before* capturing to only record specific traffic.
+1. **Capture Filters:** Applied *before* capturing to only record specific traffic.
 2. **Display Filters:** Applied *after* capturing to hide noise and view specific traffic.
 
 ### Quick GUI Filtering Tools:
-* **Apply as Filter:** Right-click any field and apply it as a display filter.
-* **Conversation Filter:** Isolates a specific communication stream between two IP/Port pairs.
+* **Apply as Filter:** Right-click any field and instantly apply it as a display filter.
 * **Prepare as Filter:** Builds the query in the search bar but waits for me to hit Enter (great for building complex `AND`/`OR` queries).
-* **Apply as Column:** Takes a deep protocol field and adds it as a visible column in the Packet List Pane.
+* **Conversation Filter:** Isolates a specific communication stream between two IP/Port pairs.
+* **Colorize Conversation:** Highlights the linked conversation packets without filtering out the rest of the traffic.
+* **Apply as Column:** Takes a deep protocol field and adds it as a visible column in the Packet List Pane for quick scanning.
 
 ### Reconstructing Data (Follow Stream)
 If I want to read the raw application data (like intercepted passwords or raw HTML), I right-click a packet and select **Follow TCP/UDP/HTTP Stream**. 
-* **Red text** = Data from the Client.
-* **Blue text** = Data from the Server.
+* **Red text** = Data originating from the Client.
+* **Blue text** = Data originating from the Server.
+*(Note: Following a stream auto-applies a filter. I have to click the 'X' in the filter bar to see all traffic again).*
 
-### Essential Filter Syntax I Need to Memorize:
-* **By Protocol:** Just type the name (e.g., `http`, `arp`, `ftp`, `dns`).
-* **By Port:** `tcp.port == 80` or `udp.port == 53`
+## 8. Essential Filter Syntax Cheat Sheet
+To filter traffic manually using the Display Filter Bar:
+* **By Protocol:** Just type the name (e.g., `http`, `arp`, `dhcp`, `ftp`, `smtp`, `dns`).
+* **By TCP Port:** `tcp.port == 80`
+* **By UDP Port:** `udp.port == 53`
 * **By IP Address:** `ip.addr == 192.168.1.2`
 
 # 6. Tcpdump: The Basics
