@@ -258,10 +258,6 @@ What was once total gibberish instantly turned back into cleartext HTTP `POST` r
 
 
 
-# Wireshark: The Basics
-
-I just finished the Wireshark basics room on TryHackMe. Since I need to retain this for future packet analysis and CTFs, I've summarized every technical detail and feature I learned about the tool.
-
 ##  What I Learned About Wireshark
 I learned that Wireshark is an open-source network packet analyzer used to sniff live traffic and inspect `.pcap` files. 
 * **Crucial distinction:** It is **not** an Intrusion Detection System (IDS). It does not flag alerts or modify packets; it only reads them. Detecting anomalies relies entirely on my own investigation skills.
