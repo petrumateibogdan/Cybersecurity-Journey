@@ -184,7 +184,74 @@ Sending and receiving emails involves distinct protocols. I can manually test ma
 # 4. Networking Secure Protocols
 
 
+# Networking Secure Protocols: Protecting the Web
 
+## 1. Why We Needed "S" (The Problem with Plaintext)
+In the previous modules, I learned how core protocols like HTTP, POP3, and TELNET function. The massive, glaring problem with them is that they were designed without any security. They operate in **plaintext**, meaning any adversary sitting on the network (using a packet sniffer like Wireshark in promiscuous mode) can read every password, email, and credit card number sent over the wire. They also lack **integrity** (an attacker can alter the data in transit) and **authenticity** (I have no proof the server I'm talking to is who they claim to be).
+
+To fix this, the internet needed a cryptographic blanket to wrap around these protocols.
+
+## 2. SSL and TLS (Transport Layer Security)
+**TLS** (the modern successor to SSL) operates at the Transport Layer. It provides the confidentiality, integrity, and authenticity that early protocols lacked. 
+
+### How it Works (Briefly):
+1. A server generates a cryptographic public/private key pair.
+2. The server submits a **CSR (Certificate Signing Request)** to a trusted **Certificate Authority (CA)**.
+3. The CA verifies the server's identity and issues a digitally signed TLS certificate.
+4. When my browser connects to the server, the server presents this certificate. Because my browser trusts the CA, it trusts the server. 
+*(Note: Self-signed certificates exist, but browsers will warn users that no third-party CA has verified the identity).*
+
+Once TLS is negotiated, all data sent between the client and server is completely encrypted. Without the private key, an attacker sniffing the traffic only sees gibberish.
+
+## 3. Securing Core Protocols
+Adding TLS to a protocol usually involves shifting it to a new port number and appending an "S" (for Secure) to the name.
+
+### HTTPS (HTTP over TLS)
+When making an HTTPS request, the browser first completes the standard TCP 3-way handshake. Then, it initiates a **TLS handshake** to negotiate encryption. Only after this is complete does the actual HTTP `GET` request get sent (hidden entirely inside the encrypted TLS tunnel).
+
+### Master Port Number Cheat Sheet (Secure vs. Insecure)
+I need to memorize how the core ports shift when TLS is applied:
+
+| Protocol | Purpose | Insecure Port | Secure Protocol | Secure Port |
+| :--- | :--- | :--- | :--- | :--- |
+| **HTTP** | Web Browsing | 80 | **HTTPS** | 443 |
+| **SMTP** | Sending Email | 25 | **SMTPS** | 465 (or 587) |
+| **POP3** | Downloading Email | 110 | **POP3S** | 995 |
+| **IMAP** | Syncing Email | 143 | **IMAPS** | 993 |
+
+---
+
+## 4. SSH and SFTP (Killing TELNET and FTP)
+
+### SSH (Secure Shell)
+TELNET (Port 23) was the original way to remotely access systems, but it sent entire sessions—including passwords—in cleartext. **SSH (Port 22)** was created to replace it. 
+* It provides strong authentication (passwords, public/private keys, or 2FA).
+* It provides full end-to-end encryption.
+* It supports **X11 Forwarding**, allowing me to securely run graphical GUI applications from a remote Linux machine on my local screen.
+
+### SFTP (SSH File Transfer Protocol)
+FTP (Port 21) is also insecure. While FTPS (FTP over TLS on Port 990) exists, it is notoriously difficult to configure through firewalls because it requires separate control and data channels. 
+**SFTP** solves this. It is a completely different protocol built directly into SSH. It runs over the same encrypted **Port 22** as SSH, making secure file transfers incredibly easy to set up and manage.
+
+---
+
+## 5. Virtual Private Networks (VPNs)
+The internet was built to deliver packets reliably, not privately. A **VPN** fixes this by creating a secure, encrypted "tunnel" over the public internet.
+
+* **Site-to-Site VPN:** Connects two physical locations (like a branch office to a headquarters) so all devices can securely share resources as if they were in the same building.
+* **Remote Access VPN:** Connects a single user (like me sitting in a coffee shop) to a private corporate network.
+
+When I connect to a commercial VPN to browse the web, my local ISP can only see an encrypted tunnel connecting to the VPN server's IP. Furthermore, the websites I visit see the VPN server's IP address rather than my real one, which is why VPNs can bypass geographical content restrictions.
+
+---
+
+## 6. Practical Lab: Decrypting TLS Traffic in Wireshark
+I ran an incredible practical exercise in the lab to prove how TLS works. 
+By default, Wireshark cannot read HTTPS traffic. However, browsers like Chromium can be forced to log the session's TLS encryption keys to a file using the flag:
+`chromium --ssl-key-log-file=~/ssl-key.log`
+
+By opening a `.pcapng` capture file in Wireshark and loading that exact `ssl-key.log` file into Wireshark's **Transport Layer Security Preferences**, Wireshark used the keys to decrypt the session on the fly. 
+What was once total gibberish instantly turned back into cleartext HTTP `POST` requests, revealing the user's plaintext login credentials hiding inside the packet!
 
 
 
