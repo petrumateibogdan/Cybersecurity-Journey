@@ -191,7 +191,7 @@ In the previous modules, I learned how core protocols like HTTP, POP3, and TELNE
 
 To fix this, the internet needed a cryptographic blanket to wrap around these protocols.
 
-## 2. SSL and TLS (Transport Layer Security)
+##  SSL and TLS (Transport Layer Security)
 **TLS** (the modern successor to SSL) operates at the Transport Layer. It provides the confidentiality, integrity, and authenticity that early protocols lacked. 
 
 ### How it Works (Briefly):
