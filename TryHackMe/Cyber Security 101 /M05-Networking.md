@@ -256,9 +256,7 @@ What was once total gibberish instantly turned back into cleartext HTTP `POST` r
 
 # 5. Wireshark: The Basics
 
-# University Study Notes: Wireshark Fundamentals (Subject 1)
 
-I just finished my university lab on Wireshark. Since I need to review this for my finals, I've summarized everything I learned about how to use it for packet analysis. 
 
 ##  What I Learned About Wireshark
 I learned that Wireshark is a network packet analyzer that lets me sniff live traffic or inspect PCAP files. 
