@@ -450,3 +450,6 @@ Here are the exact commands I built to solve the lab questions:
 **1. Count how many packets in `traffic.pcap` use the ICMP protocol:**
 ```bash
 tcpdump -r traffic.pcap icmp | wc -l
+
+
+ Find the IP address of the host that asked for the MAC address of 192.168.124.137:
