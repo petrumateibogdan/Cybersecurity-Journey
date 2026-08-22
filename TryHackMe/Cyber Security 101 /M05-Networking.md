@@ -469,7 +469,7 @@ tcpdump -r traffic.pcap greater 15000 -n
 Find the MAC address of the host that sent an ARP request:
 tcpdump -er traffic.pcap arp
 
-Adding the -e flag here was critical to force tcpdump to display the MAC address in the output!).
+Adding the -e flag here was critical to force tcpdump to display the MAC address in the output!
 
 ```
 # 7. Nmap: The Basics
