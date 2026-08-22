@@ -447,8 +447,9 @@ Sometimes I need to see the actual raw data inside the packets, not just the hea
 ##  Practical Lab Commands (TryHackMe Exercises)
 Here are the exact commands I built to solve the lab questions:
 
-**1. Count how many packets in `traffic.pcap` use the ICMP protocol:**
+
 ```bash
+Count how many packets in `traffic.pcap` use the ICMP protocol:**
 tcpdump -r traffic.pcap icmp | wc -l
 
 
