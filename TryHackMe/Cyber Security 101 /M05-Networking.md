@@ -455,3 +455,5 @@ tcpdump -r traffic.pcap icmp | wc -l
  Find the IP address of the host that asked for the MAC address of 192.168.124.137:
 
 tcpdump -r traffic.pcap arp
+
+ Find the hostname (subdomain) in the first DNS query:
