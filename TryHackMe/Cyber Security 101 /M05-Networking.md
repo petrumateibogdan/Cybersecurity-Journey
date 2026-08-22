@@ -342,3 +342,111 @@ To filter traffic manually using the Display Filter Bar:
 
 # 6. Tcpdump: The Basics
 
+# Network Traffic Analysis with Tcpdump
+
+I just completed the Tcpdump room, which focuses on capturing and analyzing network traffic from the command line. While GUIs like Wireshark are great, `tcpdump` (built on the `libpcap` library for Unix and `winpcap` for Windows) is incredibly stable, fast, and essential for operating in headless environments.
+
+Here are my complete notes and command references for my GitHub repository.
+
+## 1. Basic Packet Capture Operations
+To actually capture packets, I need to specify exactly what to listen to, where to write the data, and how to read it later.
+
+*   **Specify the Interface:** I use `-i` to tell tcpdump which network card to listen on.
+    *   `tcpdump -i any` (Listens on all available interfaces)
+    *   `tcpdump -i eth0` (Listens strictly on the `eth0` interface)
+    *   *(Note: I can use `ip a s` to list my available interfaces).*
+*   **Save to a File:** I use `-w` to write the output to a `.pcap` file so I can analyze it later (or open it in Wireshark).
+    *   `tcpdump -i eth0 -w capture.pcap` *(Note: This suppresses screen output while writing).*
+*   **Read from a File:** I use `-r` to read packets from a saved `.pcap` file.
+    *   `tcpdump -r capture.pcap`
+*   **Limit Packet Count:** I use `-c` to stop capturing after a specific number of packets, so it doesn't run endlessly.
+    *   `tcpdump -i eth0 -c 100` (Captures exactly 100 packets and stops).
+
+## 2. Modifying Output and Verbosity
+By default, tcpdump tries to resolve IP addresses to domain names and port numbers to service names (like changing port 80 to `http`). This slows things down and clutters the output.
+
+*   **`-n`**: Do not resolve IP addresses. (Prints `93.184.215.14` instead of `example.com`).
+*   **`-nn`**: Do not resolve IP addresses OR port numbers. (Prints port `80` instead of `http`).
+*   **`-v`**: Verbose output (adds TTL, identification, total length, and IP options).
+*   **`-vv`** or **`-vvv`**: Even more verbosity.
+
+## 3. Basic Packet Filtering
+Listening to a whole network is too noisy. I need to filter the traffic to find exactly what I'm looking for.
+
+### Filtering by Host
+I can filter traffic going to or coming from a specific machine.
+*   `tcpdump host 192.168.1.10` (Any traffic involving this IP)
+*   `tcpdump src host 192.168.1.10` (Only traffic *originating* from this IP)
+*   `tcpdump dst host 192.168.1.10` (Only traffic *destined* to this IP)
+
+### Filtering by Port
+I can filter traffic targeting specific services (like DNS on port 53).
+*   `tcpdump port 53` (Any traffic on port 53)
+*   `tcpdump src port 80` (Traffic sent from port 80)
+*   `tcpdump dst port 443` (Traffic sent to port 443)
+
+### Filtering by Protocol
+I can restrict the capture to a specific protocol by just typing its name:
+*   Protocols: `ip`, `ip6`, `udp`, `tcp`, `icmp`, `arp`.
+*   Example: `tcpdump -i eth0 icmp` (Captures only ping requests/replies).
+
+### Logical Operators
+I can combine filters using logical operators:
+*   `and`: Both conditions must be true (e.g., `tcpdump host 1.1.1.1 and tcp`).
+*   `or`: Either condition can be true (e.g., `tcpdump udp or icmp`).
+*   `not`: The condition must be false (e.g., `tcpdump not tcp` will capture UDP, ICMP, ARP, etc.).
+
+## 4. Advanced Filtering (Header Bytes & TCP Flags)
+For deep packet inspection, I can filter based on packet size or even specific bits inside the protocol headers.
+
+### Filtering by Size
+*   `greater 15000`: Captures packets larger than or equal to 15000 bytes.
+*   `less 64`: Captures packets smaller than or equal to 64 bytes.
+
+### Filtering by Header Bytes
+Tcpdump allows me to look at specific bytes within a protocol header using the syntax: `proto[expr:size]`
+*   `proto`: The protocol (e.g., `ether`, `ip`, `tcp`, `udp`).
+*   `expr`: The byte offset (starting at 0).
+*   `size`: Number of bytes to look at (1, 2, or 4).
+
+**Binary Bitwise Operations:**
+To isolate specific bits, I use binary operators:
+*   `&` (AND): Returns 1 only if both bits are 1.
+*   `|` (OR): Returns 1 if either bit is 1.
+*   `!` (NOT): Inverts the bit.
+
+*Example:* `ether[0] & 1 != 0` isolates the first byte of the Ethernet header to check if the packet was sent to a multicast address.
+
+### Filtering by TCP Flags
+Instead of manually calculating byte offsets, tcpdump has built-in keywords for TCP flags:
+*   `tcp-syn` (Synchronize)
+*   `tcp-ack` (Acknowledge)
+*   `tcp-fin` (Finish)
+*   `tcp-rst` (Reset)
+*   `tcp-push` (Push)
+
+**Syntax Examples:**
+*   Capture packets with *only* the SYN flag set: 
+    `tcpdump "tcp[tcpflags] == tcp-syn"`
+*   Capture packets with *at least* the SYN flag set (even if other flags are set): 
+    `tcpdump "tcp[tcpflags] & tcp-syn != 0"`
+*   Capture packets with *either* the SYN or ACK flags set: 
+    `tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"`
+
+## 5. Packet Formatting and Display
+Sometimes I need to see the actual raw data inside the packets, not just the headers.
+
+*   **`-q` (Quick output):** Prints very brief packet information (shorter output lines).
+*   **`-e` (Ethernet/Link-level header):** Prints the MAC addresses of the source and destination. Essential for tracing Layer 2 interactions like ARP and DHCP.
+*   **`-A` (ASCII):** Prints the payload of the packet in ASCII text. Great for reading unencrypted HTTP traffic or plaintext passwords.
+*   **`-xx` (Hexadecimal):** Prints the packet payload in hex format. Necessary if the data is encrypted, compressed, or non-English.
+*   **`-X` (Hex and ASCII):** The best of both worlds. Prints the data side-by-side in both Hex and ASCII formats.
+
+---
+
+## 6. Practical Lab Commands (TryHackMe Exercises)
+Here are the exact commands I built to solve the lab questions:
+
+**1. Count how many packets in `traffic.pcap` use the ICMP protocol:**
+```bash
+tcpdump -r traffic.pcap icmp | wc -l
