@@ -348,7 +348,7 @@ I just completed the Tcpdump room, which focuses on capturing and analyzing netw
 
 Here are my complete notes and command references for my GitHub repository.
 
-## 1. Basic Packet Capture Operations
+##  Basic Packet Capture Operations
 To actually capture packets, I need to specify exactly what to listen to, where to write the data, and how to read it later.
 
 *   **Specify the Interface:** I use `-i` to tell tcpdump which network card to listen on.
@@ -362,7 +362,7 @@ To actually capture packets, I need to specify exactly what to listen to, where 
 *   **Limit Packet Count:** I use `-c` to stop capturing after a specific number of packets, so it doesn't run endlessly.
     *   `tcpdump -i eth0 -c 100` (Captures exactly 100 packets and stops).
 
-## 2. Modifying Output and Verbosity
+##  Modifying Output and Verbosity
 By default, tcpdump tries to resolve IP addresses to domain names and port numbers to service names (like changing port 80 to `http`). This slows things down and clutters the output.
 
 *   **`-n`**: Do not resolve IP addresses. (Prints `93.184.215.14` instead of `example.com`).
@@ -370,7 +370,7 @@ By default, tcpdump tries to resolve IP addresses to domain names and port numbe
 *   **`-v`**: Verbose output (adds TTL, identification, total length, and IP options).
 *   **`-vv`** or **`-vvv`**: Even more verbosity.
 
-## 3. Basic Packet Filtering
+##  Basic Packet Filtering
 Listening to a whole network is too noisy. I need to filter the traffic to find exactly what I'm looking for.
 
 ### Filtering by Host
@@ -396,7 +396,7 @@ I can combine filters using logical operators:
 *   `or`: Either condition can be true (e.g., `tcpdump udp or icmp`).
 *   `not`: The condition must be false (e.g., `tcpdump not tcp` will capture UDP, ICMP, ARP, etc.).
 
-## 4. Advanced Filtering (Header Bytes & TCP Flags)
+##  Advanced Filtering (Header Bytes & TCP Flags)
 For deep packet inspection, I can filter based on packet size or even specific bits inside the protocol headers.
 
 ### Filtering by Size
@@ -433,7 +433,7 @@ Instead of manually calculating byte offsets, tcpdump has built-in keywords for 
 *   Capture packets with *either* the SYN or ACK flags set: 
     `tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"`
 
-## 5. Packet Formatting and Display
+##  Packet Formatting and Display
 Sometimes I need to see the actual raw data inside the packets, not just the headers.
 
 *   **`-q` (Quick output):** Prints very brief packet information (shorter output lines).
@@ -444,7 +444,7 @@ Sometimes I need to see the actual raw data inside the packets, not just the hea
 
 ---
 
-## 6. Practical Lab Commands (TryHackMe Exercises)
+##  Practical Lab Commands (TryHackMe Exercises)
 Here are the exact commands I built to solve the lab questions:
 
 **1. Count how many packets in `traffic.pcap` use the ICMP protocol:**
