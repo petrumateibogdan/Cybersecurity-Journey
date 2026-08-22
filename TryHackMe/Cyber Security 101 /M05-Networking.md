@@ -460,3 +460,4 @@ tcpdump -r traffic.pcap port 53 -c 1
 
 
 Count how many packets have only the TCP Reset (RST) flag set:
+tcpdump -r traffic.pcap "tcp[tcpflags] == tcp-rst" | wc -l
