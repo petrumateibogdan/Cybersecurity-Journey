@@ -459,4 +459,4 @@ tcpdump -r traffic.pcap arp
 tcpdump -r traffic.pcap port 53 -c 1
 
 
-
+Count how many packets have only the TCP Reset (RST) flag set:
