@@ -461,3 +461,5 @@ tcpdump -r traffic.pcap port 53 -c 1
 
 Count how many packets have only the TCP Reset (RST) flag set:
 tcpdump -r traffic.pcap "tcp[tcpflags] == tcp-rst" | wc -l
+
+Find the IP address of the host that sent packets larger than 15000 bytes:
