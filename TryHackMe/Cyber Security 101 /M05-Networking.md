@@ -466,4 +466,4 @@ Find the IP address of the host that sent packets larger than 15000 bytes:
 tcpdump -r traffic.pcap greater 15000 -n
 
 Find the MAC address of the host that sent an ARP request:
-tcpdump -er traffic.pcap ar
+tcpdump -er traffic.pcap arp
