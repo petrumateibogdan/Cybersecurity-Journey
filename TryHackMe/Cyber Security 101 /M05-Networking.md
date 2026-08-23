@@ -474,4 +474,91 @@ Adding the -e flag here was critical to force tcpdump to display the MAC address
 ```
 # 7. Nmap: The Basics
 
+## Nmap Fundamentals & Target Specification
+I learned that Nmap is an essential, highly flexible network scanner used to discover live hosts and identify running services. Before scanning, it is important to know how to specify targets:
+* **IP Range:** `192.168.0.1-10`
+* **Subnet:** `192.168.0.1/24`
+* **Hostname:** `example.thm`
 
+**Crucial Note on Privileges:** I always try to run Nmap with `sudo` (root privileges). Running Nmap as a standard user heavily restricts its capabilities, forcing it to use noisier, slower scan types (like a full TCP Connect scan) because crafting custom raw packets (like a TCP SYN packet) requires root access.
+
+---
+
+## Host Discovery
+To map out a network without actively probing ports, I use host discovery techniques:
+* **Ping Scan (`-sn`):** Discovers live hosts without port scanning them. 
+  * On a **local network** (same subnet), Nmap uses ARP requests and can identify the device's MAC address and hardware vendor.
+  * On a **remote network** (across a router), Nmap uses ICMP echo requests, timestamp requests, and TCP SYN/ACK packets to ports 443 and 80 to determine if a host is up.
+* **List Scan (`-sL`):** Lists all the IP addresses that *would* be scanned without actually sending any packets to the targets. Good for verifying scope.
+
+---
+
+## Port Scanning Techniques
+To discover network services (processes listening on TCP or UDP ports), I use specific port scan types. By default, Nmap scans the top 1,000 common ports.
+
+### Scan Types:
+* **TCP Connect Scan (`-sT`):** Completes the full TCP 3-way handshake. If the port is open, it connects and then immediately tears it down with an RST-ACK packet. (This is the default if running without `sudo`).
+* **TCP SYN Scan (`-sS`):** Known as a "stealth" scan. It sends a SYN packet but never completes the 3-way handshake (replies with an RST instead). It generates fewer logs on the target server. (This is the default if running with `sudo`).
+* **UDP Scan (`-sU`):** Scans UDP ports (used by DNS, DHCP, SNMP). It relies on receiving ICMP "Destination Unreachable (Port Unreachable)" messages to determine if ports are closed.
+
+### Port Ranges:
+* **Fast Mode (`-F`):** Scans the top 100 most common ports.
+* **Specific Range (`-p[range]`):** e.g., `-p10-1024` or `-p1-1023` (for well-known ports). 
+* **All Ports (`-p-`):** Scans all 65,535 possible ports.
+
+---
+
+## OS & Service Detection
+Once I find open ports, I need to know exactly what is running on them:
+* **OS Detection (`-O`):** Makes an educated guess about the target's operating system based on packet responses.
+* **Service Version Detection (`-sV`):** Probes open ports to determine the exact software and version running (e.g., OpenSSH 8.9p1).
+* **Aggressive Scan (`-A`):** Combines `-O`, `-sV`, traceroute, and default Nmap scripts into one comprehensive command.
+* **Treat Hosts as Online (`-Pn`):** If a host blocks ICMP ping requests, Nmap might falsely assume it is offline and skip the port scan. `-Pn` forces Nmap to scan every specified IP, assuming they are all online.
+
+---
+
+## Timing and Performance
+Scanning can be slow, or it might trigger Intrusion Detection Systems (IDS) if it goes too fast. I can control the speed using timing templates (`-T0` to `-T5`):
+* **`-T0` (Paranoid):** Extremely slow, waits minutes between probes to evade detection.
+* **`-T1` (Sneaky):** Waits about 15 seconds between probes.
+* **`-T2` (Polite):** Slows down to conserve bandwidth (waits ~0.4s).
+* **`-T3` (Normal):** The default Nmap behavior.
+* **`-T4` (Aggressive) & `-T5` (Insane):** Very fast, requires a highly reliable network.
+
+**Granular Controls:**
+* `--min-parallelism` / `--max-parallelism`: Controls how many active probes run simultaneously.
+* `--min-rate` / `--max-rate`: Sets the strict number of packets sent per second.
+* `--host-timeout`: Skips a host if it takes longer than the specified time to scan.
+
+---
+
+## Output, Verbosity, & Debugging
+Sometimes scans take a long time, and I need real-time feedback or file exports for my reports:
+* **Verbosity (`-v`, `-vv`):** Prints real-time updates as the scan progresses.
+* **Debugging (`-d`, `-d9`):** Prints deep technical logs of what Nmap is doing under the hood.
+
+**Exporting Results:**
+* **`-oN <filename>`:** Saves normal, human-readable output.
+* **`-oX <filename>`:** Saves XML format (great for importing into other security tools).
+* **`-oG <filename>`:** Saves a "grep-able" format (perfect for parsing with `grep` or `awk`).
+* **`-oA <basename>`:** Outputs all three major formats at once.
+
+---
+
+## Quick Reference Summary Table
+
+| Category | Flag | Explanation |
+| :--- | :--- | :--- |
+| **Host Discovery** | `-sL` | List targets without scanning |
+| | `-sn` | Ping scan (host discovery only) |
+| | `-Pn` | Treat all hosts as online (skips ping phase) |
+| **Port Scanning** | `-sT` | TCP connect scan (full 3-way handshake) |
+| | `-sS` | TCP SYN scan (stealth, half-open) |
+| | `-sU` | UDP Scan |
+| | `-F` | Fast mode (top 100 ports) |
+| | `-p-` | Scan all 65,535 ports |
+| **Service Detection** | `-O` | OS detection |
+| | `-sV` | Service version detection |
+| | `-A` | Aggressive: OS, version, script scanning, traceroute |
+| **Timing** | `-T<0-5>` | Templates: paranoid(0) to insane(5) |
+| **Reporting** | `-oA <name>` | Save output in Normal, XML, and Grepable formats |
