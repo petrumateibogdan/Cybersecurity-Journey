@@ -1,4 +1,4 @@
-# Module 5: Networki
+# Module 5: Networking
 
 # 1. Networking Concepts
 
