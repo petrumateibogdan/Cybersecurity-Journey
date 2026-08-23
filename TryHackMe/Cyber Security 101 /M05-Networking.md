@@ -545,7 +545,7 @@ Sometimes scans take a long time, and I need real-time feedback or file exports 
 
 ---
 
-## Quick Reference Summary Tab
+## Quick Reference Summary Table
 
 | Category | Flag | Explanation |
 | :--- | :--- | :--- |
