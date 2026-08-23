@@ -472,7 +472,7 @@ tcpdump -er traffic.pcap arp
 Adding the -e flag here was critical to force tcpdump to display the MAC address in the output!
 
 ```
-# 7. Nmap: The Basi
+# 7. Nmap: The Basics
 
 ## Nmap Fundamentals & Target Specification
 I learned that Nmap is an essential, highly flexible network scanner used to discover live hosts and identify running services. Before scanning, it is important to know how to specify targets:
