@@ -163,3 +163,5 @@ GPG (GNU Privacy Guard) is an open-source implementation of PGP. I use it primar
 * **Brute-Force Attack:** Trying every single possible key or password combination until one works.
 * **Dictionary Attack:** A targeted brute-force attack that tries words from a dictionary list (much faster than pure brute-force for cracking weak, human-made passwords).
 
+# 3. Hashing Basics
+
