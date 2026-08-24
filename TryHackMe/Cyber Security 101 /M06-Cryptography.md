@@ -32,7 +32,7 @@ The Caesar Cipher (1900 BCE) is a classic example of substitution. It encrypts d
 
 ## Symmetric vs. Asymmetric Encryption
 
-### 1. Symmetric Encryption (Private Key)
+###  Symmetric Encryption (Private Key)
 Symmetric encryption uses the **same key** to both encrypt and decrypt the data.
 * **Pros:** Very fast and efficient for encrypting large amounts of data.
 * **Cons:** The "Key Distribution Problem" — sharing the secret key securely over an insecure channel is difficult. If an attacker intercepts the key, the encryption is compromised.
