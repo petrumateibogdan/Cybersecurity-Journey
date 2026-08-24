@@ -1,6 +1,6 @@
 # Module 6: Cryptography 
 
-# 1. Cryptography 
+# 1. Cryptography Basics
 
 ## Cryptography Fundamentals
 I learned that cryptography is the backbone of digital trust, ensuring three main pillars of secure communication:
