@@ -23,7 +23,7 @@ To understand cryptographic algorithms, I need to know these foundational terms:
 
 ---
 
-## Historical Ciphers: The Caesar Cipher
+## Historical Ciphers: The Caesar 
 The Caesar Cipher (1900 BCE) is a classic example of substitution. It encrypts data by shifting each letter of the plaintext by a certain number (the key). 
 * **Example:** Shifting "TRYHACKME" right by a key of 3 results in "WUBKDFNPH".
 * **Weakness:** By modern standards, this is completely insecure. Since there are only 26 letters in the English alphabet, there are only **25 possible keys**. An attacker can easily brute-force the ciphertext by trying all 25 shifts until the plaintext makes sense.
