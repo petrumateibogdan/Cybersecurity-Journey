@@ -8,7 +8,7 @@ I learned that cryptography is the backbone of digital trust, ensuring three mai
 * **Integrity:** The data cannot be altered in transit without detection.
 * **Authenticity:** We can verify the identity of the communicating parties.
 
-Cryptography is heavily regulated depending on the industry. For instance, handling credit cards requires compliance with **PCI DSS** (encrypting data at rest and in transit), while medical records are governed by **HIPAA/HITECH** (US) or **GDPR** (EU).
+Cryptography is heavily regulated depending on the industry. For instance, handling credit cards requires compliance with **PCI DSS (Payment Card Industry Data Security Standard) ** (encrypting data at rest and in transit), while medical records are governed by **HIPAA/HITECH** (US) or **GDPR** (EU).
 
 ---
 
