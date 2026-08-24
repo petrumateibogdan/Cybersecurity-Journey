@@ -2,7 +2,7 @@
 
 # 1. Cryptography Basics
 
-## Cryptography Fundamentals
+## Cryptography 
 I learned that cryptography is the backbone of digital trust, ensuring three main pillars of secure communication:
 * **Confidentiality:** No unauthorized party can read the data.
 * **Integrity:** The data cannot be altered in transit without detection.
