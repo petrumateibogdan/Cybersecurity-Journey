@@ -37,7 +37,7 @@ Symmetric encryption uses the **same key** to both encrypt and decrypt the data.
 * **Pros:** Very fast and efficient for encrypting large amounts of data.
 * **Cons:** The "Key Distribution Problem" — sharing the secret key securely over an insecure channel is difficult. If an attacker intercepts the key, the encryption is compromised.
 * **Standard Ciphers:**
-  * **DES:** Legacy standard, 56-bit key (broken in 1999).
+  * **DES (DATA ENCRYPTION STANDARD ):** Legacy standard, 56-bit key (broken in 1999).
   * **3DES:** DES applied three times with a 168-bit key (deprecated).
   * **AES (Advanced Encryption Standard):** The current global standard. Uses 128, 192, or 256-bit keys.
 
