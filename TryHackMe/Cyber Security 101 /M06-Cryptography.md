@@ -41,7 +41,7 @@ Symmetric encryption uses the **same key** to both encrypt and decrypt the data.
   * **3DES:** DES applied three times with a 168-bit key (deprecated).
   * **AES (Advanced Encryption Standard):** The current global standard. Uses 128, 192, or 256-bit keys.
 
-### 2. Asymmetric Encryption (Public Key)
+###  Asymmetric Encryption (Public Key)
 Asymmetric encryption uses a mathematically linked **key pair**:
 * **Public Key:** Shared openly with everyone, used to *encrypt* data.
 * **Private Key:** Kept strictly secret, used to *decrypt* data.
