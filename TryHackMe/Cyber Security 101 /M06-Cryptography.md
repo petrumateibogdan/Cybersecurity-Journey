@@ -77,3 +77,7 @@ The modulo operator returns the remainder of a division operation. For example:
 * $23 \pmod 6 = 5$ (23 / 6 = 3, remainder 5)
 
 **Why it matters:** Modulo is a "one-way" function. It is not reversible. If I know that $X \pmod 5 = 4$, there is an infinite number of values $X$ could be (4, 9, 14, 19...). This irreversible property is foundational to building asymmetric ciphers like RSA.
+
+# 2. Public Key Cryptography Basics|
+
+
