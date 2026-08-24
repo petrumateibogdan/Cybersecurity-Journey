@@ -30,7 +30,7 @@ The Caesar Cipher (1900 BCE) is a classic example of substitution. It encrypts d
 
 ---
 
-## Symmetric vs. Asymmetric Encryption
+## Symmetric vs. Asymmetric Encrypti
 
 ###  Symmetric Encryption (Private Key)
 Symmetric encryption uses the **same key** to both encrypt and decrypt the data.
