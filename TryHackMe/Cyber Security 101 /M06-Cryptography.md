@@ -250,7 +250,7 @@ While John has an auto-detect feature, it can be unreliable. I always prefer to 
 
 ---
 
-## 2. Cracking Windows Authentication Hashes (NTLM)
+##  Cracking Windows Authentication Hashes (NTLM)
 Modern Windows systems store user and service passwords in the **SAM** (Security Account Manager) database or the Active Directory **NTDS.dit** database using the **NTHash / NTLM** format. 
 * Once I dump the SAM database (e.g., using Mimikatz), I can crack the hashes by setting the format flag to `nt`.
 * **Command:** `john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt ntlm.txt`
