@@ -287,3 +287,43 @@ I can exploit this **password complexity predictability** by creating **Custom R
   ```text
   [List.Rules:THMRules]
   cAz"[0-9] [!£$%@]"
+
+c: Capitalizes the first letter positionally.
+
+Az: Appends characters to the end of the word.
+
+A0: Prepends characters to the start of the word.
+
+[0-9]: Includes a number (0-9).
+
+[!£$%@]: Includes one of these specific symbols.
+
+(Example: To just add all capital letters to the end of a word, I would use: Az"[A-Z]")
+
+Using the Custom Rule:
+john --wordlist=/usr/share/wordlists/rockyou.txt --rule=THMRules hash.txt
+
+6. Cracking Protected Files (Zip, RAR, SSH Keys)
+John's true versatility lies in its suite of conversion tools. I can extract the hash from protected files, output it to a text file, and crack it using standard JTR commands.
+
+Password-Protected Zip Archives
+Extract Hash: zip2john secure.zip > zip_hash.txt
+
+Crack: john --wordlist=/usr/share/wordlists/rockyou.txt zip_hash.txt
+
+Extract Contents: unzip secure.zip
+
+Password-Protected RAR Archives (WinRAR)
+Extract Hash: rar2john secure.rar > rar_hash.txt (Path may vary: e.g., /opt/john/rar2john)
+
+Crack: john --wordlist=/usr/share/wordlists/rockyou.txt rar_hash.txt
+
+Extract Contents: unrar e secure.rar
+
+SSH Private Keys (id_rsa)
+If an SSH private key is protected by a passphrase, I cannot use it to authenticate over SSH until I crack that passphrase.
+
+Extract Hash: ssh2john id_rsa > id_rsa_hash.txt
+(Note: On systems like the AttackBox/Kali, this is a Python script: python3 /opt/john/ssh2john.py id_rsa > id_rsa_hash.txt or python /usr/share/john/ssh2john.py id_rsa > id_rsa_hash.txt)
+
+Crack: john --wordlist=/usr/share/wordlists/rockyou.txt id_rsa_hash.txt
