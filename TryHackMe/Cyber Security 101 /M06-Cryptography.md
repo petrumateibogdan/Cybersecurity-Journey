@@ -1,4 +1,4 @@
-# Module 6: Cryptography 
+# Module 6: 
 
 # 1. Cryptography Basics
 
