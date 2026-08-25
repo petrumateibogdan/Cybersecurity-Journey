@@ -165,3 +165,64 @@ GPG (GNU Privacy Guard) is an open-source implementation of PGP. I use it primar
 
 # 3. Hashing Basics
 
+## What is a Hash Function?
+I learned that hashing is fundamentally different from encryption. A hash function takes an input of *any* size and computes a fixed-size string of characters called a **digest** or **hash value**. 
+* **One-Way:** It is mathematically impractical to reverse a hash back into its original input. There is no "key" to decrypt a hash.
+* **Avalanche Effect:** Changing even a single bit of the input data (like changing a "T" to a "U") completely changes the entire hash output.
+
+**Common Hash Output Sizes:**
+* **MD5:** 16 bytes (128 bits) -> typically displayed as 32 hexadecimal characters.
+* **SHA-1:** 20 bytes (160 bits).
+* **SHA-256:** 32 bytes (256 bits).
+
+---
+
+## Hash Collisions
+A collision occurs when two different inputs produce the exact same hash output. Because the number of possible inputs is infinite but the hash output size is fixed, collisions are inevitable (this is known as the **pigeonhole principle**). 
+* Algorithms like **MD5** and **SHA-1** are now considered insecure and deprecated for cryptographic purposes because attackers have figured out how to intentionally engineer collisions for them.
+
+---
+
+## Securing Passwords & Rainbow Tables
+Storing passwords in plaintext, using deprecated encryption, or using raw, unsalted hashes (like LinkedIn did in 2012) are massive security risks. 
+* **Rainbow Tables:** These are massive, precomputed lookup tables mapping plaintexts to their hash values. Attackers use them to instantly reverse unsalted hashes, trading storage space for cracking speed.
+* **The Solution (Salting):** To defeat rainbow tables, modern systems add a **Salt** (a random, unique string of characters) to the password *before* hashing it (e.g., `hash(password + salt)`). This ensures that even if two users have the same password, their database hashes will be completely different.
+* **Secure Algorithms:** Modern systems use slow, salt-handling algorithms like **Bcrypt, Scrypt, Argon2,** or **PBKDF2** to deter brute-force hardware attacks.
+
+---
+
+## Recognizing and Cracking Hashes
+
+### Linux Hashes (`/etc/shadow`)
+On Linux, passwords are stored in the `/etc/shadow` file in the format: `$prefix$options$salt$hash`. The prefix tells me exactly what algorithm was used:
+* `$y$` = yescrypt (The modern standard, 256-bit hash size)
+* `$6$` = SHA-512
+* `$2b$ / $2y$` = Bcrypt
+* `$1$` = MD5
+
+### Windows Hashes (SAM File)
+Windows hashes passwords using **NTLM** (a variant of MD4). Because NTLM and MD5 both output a 32-character hexadecimal string (numbers 0-9 and letters a-f), automated identifier tools often mix them up. I always have to rely on context: if I dumped it from a Windows SAM file via Mimikatz, it's NTLM. 
+
+### Cracking with Hashcat
+If I have permission to crack a hash, I use my GPU with **Hashcat** (or CPU with John the Ripper). The basic syntax I use for Hashcat is:
+`hashcat -m <hash_type> -a <attack_mode> hashfile wordlist`
+*Example (Cracking an NTLM hash using the rockyou wordlist):*
+`hashcat -m 1000 -a 0 hash.txt /usr/share/wordlists/rockyou.txt`
+
+---
+
+## Data Integrity & HMAC
+Aside from passwords, hashing is primarily used to guarantee file integrity. By comparing the SHA-256 hash of a file I downloaded against the hash posted on the developer's official website, I can guarantee the file wasn't tampered with by a man-in-the-middle.
+
+**HMAC (Keyed-Hash Message Authentication Code):**
+HMAC takes hashing a step further by combining a cryptographic hash function with a **secret key**. 
+* The secret key proves **Authenticity** (I know exactly who sent it).
+* The hash proves **Integrity** (The message hasn't been altered).
+
+---
+
+## The Golden Rule: Hashing vs Encoding vs Encryption
+To avoid confusing these three distinct concepts in cyber security, I use this baseline:
+1. **Hashing (e.g., SHA-256, Bcrypt):** One-way process. Creates a unique fingerprint of the data. Cannot be reversed. Used for integrity and password storage.
+2. **Encoding (e.g., Base64, UTF-8):** Converts data into a different format for system compatibility. Easily reversible by anyone. **Provides ZERO confidentiality.**
+3. **Encryption (e.g., AES, RSA):** Two-way process. Secures data confidentiality. Can only be reversed (decrypted) if you possess the correct cryptographic key.
