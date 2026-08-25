@@ -257,7 +257,7 @@ Modern Windows systems store user and service passwords in the **SAM** (Security
 
 ---
 
-## 3. Cracking Linux Hashes (`/etc/shadow`)
+##  Cracking Linux Hashes (`/etc/shadow`)
 Linux stores hashed passwords in `/etc/shadow`, which is readable only by the root user. John cannot read the shadow file by itself; it requires contextual data from the `/etc/passwd` file.
 
 * **Step 1: Unshadowing**
@@ -269,7 +269,7 @@ Linux stores hashed passwords in `/etc/shadow`, which is readable only by the ro
 
 ---
 
-## 4. Single Crack Mode & Word Mangling
+##  Single Crack Mode & Word Mangling
 If I don't want to use a massive wordlist, I can use **Single Crack Mode**. This mode uses **Word Mangling**—it takes the user's username and heuristically mutates it to guess the password (e.g., `Markus` -> `Markus1`, `MArkus`, `Markus!`). 
 
 It also pulls data from the **GECOS field** in UNIX-like systems (which stores general user info like full names and phone numbers) to generate password guesses.
