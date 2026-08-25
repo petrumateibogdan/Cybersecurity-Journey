@@ -226,3 +226,5 @@ To avoid confusing these three distinct concepts in cyber security, I use this b
 1. **Hashing (e.g., SHA-256, Bcrypt):** One-way process. Creates a unique fingerprint of the data. Cannot be reversed. Used for integrity and password storage.
 2. **Encoding (e.g., Base64, UTF-8):** Converts data into a different format for system compatibility. Easily reversible by anyone. **Provides ZERO confidentiality.**
 3. **Encryption (e.g., AES, RSA):** Two-way process. Secures data confidentiality. Can only be reversed (decrypted) if you possess the correct cryptographic key.
+
+# 4. John the Ripper: The Basics
