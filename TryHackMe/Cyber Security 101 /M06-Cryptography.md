@@ -278,7 +278,7 @@ It also pulls data from the **GECOS field** in UNIX-like systems (which stores g
 
 ---
 
-## 5. Custom Rules (Exploiting Password Predictability)
+##  Custom Rules (Exploiting Password Predictability)
 Many organizations enforce strict password complexity rules (Uppercase + Lowercase + Number + Symbol). Because humans are predictable, they usually capitalize the first letter and append a number and symbol at the end (e.g., `Polopassword1!`).
 
 I can exploit this **password complexity predictability** by creating **Custom Rules** in the `john.conf` file (located in `/opt/john/john.conf` or `/etc/john/john.conf`). This automatically mutates my wordlist to match these exact patterns.
