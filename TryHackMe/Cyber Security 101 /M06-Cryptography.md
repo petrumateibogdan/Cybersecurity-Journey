@@ -211,7 +211,7 @@ If I have permission to crack a hash, I use my GPU with **Hashcat** (or CPU with
 
 ---
 
-## Data Integrity & HMAC
+## Data Integrity & 
 Aside from passwords, hashing is primarily used to guarantee file integrity. By comparing the SHA-256 hash of a file I downloaded against the hash posted on the developer's official website, I can guarantee the file wasn't tampered with by a man-in-the-middle.
 
 **HMAC (Keyed-Hash Message Authentication Code):**
