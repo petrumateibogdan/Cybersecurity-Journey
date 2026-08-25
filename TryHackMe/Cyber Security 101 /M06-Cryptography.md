@@ -303,7 +303,7 @@ A0: Prepends characters to the start of the word.
 Using the Custom Rule:
 john --wordlist=/usr/share/wordlists/rockyou.txt --rule=THMRules hash.txt
 
-6. Cracking Protected Files (Zip, RAR, SSH Keys)
+ Cracking Protected Files (Zip, RAR, SSH Keys)
 John's true versatility lies in its suite of conversion tools. I can extract the hash from protected files, output it to a text file, and crack it using standard JTR commands.
 
 Password-Protected Zip Archives
