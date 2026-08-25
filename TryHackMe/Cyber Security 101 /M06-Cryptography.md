@@ -228,3 +228,62 @@ To avoid confusing these three distinct concepts in cyber security, I use this b
 3. **Encryption (e.g., AES, RSA):** Two-way process. Secures data confidentiality. Can only be reversed (decrypted) if you possess the correct cryptographic key.
 
 # 4. John the Ripper: The Basics
+
+# Hash Cracking with John the Ripper (Jumbo John)
+
+I learned that hashing algorithms (MD4, MD5, SHA1, NTLM) are one-way functions. In computer science, generating a hash is a **"P" (Polynomial Time)** problem—meaning it's fast to compute. Reversing a hash is an **"NP" (Non-deterministic Polynomial Time)** problem, making it computationally infeasible.
+
+Because I can't reverse a hash directly, I have to use a **dictionary attack**. This involves taking a massive list of common words (like the infamous `rockyou.txt` breached in 2009), hashing each one, and comparing it to my target hash until I find a match. My primary tool for this is **John the Ripper** (specifically the extended "Jumbo John" version). 
+
+---
+
+## 1. Basic Syntax & Hash Identification
+While John has an auto-detect feature, it can be unreliable. I always prefer to identify the hash manually first, then feed the specific format to John.
+
+* **Identifying a hash:** I use a Python tool called `hash-identifier`.
+  * *Setup:* `wget https://gitlab.com/kalilinux/packages/hash-identifier/-/raw/kali/master/hash-id.py`
+  * *Run:* `python3 hash-id.py`
+* **Finding John's supported formats:** `john --list=formats` (I can pipe this to `grep` to filter).
+* **Automated Crack (Not recommended):** `john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt`
+* **Format-Specific Crack (Recommended):** `john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash.txt`
+  *(Note: Standard hashes in JTR usually require the `raw-` prefix).*
+
+---
+
+## 2. Cracking Windows Authentication Hashes (NTLM)
+Modern Windows systems store user and service passwords in the **SAM** (Security Account Manager) database or the Active Directory **NTDS.dit** database using the **NTHash / NTLM** format. 
+* Once I dump the SAM database (e.g., using Mimikatz), I can crack the hashes by setting the format flag to `nt`.
+* **Command:** `john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt ntlm.txt`
+
+---
+
+## 3. Cracking Linux Hashes (`/etc/shadow`)
+Linux stores hashed passwords in `/etc/shadow`, which is readable only by the root user. John cannot read the shadow file by itself; it requires contextual data from the `/etc/passwd` file.
+
+* **Step 1: Unshadowing**
+  I use John's built-in `unshadow` tool to combine the copies of `passwd` and `shadow` into a single, readable file:
+  `unshadow local_passwd local_shadow > unshadowed.txt`
+* **Step 2: Cracking**
+  I feed the combined file into John. (The format is usually `sha512crypt`):
+  `john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt`
+
+---
+
+## 4. Single Crack Mode & Word Mangling
+If I don't want to use a massive wordlist, I can use **Single Crack Mode**. This mode uses **Word Mangling**—it takes the user's username and heuristically mutates it to guess the password (e.g., `Markus` -> `Markus1`, `MArkus`, `Markus!`). 
+
+It also pulls data from the **GECOS field** in UNIX-like systems (which stores general user info like full names and phone numbers) to generate password guesses.
+* **Formatting the Hash:** The text file *must* be prepended with the username: `username:hash` (e.g., `mike:1efee03cdcb96d90ad48ccc7b8666033`).
+* **Command:** `john --single --format=raw-sha256 hashes.txt`
+
+---
+
+## 5. Custom Rules (Exploiting Password Predictability)
+Many organizations enforce strict password complexity rules (Uppercase + Lowercase + Number + Symbol). Because humans are predictable, they usually capitalize the first letter and append a number and symbol at the end (e.g., `Polopassword1!`).
+
+I can exploit this **password complexity predictability** by creating **Custom Rules** in the `john.conf` file (located in `/opt/john/john.conf` or `/etc/john/john.conf`). This automatically mutates my wordlist to match these exact patterns.
+
+* **Syntax Example (`john.conf`):**
+  ```text
+  [List.Rules:THMRules]
+  cAz"[0-9] [!£$%@]"
