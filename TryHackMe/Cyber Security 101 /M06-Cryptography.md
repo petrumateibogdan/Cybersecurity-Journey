@@ -165,7 +165,7 @@ GPG (GNU Privacy Guard) is an open-source implementation of PGP. I use it primar
 
 # 3. Hashing Basics
 
-## What is a Hash Function
+## What is a Hash Function?
 I learned that hashing is fundamentally different from encryption. A hash function takes an input of *any* size and computes a fixed-size string of characters called a **digest** or **hash value**. 
 * **One-Way:** It is mathematically impractical to reverse a hash back into its original input. There is no "key" to decrypt a hash.
 * **Avalanche Effect:** Changing even a single bit of the input data (like changing a "T" to a "U") completely changes the entire hash output.
