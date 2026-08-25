@@ -237,7 +237,7 @@ Because I can't reverse a hash directly, I have to use a **dictionary attack**. 
 
 ---
 
-## 1. Basic Syntax & Hash Identification
+##  Basic Syntax & Hash Identification
 While John has an auto-detect feature, it can be unreliable. I always prefer to identify the hash manually first, then feed the specific format to John.
 
 * **Identifying a hash:** I use a Python tool called `hash-identifier`.
