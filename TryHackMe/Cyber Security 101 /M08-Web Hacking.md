@@ -2,7 +2,6 @@
 
 # 1. Web Application Basics
 
-# Web Application Basics: Architecture, HTTP Protocol & Security Headers
 
 I explored the core foundational concepts of web applications, including client-server architecture, URL structures, HTTP request/response mechanics, message bodies, and essential security headers.
 
