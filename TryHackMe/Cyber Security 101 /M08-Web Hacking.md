@@ -51,7 +51,7 @@ HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP
 
 ---
 
-## 4. HTTP Requests & Methods
+##  HTTP Requests & Methods
 
 ### Request Line Format
 `METHOD /path HTTP/version` (e.g., `GET /index.html HTTP/1.1`)
@@ -76,7 +76,7 @@ HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP
 
 ---
 
-## 5. Request Headers & Body Formats
+##  Request Headers & Body Formats
 
 ### Common Request Headers
 * `Host:` Specifies the domain name of the destination web server.
