@@ -163,4 +163,4 @@ strict-origin: Sends only the origin domain, and only when the protocol remains 
 strict-origin-when-cross-origin: Sends full URL paths on same-origin requests, but restricts cross-origin HTTPS requests to origin-only data.
 
 ```
-#
+# 2. JavaScript Essentials
