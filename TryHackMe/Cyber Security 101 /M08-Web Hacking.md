@@ -8,7 +8,7 @@ I explored the core foundational concepts of web applications, including client-
 
 ---
 
-## 1. Web Application Architecture: Front End vs. Back End
+##  Web Application Architecture: Front End vs. Back End
 A web application functions through the interaction between visible client-side components and underlying server-side infrastructure.
 
 ### Front End (Client-Side)
