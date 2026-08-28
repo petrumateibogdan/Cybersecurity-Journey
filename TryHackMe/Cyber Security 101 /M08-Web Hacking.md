@@ -122,10 +122,45 @@ HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP
 
 ---
 
-## 8. HTTP Security Headers
+##  HTTP Security Headers
 
 ```http
 Content-Security-Policy: default-src 'self'; script-src 'self' [https://cdn.tryhackme.com](https://cdn.tryhackme.com); style-src 'self'
 Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
+
+Content-Security-Policy (CSP)
+Mitigates Cross-Site Scripting (XSS) and injection attacks by establishing an allowlist of trusted content origins:
+
+default-src 'self': Restricts all fallbacks to the current origin only.
+
+script-src: Restricts the exact domains from which JavaScript files can execute.
+
+style-src: Restricts origins for CSS stylesheets.
+
+Strict-Transport-Security (HSTS)
+Enforces that browsers only interact with the website over HTTPS:
+
+max-age: Time duration (in seconds) the browser must enforce HTTPS.
+
+includeSubDomains: Applies the HTTPS-only policy to all subdomains under the root domain.
+
+preload: Authorizes the site to be hardcoded into browser HSTS preload lists.
+
+X-Content-Type-Options
+nosniff: Prevents browsers from MIME-sniffing a response away from the declared Content-Type, protecting against malicious content interpretation.
+
+Referrer-Policy
+Controls how much referral information is sent in the Referer header during navigation:
+
+no-referrer: Completely disables sending referrer data.
+
+same-origin: Sends referrer data only when navigating within the exact same origin.
+
+strict-origin: Sends only the origin domain, and only when the protocol remains HTTPS-to-HTTPS.
+
+strict-origin-when-cross-origin: Sends full URL paths on same-origin requests, but restricts cross-origin HTTPS requests to origin-only data.
+
+```
+#
