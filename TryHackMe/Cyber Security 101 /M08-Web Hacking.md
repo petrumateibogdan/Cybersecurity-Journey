@@ -1,3 +1,131 @@
 # Module 8 : Web Hacking
 
 # 1. Web Application Basics
+
+# Web Application Basics: Architecture, HTTP Protocol & Security Headers
+
+I explored the core foundational concepts of web applications, including client-server architecture, URL structures, HTTP request/response mechanics, message bodies, and essential security headers.
+
+---
+
+## 1. Web Application Architecture: Front End vs. Back End
+A web application functions through the interaction between visible client-side components and underlying server-side infrastructure.
+
+### Front End (Client-Side)
+The front end runs inside the **web browser** (the tool used to interact with web apps):
+* **HTML (Hypertext Markup Language):** The foundational structure and instructions that dictate what the browser displays.
+* **CSS (Cascading Style Sheets):** Defines styling, visual layout, colors, and typography.
+* **JavaScript (JS):** Handles dynamic behavior, client-side logic, and complex decision-making in the browser.
+
+### Back End (Server-Side)
+The back end consists of non-visual services that process logic and maintain state:
+* **Web Server:** Responsible for hosting and delivering content to clients.
+* **Database:** Stores, modifies, and retrieves persistent data (such as user preferences and account data).
+* **Web Application Firewall (WAF):** An optional protective layer that inspects and filters incoming traffic to block malicious attacks before reaching the web server.
+
+---
+
+## 2. Anatomy of a URL (Uniform Resource Locator)
+A URL guides the web browser to the exact resource requested on the internet:
+
+$$\text{Scheme} \, \text{://} \, [\text{User}@] \, \text{Host/Domain} \, [:\text{Port}] \, \text{/Path} \, [?\text{Query String}] \, [\#\text{Fragment}]$$
+
+* **Scheme:** The protocol used (e.g., `http` or `https`; HTTPS provides encrypted communication).
+* **User:** Optional authentication credentials (rarely used due to cleartext exposure risks).
+* **Host/Domain:** The unique domain name identifying the website.
+  * *Security Note:* Attackers frequently register misspelled variations of popular domains (**typosquatting**) for phishing campaigns.
+* **Port:** The communication port on the web server (ranges from 1–65,535; default is 80 for HTTP, 443 for HTTPS).
+* **Path:** The specific directory/file roadmap pointing to the requested endpoint or resource.
+* **Query String:** Starts with `?` and passes additional data to the server using `key=value` pairs (must be sanitized to prevent injection attacks).
+* **Fragment:** Starts with `#` and directs the browser to a specific section/anchor on the page.
+
+---
+
+## 3. HTTP Message Structure
+HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP Responses** (returned by the server). Both share a standardized four-part format:
+
+1. **Start Line:** The Request Line (for requests) or Status Line (for responses).
+2. **Headers:** Key-value pairs providing instructions and metadata.
+3. **Empty Line:** A mandatory blank line separating headers from the message body.
+4. **Body:** The payload data (form data in requests; HTML/JSON in responses).
+
+---
+
+## 4. HTTP Requests & Methods
+
+### Request Line Format
+`METHOD /path HTTP/version` (e.g., `GET /index.html HTTP/1.1`)
+
+### HTTP Request Methods & Security Considerations
+* **`GET`:** Fetches data without modifying state. *Security:* Never transmit sensitive tokens or passwords in GET parameters, as they are exposed in plaintext URLs and logs.
+* **`POST`:** Submits data to create or update resources. *Security:* Requires strict input validation against SQLi and XSS.
+* **`PUT`:** Replaces/updates a target resource completely. *Security:* Must require strict authorization checks.
+* **`DELETE`:** Removes a target resource. *Security:* Requires proper access control.
+* **`PATCH`:** Applies partial modifications to a resource.
+* **`HEAD`:** Operates like `GET`, but requests only headers without the response body.
+* **`OPTIONS`:** Describes available communication options and supported HTTP methods for the target resource.
+* **`TRACE`:** Performs a loop-back test for debugging (often disabled on production servers for security).
+* **`CONNECT`:** Establishes a tunnel (commonly used for HTTPS connections).
+
+### HTTP Protocol Versions
+* **HTTP/0.9 (1991):** Primitive version supporting only `GET`.
+* **HTTP/1.0 (1996):** Introduced headers, caching, and multi-content type support.
+* **HTTP/1.1 (1997):** The most widely adopted version; introduced persistent connections and chunked transfer encoding.
+* **HTTP/2 (2015):** Added multiplexing, header compression, and prioritization.
+* **HTTP/3 (2022):** Utilizes the QUIC protocol for faster, more secure connections.
+
+---
+
+## 5. Request Headers & Body Formats
+
+### Common Request Headers
+* `Host:` Specifies the domain name of the destination web server.
+* `User-Agent:` Shares client browser and operating system details.
+* `Referer:` Indicates the previous URL from which the request originated.
+* `Cookie:` Passes stored key-value session data back to the server.
+* `Content-Type:` Describes the MIME type/format of the request body data.
+
+### Request Body Formats
+* **`application/x-www-form-urlencoded`:** Default form format where key-value pairs are joined with `&` (e.g., `name=Aleksandra&age=27`) and special characters are percent-encoded.
+* **`multipart/form-data`:** Uses boundary strings to separate multi-part blocks; required for uploading binary files and images.
+* **`application/json`:** Formats data inside curly braces as JSON key-value pairs (`{"key": "value"}`).
+* **`application/xml`:** Formats data inside nested XML opening and closing tags (`<user><name>Aleksandra</name></user>`).
+
+---
+
+## 6. HTTP Responses & Status Codes
+
+### Status Line Format
+`HTTP/version StatusCode ReasonPhrase` (e.g., `HTTP/1.1 200 OK`)
+
+### Status Code Categories
+* **100–199 (Informational):** Server received initial request and is waiting for completion (e.g., `100 Continue`).
+* **200–299 (Successful):** Request processed successfully (e.g., `200 OK`).
+* **300–399 (Redirection):** Resource has moved; client must take further action (e.g., `301 Moved Permanently`).
+* **400–499 (Client Error):** The client submitted an invalid request (e.g., `404 Not Found`).
+* **500–599 (Server Error):** The server failed to fulfill a valid request due to an internal issue (e.g., `500 Internal Server Error`).
+
+---
+
+## 7. Response Headers & Cookie Security
+
+### Standard Response Headers
+* `Date:` Timestamp when the response was generated.
+* `Content-Type:` MIME type and character set of the response body (e.g., `text/html; charset=utf-8`).
+* `Server:` Discloses server software and version (e.g., `Server: nginx`; recommended to obscure or remove to prevent banner grabbing).
+* `Cache-Control:` Dictates client-side caching policies (e.g., `max-age=600` or `no-cache`).
+* `Location:` Specifies the redirect destination URL in `3xx` responses (must be validated to prevent open redirects).
+
+### `Set-Cookie` Security Flags
+* **`Secure`:** Ensures the browser only transmits the cookie over encrypted **HTTPS** connections.
+* **`HttpOnly`:** Prevents client-side JavaScript from accessing the cookie, mitigating session hijacking via **Cross-Site Scripting (XSS)**.
+
+---
+
+## 8. HTTP Security Headers
+
+```http
+Content-Security-Policy: default-src 'self'; script-src 'self' [https://cdn.tryhackme.com](https://cdn.tryhackme.com); style-src 'self'
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
