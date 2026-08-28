@@ -107,7 +107,7 @@ HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP
 
 ---
 
-## 7. Response Headers & Cookie Security
+##  Response Headers & Cookie Security
 
 ### Standard Response Headers
 * `Date:` Timestamp when the response was generated.
