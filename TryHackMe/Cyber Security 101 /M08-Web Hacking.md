@@ -93,7 +93,7 @@ HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP
 
 ---
 
-## 6. HTTP Responses & Status Codes
+##  HTTP Responses & Status Codes
 
 ### Status Line Format
 `HTTP/version StatusCode ReasonPhrase` (e.g., `HTTP/1.1 200 OK`)
