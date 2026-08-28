@@ -25,7 +25,7 @@ The back end consists of non-visual services that process logic and maintain sta
 
 ---
 
-## 2. Anatomy of a URL (Uniform Resource Locator)
+##  Anatomy of a URL (Uniform Resource Locator)
 A URL guides the web browser to the exact resource requested on the internet:
 
 $$\text{Scheme} \, \text{://} \, [\text{User}@] \, \text{Host/Domain} \, [:\text{Port}] \, \text{/Path} \, [?\text{Query String}] \, [\#\text{Fragment}]$$
@@ -41,7 +41,7 @@ $$\text{Scheme} \, \text{://} \, [\text{User}@] \, \text{Host/Domain} \, [:\text
 
 ---
 
-## 3. HTTP Message Structure
+##  HTTP Message Structure
 HTTP communication consists of **HTTP Requests** (sent by the client) and **HTTP Responses** (returned by the server). Both share a standardized four-part format:
 
 1. **Start Line:** The Request Line (for requests) or Status Line (for responses).
