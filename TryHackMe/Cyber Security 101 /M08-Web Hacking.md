@@ -172,7 +172,7 @@ Here are my notes on JS fundamentals, how it is integrated into web applications
 
 ---
 
-## 1. Core JS Concepts
+##  Core JS Concepts
 I learned the essential building blocks that make up JavaScript programs. Since JS is an interpreted language, the code is executed directly in the browser without prior compilation, which makes it incredibly easy to interact with using the Google Chrome Console.
 
 * **Variables:** These act as containers to store data values. 
