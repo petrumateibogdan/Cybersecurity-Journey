@@ -183,7 +183,7 @@ I learned the essential building blocks that make up JavaScript programs. Since 
 
 ---
 
-## 2. Integrating JS into HTML
+##  Integrating JS into HTML
 I learned that JS is typically not used to render content directly, but rather works alongside HTML and CSS. There are two main ways developers integrate JS:
 
 * **Internal JS:** The JS code is embedded directly within the HTML document inside `<script>` tags. These tags can be placed in the `<head>` or `<body>` sections.
