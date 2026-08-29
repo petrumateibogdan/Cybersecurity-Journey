@@ -163,3 +163,67 @@ strict-origin-when-cross-origin: Sends full URL paths on same-origin requests, b
 
 ```
 # 2. JavaScript Essentials
+
+# JavaScript for Cybersecurity: The Basics
+
+I learned that JavaScript (JS) is a scripting language used to add interactive features to websites built with HTML and CSS. From a cybersecurity perspective, it is crucial to understand how legitimate JS functionalities can be exploited for malicious purposes.
+
+Here are my notes on JS fundamentals, how it is integrated into web applications, and how to analyze it during an engagement.
+
+---
+
+## 1. Core JS Concepts
+I learned the essential building blocks that make up JavaScript programs. Since JS is an interpreted language, the code is executed directly in the browser without prior compilation, which makes it incredibly easy to interact with using the Google Chrome Console.
+
+* **Variables:** These act as containers to store data values. 
+* **Variable Declarations:** They can be declared using `var` (function-scoped), `let` (block-scoped), or `const` (block-scoped).
+* **Data Types:** JS handles data types like strings (text), numbers, booleans (true/false), null, undefined, and objects.
+* **Functions:** Functions represent blocks of code designed to perform specific tasks, preventing the need to write repetitive code.
+* **Loops:** Loops (such as `for`, `while`, and `do...while`) allow code blocks to run multiple times as long as a certain condition remains true.
+
+---
+
+## 2. Integrating JS into HTML
+I learned that JS is typically not used to render content directly, but rather works alongside HTML and CSS. There are two main ways developers integrate JS:
+
+* **Internal JS:** The JS code is embedded directly within the HTML document inside `<script>` tags. These tags can be placed in the `<head>` or `<body>` sections.
+* **External JS:** The JS code is stored in a separate file with a `.js` extension. It is linked to the HTML document using the `src` attribute within a `<script>` tag (e.g., `<script src="script.js"></script>`). This keeps HTML documents clean and easier to maintain.
+* **Verification:** During a penetration test, I can determine if a website uses internal or external JS simply by viewing the page's source code.
+
+---
+
+## 3. Abusing Dialogue Functions
+JS includes built-in functions designed for user interaction. However, I learned that if these are not implemented securely, attackers can exploit them for attacks like Cross-Site Scripting (XSS).
+
+* **`alert`:** Displays a message box with an "OK" button.
+* **`prompt`:** Displays a box asking the user for input and returns that value.
+* **`confirm`:** Displays a message with "OK" and "Cancel" buttons, returning a boolean value (`true` or `false`).
+* **The Exploit:** A bad actor can craft malicious JS (such as putting an `alert` inside a loop that runs 500 times) to severely disrupt a user's browsing experience.
+
+---
+
+## 4. Control Flow and Bypassing Login Forms
+Control flow statements (like `if-else` and `switch`) determine the order in which code executes based on specific conditions.
+
+* **The Vulnerability:** Developers sometimes use JS to handle authentication directly on the client side. 
+* **The Bypass:** Relying entirely on JS for form validation or authentication is extremely insecure. Because the code runs in the user's browser, an attacker can easily view the source code to find hardcoded passwords, manipulate the JS, or bypass the logic entirely.
+
+---
+
+## 5. Minification and Obfuscation
+When reviewing source code, I learned that developers often alter the readability of their JS files for production.
+
+* **Minification:** This is the process of compressing JS files by removing spaces, line breaks, and comments to improve loading times. 
+* **Obfuscation:** This technique makes the code deliberately difficult for humans to understand by renaming variables to meaningless characters and inserting dummy code. 
+* **Execution:** Even though obfuscated code looks like complete gibberish, the browser can still execute it perfectly.
+* **Deobfuscation:** I can use online deobfuscation tools to translate the gibberish back into a human-readable format, making it easier to analyze the script's true function.
+
+---
+
+## 6. JS Security Best Practices
+Based on these vulnerabilities, I learned several best practices for securing JS code:
+
+* **Do not rely solely on client-side validation:** Validation must always be performed on the server side as well, since users can manipulate client-side JS.
+* **Do not add untrusted libraries:** Attackers frequently upload malicious libraries with names that closely resemble legitimate ones.
+* **Never hardcode secrets:** Sensitive data like API keys, access tokens, or passwords should never be hardcoded in JS, as users can easily view the source code to extract them.
+* **Minify and obfuscate production code:** While it will not stop a determined attacker from reverse-engineering the script, it does increase the effort required.
