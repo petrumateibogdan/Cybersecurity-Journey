@@ -220,7 +220,7 @@ When reviewing source code, I learned that developers often alter the readabilit
 
 ---
 
-## 6. JS Security Best Practices
+##  JS Security Best Practices
 Based on these vulnerabilities, I learned several best practices for securing JS code:
 
 * **Do not rely solely on client-side validation:** Validation must always be performed on the server side as well, since users can manipulate client-side JS.
