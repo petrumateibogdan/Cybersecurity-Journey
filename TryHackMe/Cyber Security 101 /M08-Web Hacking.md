@@ -1,4 +1,4 @@
-# Module 8 : Web Hacking
+# Module  : Web Hacking
 
 # 1. Web Application Basics
 
