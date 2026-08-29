@@ -192,7 +192,7 @@ I learned that JS is typically not used to render content directly, but rather w
 
 ---
 
-## 3. Abusing Dialogue Functions
+##  Abusing Dialogue Functions
 JS includes built-in functions designed for user interaction. However, I learned that if these are not implemented securely, attackers can exploit them for attacks like Cross-Site Scripting (XSS).
 
 * **`alert`:** Displays a message box with an "OK" button.
