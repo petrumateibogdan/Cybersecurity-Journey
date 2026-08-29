@@ -210,7 +210,7 @@ Control flow statements (like `if-else` and `switch`) determine the order in whi
 
 ---
 
-##  Minification and Obfuscation
+##  Minification and 
 When reviewing source code, I learned that developers often alter the readability of their JS files for production.
 
 * **Minification:** This is the process of compressing JS files by removing spaces, line breaks, and comments to improve loading times. 
