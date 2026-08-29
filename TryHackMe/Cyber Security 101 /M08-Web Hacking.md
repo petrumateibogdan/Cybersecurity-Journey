@@ -202,7 +202,7 @@ JS includes built-in functions designed for user interaction. However, I learned
 
 ---
 
-## 4. Control Flow and Bypassing Login Forms
+##  Control Flow and Bypassing Login Forms
 Control flow statements (like `if-else` and `switch`) determine the order in which code executes based on specific conditions.
 
 * **The Vulnerability:** Developers sometimes use JS to handle authentication directly on the client side. 
