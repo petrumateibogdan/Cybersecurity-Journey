@@ -236,7 +236,7 @@ I learned that databases are ubiquitous in cybersecurity, used in web applicatio
 
 ---
 
-## 1. Database Concepts
+##  Database Concepts
 * I learned that databases are organized collections of structured information or data that can be easily accessed and manipulated.
 * I discovered that relational databases store structured data in rows and columns within tables.
 * I learned that non-relational databases store data in a non-tabular format, which is useful when data formats vary greatly.
@@ -245,7 +245,7 @@ I learned that databases are ubiquitous in cybersecurity, used in web applicatio
 
 ---
 
-## 2. Basic Database & Table Statements
+##  Basic Database & Table Statements
 I learned how to manage databases and tables using basic SQL statements.
 
 * **Create a database**: I can create a new database using `CREATE DATABASE database_name;`.
