@@ -230,3 +230,33 @@ Based on these vulnerabilities, I learned several best practices for securing JS
 
 # 3. SQL FUNDAMENTALS
 
+# SQL Fundamentals: Database Basics and Queries
+
+I learned that databases are ubiquitous in cybersecurity, used in web applications, SOCs, SIEMs, and malware analysis. Understanding them is crucial for identifying SQL vulnerabilities offensively and for navigating data defensively. Here is my cheat sheet and summary of SQL and database fundamentals.
+
+---
+
+## 1. Database Concepts
+* I learned that databases are organized collections of structured information or data that can be easily accessed and manipulated.
+* I discovered that relational databases store structured data in rows and columns within tables.
+* I learned that non-relational databases store data in a non-tabular format, which is useful when data formats vary greatly.
+* I found out that a primary key uniquely identifies each record stored in a table.
+* I learned that a foreign key is a column that links two tables together by referencing a column in another table.
+
+---
+
+## 2. Basic Database & Table Statements
+I learned how to manage databases and tables using basic SQL statements.
+
+* **Create a database**: I can create a new database using `CREATE DATABASE database_name;`.
+* **Select a database**: I must tell MySQL which database to interact with using `USE database_name;`.
+* **Show databases/tables**: I can list databases using `SHOW DATABASES;` and list tables using `SHOW TABLES;`.
+* **Describe a table**: I learned that `DESCRIBE table_name;` (or `DESC`) shows the columns and data types within a table.
+* **Create a table**: I can build a table by defining columns and data types.
+  ```sql
+  CREATE TABLE book_inventory (
+      book_id INT AUTO_INCREMENT PRIMARY KEY,
+      book_name VARCHAR(255) NOT NULL,
+      publication_date DATE
+  );
+
