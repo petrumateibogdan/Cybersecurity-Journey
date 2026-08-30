@@ -335,3 +335,6 @@ Finding the tool with the longest name:
 SELECT name, LENGTH(name) AS name_length FROM hacking_tools ORDER BY name_length DESC LIMIT 1;
 
 Calculating the total sum of all tools:
+
+SELECT SUM(amount) FROM hacking_tools;
+Grouping tool names where the amount does not end in 0:
