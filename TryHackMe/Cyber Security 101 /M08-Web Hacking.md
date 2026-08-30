@@ -284,3 +284,13 @@ Delete (DELETE): I can remove records from a table using the DELETE FROM stateme
 
 SQL
 DELETE FROM books WHERE id = 1;
+
+I learned that clauses help define how data should be retrieved, sorted, or grouped.
+
+I learned that the DISTINCT clause avoids duplicate records, returning only unique values.
+
+I can aggregate data from multiple records using the GROUP BY clause.
+
+I learned to sort records in ascending (ASC) or descending (DESC) order using ORDER BY.
+
+I discovered that HAVING filters groups or results after an aggregation is performed.
