@@ -276,3 +276,5 @@ Read (SELECT): I can retrieve information from a table using the SELECT statemen
 SELECT name, description FROM books;
 
 Update (UPDATE): I found out how to modify an existing record using the UPDATE statement combined with SET and WHERE.
+
+UPDATE books SET description = "New description" WHERE id = 1;
