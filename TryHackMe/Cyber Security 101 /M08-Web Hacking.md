@@ -340,3 +340,6 @@ SELECT SUM(amount) FROM hacking_tools;
 Grouping tool names where the amount does not end in 0:
 
 ELECT GROUP_CONCAT(name SEPARATOR ' & ') AS tools FROM hacking_tools WHERE amount % 10 != 0;
+
+#4. Burp Suite: The Basics
+
