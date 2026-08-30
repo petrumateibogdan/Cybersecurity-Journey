@@ -308,3 +308,22 @@ I learned that NOT reverses a boolean operator to exclude a condition.
 I found out how to test if a value exists within a range using BETWEEN.
 
 I learned standard comparison operators like = (Equal), != (Not Equal), < (Less Than), > (Greater Than), <= (Less Than or Equal), and >= (Greater Than or Equal).
+
+SQL Functions
+I learned that functions streamline queries and manipulate data.
+
+String Functions
+I learned that CONCAT() combines two or more strings together.
+
+I discovered that GROUP_CONCAT() concatenates data from multiple rows into one field.
+
+I can extract a portion of a string using SUBSTRING().
+
+I learned that LENGTH() returns the number of characters in a string.
+
+Aggregate Functions
+I learned that COUNT() returns the number of records within an expression.
+
+I can calculate the total sum of a column using SUM().
+
+I found out that MAX() retrieves the highest value, and MIN() retrieves the lowest value in a column.
