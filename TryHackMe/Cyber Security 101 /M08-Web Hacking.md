@@ -268,3 +268,7 @@ Drop: I learned that DROP DATABASE database_name; and DROP TABLE table_name; wil
 I learned that CRUD stands for Create, Read, Update, and Delete, which are the fundamental data operations.
 
 Create (INSERT): I learned to add new records using the INSERT INTO statement.
+
+INSERT INTO books (id, name, published_date, description) VALUES (1, "Book Name", "2024-01-01", "A description");**
+
+
