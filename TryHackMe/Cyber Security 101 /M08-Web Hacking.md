@@ -260,3 +260,11 @@ I learned how to manage databases and tables using basic SQL statements.
       publication_date DATE
   );
 
+Alter a table: I can modify an existing table using ALTER TABLE table_name ADD column_name data_type;.
+
+Drop: I learned that DROP DATABASE database_name; and DROP TABLE table_name; will delete them entirely.
+
+ CRUD Operations
+I learned that CRUD stands for Create, Read, Update, and Delete, which are the fundamental data operations.
+
+Create (INSERT): I learned to add new records using the INSERT INTO statement.
