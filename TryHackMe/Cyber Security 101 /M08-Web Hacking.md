@@ -327,3 +327,7 @@ I learned that COUNT() returns the number of records within an expression.
 I can calculate the total sum of a column using SUM().
 
 I found out that MAX() retrieves the highest value, and MIN() retrieves the lowest value in a column.
+
+Here are some practical queries I wrote during my lab exercises to extract specific data from the database:
+
+Finding the tool with the longest name:
