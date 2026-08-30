@@ -272,3 +272,6 @@ Create (INSERT): I learned to add new records using the INSERT INTO statement.
 INSERT INTO books (id, name, published_date, description) VALUES (1, "Book Name", "2024-01-01", "A description");**
 
 Read (SELECT): I can retrieve information from a table using the SELECT statement.
+
+SELECT name, description FROM books;
+
