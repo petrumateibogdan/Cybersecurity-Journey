@@ -227,3 +227,6 @@ Based on these vulnerabilities, I learned several best practices for securing JS
 * **Do not add untrusted libraries:** Attackers frequently upload malicious libraries with names that closely resemble legitimate ones.
 * **Never hardcode secrets:** Sensitive data like API keys, access tokens, or passwords should never be hardcoded in JS, as users can easily view the source code to extract them.
 * **Minify and obfuscate production code:** While it will not stop a determined attacker from reverse-engineering the script, it does increase the effort required.
+
+# 3. SQL FUNDAMENTALS
+
