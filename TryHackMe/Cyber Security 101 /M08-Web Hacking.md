@@ -294,3 +294,17 @@ I can aggregate data from multiple records using the GROUP BY clause.
 I learned to sort records in ascending (ASC) or descending (DESC) order using ORDER BY.
 
 I discovered that HAVING filters groups or results after an aggregation is performed.
+
+
+Operators
+I learned how to use operators to filter data effectively.
+
+I learned to use LIKE for filtering specific patterns within a column (e.g., WHERE description LIKE "%guide%").
+
+I can combine conditions using AND (all conditions must be true) and OR (at least one condition must be true).
+
+I learned that NOT reverses a boolean operator to exclude a condition.
+
+I found out how to test if a value exists within a range using BETWEEN.
+
+I learned standard comparison operators like = (Equal), != (Not Equal), < (Less Than), > (Greater Than), <= (Less Than or Equal), and >= (Greater Than or Equal).
