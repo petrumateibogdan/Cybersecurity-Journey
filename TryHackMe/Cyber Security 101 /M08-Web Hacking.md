@@ -331,3 +331,7 @@ I found out that MAX() retrieves the highest value, and MIN() retrieves the lowe
 Here are some practical queries I wrote during my lab exercises to extract specific data from the database:
 
 Finding the tool with the longest name:
+
+SELECT name, LENGTH(name) AS name_length FROM hacking_tools ORDER BY name_length DESC LIMIT 1;
+
+Calculating the total sum of all tools:
