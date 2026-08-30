@@ -278,3 +278,9 @@ SELECT name, description FROM books;
 Update (UPDATE): I found out how to modify an existing record using the UPDATE statement combined with SET and WHERE.
 
 UPDATE books SET description = "New description" WHERE id = 1;
+
+
+Delete (DELETE): I can remove records from a table using the DELETE FROM statement.
+
+SQL
+DELETE FROM books WHERE id = 1;
