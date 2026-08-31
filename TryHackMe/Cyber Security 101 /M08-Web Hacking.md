@@ -433,6 +433,6 @@ A support form asked for an email address. If I typed `<script>alert("XSS")</scr
 2. In the web browser, I typed a legitimate email (`test@example.com`) to satisfy the client-side filter and clicked Submit.
 3. The request was caught by Burp Suite *before* reaching the server.
 4. Inside Burp, I deleted `test@example.com` and replaced it with my payload: `<script>alert("Succ3ssful XSS")</script>`.
-5. I highlighted the payload and pressed `Ctrl + U` to URL encode it.
-6. I clicked **Forward**.
+ I highlighted the payload and pressed `Ctrl + U` to URL encode it.
+ I clicked **Forward**.
  The server accepted the payload, and an alert box popped up on the webpage, proving the XSS vulnerability!
