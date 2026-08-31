@@ -415,9 +415,9 @@ When routing HTTPS traffic through Burp, my browser will show a security warning
 ##  Scoping & Filtering Traffic
 If I don't set a scope, Burp will capture background traffic from every open tab, which creates a massive mess.
 
-1. **Add to Scope:** Go to the `Target -> Site map` tab, right-click the target domain, and select **Add To Scope**.
-2. **Stop Logging Out-of-Scope Traffic:** Click "Yes" when Burp prompts to stop logging out-of-scope items.
-3. **Filter Interceptions:** Go to the `Proxy -> Proxy settings` tab. Under "Intercept Client Requests", check **"And URL Is in target scope"**. 
+ **Add to Scope:** Go to the `Target -> Site map` tab, right-click the target domain, and select **Add To Scope**.
+ **Stop Logging Out-of-Scope Traffic:** Click "Yes" when Burp prompts to stop logging out-of-scope items.
+ **Filter Interceptions:** Go to the `Proxy -> Proxy settings` tab. Under "Intercept Client Requests", check **"And URL Is in target scope"**. 
 *This ensures Burp only pauses and intercepts traffic for the exact app I am testing.*
 
 ---
