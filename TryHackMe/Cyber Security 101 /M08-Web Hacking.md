@@ -422,7 +422,7 @@ If I don't set a scope, Burp will capture background traffic from every open tab
 
 ---
 
-## 5. Practical Exploitation: Bypassing Client-Side Filters
+## Practical Exploitation: Bypassing Client-Side Filters
 During my lab practice, I used the Burp Proxy to bypass a client-side filter and execute a Reflected Cross-Site Scripting (XSS) attack.
 
 **The Scenario:**
