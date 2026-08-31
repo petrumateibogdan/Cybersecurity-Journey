@@ -412,7 +412,7 @@ When routing HTTPS traffic through Burp, my browser will show a security warning
 
 ---
 
-## 4. Scoping & Filtering Traffic
+##  Scoping & Filtering Traffic
 If I don't set a scope, Burp will capture background traffic from every open tab, which creates a massive mess.
 
 1. **Add to Scope:** Go to the `Target -> Site map` tab, right-click the target domain, and select **Add To Scope**.
