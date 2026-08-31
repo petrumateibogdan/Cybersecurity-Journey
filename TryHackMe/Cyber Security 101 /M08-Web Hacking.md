@@ -367,7 +367,7 @@ Burp Suite is a Java-based framework that captures and allows manipulation of we
 
 ---
 
-## 2. Navigating the Interface
+##  Navigating the Interface
 The Burp dashboard can be overwhelming, but the navigation is logical.
 
 * **Top Menu Bar:** Used to switch between the main modules (Proxy, Repeater, Intruder, etc.).
@@ -386,7 +386,7 @@ The Burp dashboard can be overwhelming, but the navigation is logical.
 
 ---
 
-## 3. Configuring the Browser Proxy
+##  Configuring the Browser Proxy
 To get my browser traffic to flow through Burp Suite, I need to configure a proxy.
 
 ### Option 1: Using FoxyProxy (Standard Browser)
