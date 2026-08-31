@@ -429,8 +429,8 @@ During my lab practice, I used the Burp Proxy to bypass a client-side filter and
 A support form asked for an email address. If I typed `<script>alert("XSS")</script>`, the browser stopped me, stating it wasn't a valid email format. This was a **client-side filter** running in my browser, which is easily bypassed.
 
 **The Bypass Methodology:**
-1. I turned **Intercept On** in Burp Suite.
-2. In the web browser, I typed a legitimate email (`test@example.com`) to satisfy the client-side filter and clicked Submit.
+ I turned **Intercept On** in Burp Suite.
+ In the web browser, I typed a legitimate email (`test@example.com`) to satisfy the client-side filter and clicked Submit.
  The request was caught by Burp Suite *before* reaching the server.
  Inside Burp, I deleted `test@example.com` and replaced it with my payload: `<script>alert("Succ3ssful XSS")</script>`.
  I highlighted the payload and pressed `Ctrl + U` to URL encode it.
