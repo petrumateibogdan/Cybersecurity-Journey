@@ -391,12 +391,12 @@ To get my browser traffic to flow through Burp Suite, I need to configure a prox
 
 ### Option 1: Using FoxyProxy (Standard Browser)
 1. Install the **FoxyProxy** extension in Firefox.
-2. Add a new configuration:
+ Add a new configuration:
    * **Title:** Burp
    * **Proxy IP:** `127.0.0.1`
    * **Port:** `8080`
-3. Activate the configuration in FoxyProxy.
-4. Ensure **Intercept is on** in the Burp Proxy tab. The browser will hang when navigating until I forward or drop the request in Burp.
+ Activate the configuration in FoxyProxy.
+ Ensure **Intercept is on** in the Burp Proxy tab. The browser will hang when navigating until I forward or drop the request in Burp.
 
 ### Option 2: Using Burp's Built-in Browser
 Burp includes a pre-configured Chromium browser.
