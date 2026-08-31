@@ -343,7 +343,7 @@ ELECT GROUP_CONCAT(name SEPARATOR ' & ') AS tools FROM hacking_tools WHERE amoun
 
 # 4. Burp Suite: The Basics
 
-# Burp Suite: Basics & Proxy Cheat Sheet
+
 
 I recently started exploring **Burp Suite**, the industry-standard framework for web application penetration testing. This tool is essential for intercepting, manipulating, and analyzing HTTP/HTTPS traffic between a browser and a web server. 
 
@@ -351,7 +351,7 @@ Here are my notes on setting it up, navigating the interface, configuring the pr
 
 ---
 
-## 1. What is Burp Suite?
+##  What is Burp Suite?
 Burp Suite is a Java-based framework that captures and allows manipulation of web traffic. I am using the **Community Edition** (free for non-commercial use). 
 
 *Note: The Professional Edition includes automated scanning, unrestricted brute-forcing, and the Burp Collaborator, while the Enterprise Edition is used for continuous infrastructure scanning.*
@@ -390,7 +390,7 @@ The Burp dashboard can be overwhelming, but the navigation is logical.
 To get my browser traffic to flow through Burp Suite, I need to configure a proxy.
 
 ### Option 1: Using FoxyProxy (Standard Browser)
-1. Install the **FoxyProxy** extension in Firefox.
+ Install the **FoxyProxy** extension in Firefox.
  Add a new configuration:
    * **Title:** Burp
    * **Proxy IP:** `127.0.0.1`
@@ -406,9 +406,9 @@ Burp includes a pre-configured Chromium browser.
 ### Fixing HTTPS/TLS Certificate Errors
 When routing HTTPS traffic through Burp, my browser will show a security warning because it doesn't trust Burp's certificate.
 1. With the Burp Proxy running, visit `http://burp/cert` in my browser to download `cacert.der`.
-2. Open Firefox Settings -> Search "Certificates" -> **View Certificates**.
-3. Click **Import**, select `cacert.der`.
-4. Check **"Trust this CA to identify websites"** and hit OK.
+ Open Firefox Settings -> Search "Certificates" -> **View Certificates**.
+ Click **Import**, select `cacert.der`.
+ Check **"Trust this CA to identify websites"** and hit OK.
 
 ---
 
