@@ -435,4 +435,4 @@ A support form asked for an email address. If I typed `<script>alert("XSS")</scr
 4. Inside Burp, I deleted `test@example.com` and replaced it with my payload: `<script>alert("Succ3ssful XSS")</script>`.
 5. I highlighted the payload and pressed `Ctrl + U` to URL encode it.
 6. I clicked **Forward**.
-7. The server accepted the payload, and an alert box popped up on the webpage, proving the XSS vulnerability!
+ The server accepted the payload, and an alert box popped up on the webpage, proving the XSS vulnerability!
