@@ -343,3 +343,96 @@ ELECT GROUP_CONCAT(name SEPARATOR ' & ') AS tools FROM hacking_tools WHERE amoun
 
 # 4. Burp Suite: The Basics
 
+# Burp Suite: Basics & Proxy Cheat Sheet
+
+I recently started exploring **Burp Suite**, the industry-standard framework for web application penetration testing. This tool is essential for intercepting, manipulating, and analyzing HTTP/HTTPS traffic between a browser and a web server. 
+
+Here are my notes on setting it up, navigating the interface, configuring the proxy, and bypassing client-side filters.
+
+---
+
+## 1. What is Burp Suite?
+Burp Suite is a Java-based framework that captures and allows manipulation of web traffic. I am using the **Community Edition** (free for non-commercial use). 
+
+*Note: The Professional Edition includes automated scanning, unrestricted brute-forcing, and the Burp Collaborator, while the Enterprise Edition is used for continuous infrastructure scanning.*
+
+### Core Components I Learned About:
+* **Proxy:** The heart of Burp. Intercepts and allows modification of requests/responses.
+* **Repeater:** Captures a request and lets me manually modify and resend it multiple times (great for SQLi or testing endpoints).
+* **Intruder:** Sprays endpoints with payloads for brute-forcing or fuzzing (rate-limited in the Community Edition).
+* **Decoder:** Quickly decodes or encodes data (e.g., URL encoding, Base64).
+* **Comparer:** Compares two pieces of data byte-by-byte or word-by-word.
+* **Sequencer:** Analyzes the randomness of session tokens.
+* **Extender (BApp Store):** Allows adding third-party modules (Java, Python, Ruby) to extend functionality (like `Logger++`).
+
+---
+
+## 2. Navigating the Interface
+The Burp dashboard can be overwhelming, but the navigation is logical.
+
+* **Top Menu Bar:** Used to switch between the main modules (Proxy, Repeater, Intruder, etc.).
+* **Second Menu Bar:** Contains sub-tabs specific to the selected module (e.g., Proxy -> Intercept).
+* **Settings:** Found via the top right gear icon. 
+  * *Global Settings:* Affects the entire installation.
+  * *Project Settings:* Specific to the current session (lost on closing in the Community Edition).
+* **Detaching Tabs:** `Window -> Detach` allows me to pull a tab into its own window for a multi-monitor setup.
+
+**Keyboard Shortcuts I Use Constantly:**
+* `Ctrl + Shift + P` : Proxy tab
+* `Ctrl + Shift + R` : Repeater tab
+* `Ctrl + Shift + I` : Intruder tab
+* `Ctrl + Shift + D` : Dashboard
+* `Ctrl + U` : URL encode selected text (crucial when injecting payloads).
+
+---
+
+## 3. Configuring the Browser Proxy
+To get my browser traffic to flow through Burp Suite, I need to configure a proxy.
+
+### Option 1: Using FoxyProxy (Standard Browser)
+1. Install the **FoxyProxy** extension in Firefox.
+2. Add a new configuration:
+   * **Title:** Burp
+   * **Proxy IP:** `127.0.0.1`
+   * **Port:** `8080`
+3. Activate the configuration in FoxyProxy.
+4. Ensure **Intercept is on** in the Burp Proxy tab. The browser will hang when navigating until I forward or drop the request in Burp.
+
+### Option 2: Using Burp's Built-in Browser
+Burp includes a pre-configured Chromium browser.
+* In the Proxy tab, I can just click **Open Browser**. Traffic automatically routes through Burp without any plugin configuration.
+* *Linux Root Note:* If running on Linux as root (like the AttackBox), the built-in browser might fail to launch due to sandbox restrictions. I can fix this by going to `Settings -> Tools -> Burp's browser` and checking `Allow Burp's browser to run without a sandbox`.
+
+### Fixing HTTPS/TLS Certificate Errors
+When routing HTTPS traffic through Burp, my browser will show a security warning because it doesn't trust Burp's certificate.
+1. With the Burp Proxy running, visit `http://burp/cert` in my browser to download `cacert.der`.
+2. Open Firefox Settings -> Search "Certificates" -> **View Certificates**.
+3. Click **Import**, select `cacert.der`.
+4. Check **"Trust this CA to identify websites"** and hit OK.
+
+---
+
+## 4. Scoping & Filtering Traffic
+If I don't set a scope, Burp will capture background traffic from every open tab, which creates a massive mess.
+
+1. **Add to Scope:** Go to the `Target -> Site map` tab, right-click the target domain, and select **Add To Scope**.
+2. **Stop Logging Out-of-Scope Traffic:** Click "Yes" when Burp prompts to stop logging out-of-scope items.
+3. **Filter Interceptions:** Go to the `Proxy -> Proxy settings` tab. Under "Intercept Client Requests", check **"And URL Is in target scope"**. 
+*This ensures Burp only pauses and intercepts traffic for the exact app I am testing.*
+
+---
+
+## 5. Practical Exploitation: Bypassing Client-Side Filters
+During my lab practice, I used the Burp Proxy to bypass a client-side filter and execute a Reflected Cross-Site Scripting (XSS) attack.
+
+**The Scenario:**
+A support form asked for an email address. If I typed `<script>alert("XSS")</script>`, the browser stopped me, stating it wasn't a valid email format. This was a **client-side filter** running in my browser, which is easily bypassed.
+
+**The Bypass Methodology:**
+1. I turned **Intercept On** in Burp Suite.
+2. In the web browser, I typed a legitimate email (`test@example.com`) to satisfy the client-side filter and clicked Submit.
+3. The request was caught by Burp Suite *before* reaching the server.
+4. Inside Burp, I deleted `test@example.com` and replaced it with my payload: `<script>alert("Succ3ssful XSS")</script>`.
+5. I highlighted the payload and pressed `Ctrl + U` to URL encode it.
+6. I clicked **Forward**.
+7. The server accepted the payload, and an alert box popped up on the webpage, proving the XSS vulnerability!
