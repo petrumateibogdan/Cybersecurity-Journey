@@ -9,7 +9,7 @@ Here are my notes and a command cheat sheet for using Hydra to crack services li
 
 ---
 
-## 1. What is Hydra?
+##  What is Hydra?
 Hydra is a brute-force password cracking tool designed to attack online authentication services. 
 * **Supported Protocols:** It supports a massive list of protocols, including SSH, FTP, HTTP/HTTPS (GET and POST), RDP, SMB, MySQL, Telnet, VNC, and many more.
 * **Purpose:** It highlights the importance of strong, complex passwords. Default credentials (like `admin:password`) or simple passwords found in common wordlists will be cracked in seconds using this tool.
