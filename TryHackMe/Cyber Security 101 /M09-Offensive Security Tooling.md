@@ -65,3 +65,8 @@ username=^USER^&password=^PASS^: The request payload. Hydra automatically swaps 
 F=incorrect: Denotes a "Failure" state. Hydra looks for the word "incorrect" in the HTML response to know the guess was wrong. If this string goes missing, Hydra assumes a successful login!
 
 -V: Verbose mode, allowing me to see the attempts in real-time.
+
+
+```
+
+# 2. 
