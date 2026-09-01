@@ -37,3 +37,8 @@ The syntax for Hydra depends heavily on the service or protocol being targeted.
 If I want to brute-force an FTP server using a known username (`user`) and a wordlist (`passlist.txt`):
 ```bash
 hydra -l user -P passlist.txt ftp://<MACHINE_IP>
+
+To attack an SSH service running on a target machine using 4 parallel threads:
+hydra -l <username> -P <full_path_to_wordlist> <MACHINE_IP> -t 4 ssh
+
+hydra -l root -P passwords.txt 10.10.10.10 -t 4 ssh
