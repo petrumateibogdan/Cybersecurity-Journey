@@ -16,7 +16,7 @@ Hydra is a brute-force password cracking tool designed to attack online authenti
 
 ---
 
-## 2. Basic Command Structure
+##  Basic Command Structure
 The syntax for Hydra depends heavily on the service or protocol being targeted.
 
 ### Common Flags
