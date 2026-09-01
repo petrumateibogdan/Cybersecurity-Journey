@@ -31,7 +31,7 @@ The syntax for Hydra depends heavily on the service or protocol being targeted.
 
 ---
 
-## 3. Exploitation Examples
+##  Exploitation Examples
 
 ### FTP Brute Force
 If I want to brute-force an FTP server using a known username (`user`) and a wordlist (`passlist.txt`):
