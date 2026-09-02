@@ -183,7 +183,7 @@ While Netcat is standard, I learned about several other utilities that provide e
 
 ---
 
-## 4. Common Reverse Shell Payloads
+##  Common Reverse Shell Payloads
 A payload is the actual script or command executed on the target to expose the shell. Here are payloads I frequently use on Linux systems.
 
 *   **Standard Bash Payload:** This initiates an interactive shell and redirects standard input and output through a TCP connection.
