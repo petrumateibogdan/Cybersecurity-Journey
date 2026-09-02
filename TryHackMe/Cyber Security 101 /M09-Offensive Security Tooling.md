@@ -128,3 +128,8 @@ Useful Flags for vhost Mode:
 
 
 gobuster vhost -u "[http://10.114.164.57](http://10.114.164.57)" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320
+
+```
+
+# 3. Shell Overview
+
