@@ -141,7 +141,7 @@ Here is my copy-paste ready cheat sheet for managing reverse shells, bind shells
 
 ---
 
-## 1. Reverse Shells
+##  Reverse Shells
 I learned that a reverse shell (or "connect back shell") initiates a connection from the target system back to my attacking machine. This technique is highly popular because it helps evade detection from network firewalls and security appliances. 
 
 *   I must first set up a listener on my machine to wait for the incoming connection. 
