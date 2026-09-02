@@ -153,7 +153,7 @@ I learned that a reverse shell (or "connect back shell") initiates a connection 
 
 ---
 
-## 2. Bind Shells
+##  Bind Shells
 I discovered that a bind shell opens a specific port on the compromised machine and actively listens for an incoming connection. 
 
 *   This method is useful when the target system restricts outgoing connections. 
