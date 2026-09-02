@@ -69,4 +69,34 @@ F=incorrect: Denotes a "Failure" state. Hydra looks for the word "incorrect" in 
 
 ```
 
-# 2. 
+# 2.   Gobuster Basics
+
+I learned about Gobuster, an open-source offensive security tool written in Golang. It is primarily used during the reconnaissance and scanning phases of a penetration test to enumerate web directories, DNS subdomains, virtual hosts, and cloud storage buckets. It works by using brute force, which means it tries every possibility from a provided wordlist until it finds a match.
+
+Here are my notes and command cheat sheets for the three main modes I practiced: `dir`, `dns`, and `vhost`.
+
+---
+
+## 1. Global Flags
+Before diving into the specific modes, I learned some global flags that apply to most Gobuster commands:
+* `-t` (or `--threads`): Configures the number of concurrent threads to use for the scan (the default is 10). 
+* `-w` (or `--wordlist`): Specifies the path to the wordlist being used for the brute-force attack.
+* `--delay`: Defines the amount of time to wait between sending requests, which helps make the scan look like normal web traffic and evade rate-limiting.
+* `-o` (or `--output`): Writes the results of the enumeration to a specific output file.
+* `--debug`: Enables debug output to help troubleshoot unexpected errors.
+
+---
+
+## 2. Directory & File Enumeration (`dir` mode)
+The `dir` mode is used to enumerate website directories and files. Gobuster appends each entry from a wordlist to the target URL and checks the HTTP status codes returned.
+
+### Useful Flags for `dir` Mode:
+* `-u`: Specifies the target URL (must include the protocol, like `http://`).
+* `-x` (or `--extensions`): Specifies file extensions to search for, such as `.php` or `.js`.
+* `-r` (or `--followredirect`): Tells Gobuster to follow HTTP redirect responses (like 301 or 302 status codes).
+* `-k` (or `--no-tls-validation`): Skips the TLS certificate check, which is necessary when dealing with self-signed certificates in lab environments.
+* `-s` (or `--status-codes`): Configures exactly which HTTP status codes to display (e.g., `200` or `300-400`).
+
+### Example Command:
+```bash
+gobuster dir -u "[http://www.example.thm](http://www.example.thm)" -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.js -r
