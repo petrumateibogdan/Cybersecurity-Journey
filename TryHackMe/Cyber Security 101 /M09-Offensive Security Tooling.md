@@ -100,3 +100,28 @@ The `dir` mode is used to enumerate website directories and files. Gobuster appe
 ### Example Command:
 ```bash
 gobuster dir -u "[http://www.example.thm](http://www.example.thm)" -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.js -r
+
+Subdomain Enumeration (dns mode)
+I learned that dns mode is used to brute-force subdomains. It works by doing DNS lookups to see if a subdomain (created by combining a wordlist entry with the base domain) exists.
+
+Useful Flags for dns Mode:
+-d (or --domain): Configures the target base domain you want to enumerate.
+
+-i (or --show-ips): Displays the IP addresses that the discovered subdomains resolve to.
+
+-c (or --show-cname): Shows CNAME records for the discovered subdomains (cannot be used with the -i flag).
+
+gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
+
+
+Virtual Host Enumeration (vhost mode)
+Virtual hosts are different websites hosted on the exact same server and IP address. I learned that unlike dns mode (which does DNS lookups), vhost mode finds virtual hosts by sending web requests and modifying the Host: header in the HTTP request.
+
+Useful Flags for vhost Mode:
+-u: Specifies the base URL or IP address.
+
+--domain: Appends a domain to each wordlist entry to form a valid hostname.
+
+--append-domain: Appends the base domain to each word in the wordlist, preventing the tool from just requesting www or blog without the root domain.
+
+--exclude-length: Filters out false positives by excluding responses of a certain byte length (e.g., filtering out default 404 error pages that share the exact same size).
