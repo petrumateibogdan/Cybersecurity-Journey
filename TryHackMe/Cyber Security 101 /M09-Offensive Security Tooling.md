@@ -217,3 +217,7 @@ I learned that a web shell is a script written in a language supported by the ta
 *   Once uploaded, I can execute commands by browsing to the file URL. Example: `http://victim.com/uploads/shell.php?cmd=whoami`.
 *   For complex engagements, security professionals often use feature-rich, pre-built web shells found online, such as `p0wny-shell`, `b374k`, or `c99`.
 
+# 4. SQLMap: The Basics
+
+
+
