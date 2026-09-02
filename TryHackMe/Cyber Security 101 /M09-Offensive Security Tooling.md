@@ -125,3 +125,6 @@ Useful Flags for vhost Mode:
 --append-domain: Appends the base domain to each word in the wordlist, preventing the tool from just requesting www or blog without the root domain.
 
 --exclude-length: Filters out false positives by excluding responses of a certain byte length (e.g., filtering out default 404 error pages that share the exact same size).
+
+
+gobuster vhost -u "[http://10.114.164.57](http://10.114.164.57)" --domain example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain --exclude-length 250-320
