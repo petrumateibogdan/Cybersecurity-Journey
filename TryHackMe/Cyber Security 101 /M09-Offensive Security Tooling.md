@@ -165,7 +165,7 @@ I discovered that a bind shell opens a specific port on the compromised machine 
 
 ---
 
-## 3. Advanced Listeners
+##  Advanced Listeners
 While Netcat is standard, I learned about several other utilities that provide enhanced features for catching shells.
 
 *   **Rlwrap:** This utility uses the GNU readline library to add keyboard editing (like arrow keys) and command history to a basic Netcat shell.
