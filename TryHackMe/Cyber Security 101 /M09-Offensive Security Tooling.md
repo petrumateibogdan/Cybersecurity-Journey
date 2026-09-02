@@ -77,7 +77,7 @@ Here are my notes and command cheat sheets for the three main modes I practiced:
 
 ---
 
-## 1. Global Flags
+##  Global Flags
 Before diving into the specific modes, I learned some global flags that apply to most Gobuster commands:
 * `-t` (or `--threads`): Configures the number of concurrent threads to use for the scan (the default is 10). 
 * `-w` (or `--wordlist`): Specifies the path to the wordlist being used for the brute-force attack.
@@ -87,7 +87,7 @@ Before diving into the specific modes, I learned some global flags that apply to
 
 ---
 
-## 2. Directory & File Enumeration (`dir` mode)
+##  Directory & File Enumeration (`dir` mode)
 The `dir` mode is used to enumerate website directories and files. Gobuster appends each entry from a wordlist to the target URL and checks the HTTP status codes returned.
 
 ### Useful Flags for `dir` Mode:
