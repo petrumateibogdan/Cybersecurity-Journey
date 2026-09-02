@@ -118,7 +118,7 @@ Virtual Host Enumeration (vhost mode)
 Virtual hosts are different websites hosted on the exact same server and IP address. I learned that unlike dns mode (which does DNS lookups), vhost mode finds virtual hosts by sending web requests and modifying the Host: header in the HTTP request.
 
 Useful Flags for vhost Mode:
--u: Specifies the base URL or IP addre
+-u: Specifies the base URL or IP address
 
 --domain: Appends a domain to each wordlist entry to form a valid hostname.
 
