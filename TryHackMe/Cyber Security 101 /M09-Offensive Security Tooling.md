@@ -114,7 +114,7 @@ Useful Flags for dns Mode:
 gobuster dns -d example.thm -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt
 
 
-Virtual Host Enumeration (vhost m
+Virtual Host Enumeration (vhost mode)
 Virtual hosts are different websites hosted on the exact same server and IP address. I learned that unlike dns mode (which does DNS lookups), vhost mode finds virtual hosts by sending web requests and modifying the Host: header in the HTTP request.
 
 Useful Flags for vhost Mode:
