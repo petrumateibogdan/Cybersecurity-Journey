@@ -131,7 +131,7 @@ gobuster vhost -u "[http://10.114.164.57](http://10.114.164.57)" --domain exampl
 
 ```
 
-#  3. Shell 
+#  3. Shell Overview
 
 # Shells in Offensive Security: Command Cheat Sheet
 
