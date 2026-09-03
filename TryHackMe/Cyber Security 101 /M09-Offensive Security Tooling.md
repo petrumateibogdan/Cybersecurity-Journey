@@ -228,7 +228,7 @@ Here is my methodology and cheat sheet for understanding manual SQLi and using t
 
 ---
 
-## 1. Manual SQL Injection Basics
+##  Manual SQL Injection Basics
 When a login form takes a username and password, the backend SQL query might look like this:
 `SELECT * FROM users WHERE username = 'John' AND password = 'UserPassword';`
 
@@ -245,7 +245,7 @@ The resulting executed query becomes:
 
 ---
 
-## 2. SQLMap: Essential Flags
+##  SQLMap: Essential Flags
 Manually extracting data can be tedious. I learned to use **SQLMap**, an automated command-line tool built into Kali Linux, to detect and exploit SQLi vulnerabilities.
 
 | Flag | Description |
