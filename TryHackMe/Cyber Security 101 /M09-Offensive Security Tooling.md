@@ -1,4 +1,4 @@
-# Module 9: Offensive Security Tooling
+    # Module 9: Offensive Security Tooling
 
 # 1. Hydra
 
@@ -220,4 +220,59 @@ I learned that a web shell is a script written in a language supported by the ta
 # 4. SQLMap: The Basics
 
 
+# SQL Injection & SQLMap: Methodology and Cheat Sheet
 
+I learned that SQL Injection (SQLi) occurs when a web application improperly sanitizes user input, allowing attackers to manipulate database queries. By injecting malicious SQL statements, an attacker can bypass authentication, extract sensitive data, or modify the database. 
+
+Here is my methodology and cheat sheet for understanding manual SQLi and using the automated exploitation tool, **SQLMap**.
+
+---
+
+## 1. Manual SQL Injection Basics
+When a login form takes a username and password, the backend SQL query might look like this:
+`SELECT * FROM users WHERE username = 'John' AND password = 'UserPassword';`
+
+If the input fields are not validated, I can inject a payload like this into the password field:
+`abc' OR 1=1;-- -`
+
+**Why this works:**
+* The single quote `'` closes the expected string input.
+* `OR 1=1` introduces a logical condition that is always true, forcing the query to succeed regardless of the actual password.
+* `-- -` comments out the rest of the backend SQL query so it doesn't break the syntax.
+
+The resulting executed query becomes:
+`SELECT * FROM users WHERE username = 'John' AND password = 'abc' OR 1=1;-- -';`
+
+---
+
+## 2. SQLMap: Essential Flags
+Manually extracting data can be tedious. I learned to use **SQLMap**, an automated command-line tool built into Kali Linux, to detect and exploit SQLi vulnerabilities.
+
+| Flag | Description |
+| :--- | :--- |
+| `--wizard` | Interactive mode for beginners. Asks step-by-step questions to configure the scan. |
+| `-u '<URL>'` | Specifies the target URL. Must include GET parameters (e.g., `?id=1`). |
+| `-r <file.txt>` | Specifies a saved HTTP request file (useful for POST-based SQLi, like login forms). |
+| `--cookie="<cookie>"` | Passes a session cookie to test injection points that require authentication. |
+| `--level=5` | Increases the depth and thoroughness of the scan (levels 1-5). Crucial if standard scans miss the vulnerability. |
+| `--dbs` | Enumerates and lists all database names on the server. |
+| `-D <db_name>` | Selects a specific database to target. |
+| `--tables` | Lists all tables within the selected database. |
+| `-T <table_name>` | Selects a specific table to target. |
+| `--dump` | Extracts and downloads the records from the selected table. |
+
+---
+
+## 3. SQLMap Exploitation Workflow
+Here is the exact step-by-step workflow I use to exploit a vulnerable GET-based endpoint.
+
+### Step 1: Identify the Vulnerable URL
+First, I need the full URL including the GET parameters. If it is a web form, I open the browser's **Developer Tools -> Network Tab**, submit the form, and copy the full request URL.
+*Example:* `http://MACHINE_IP/ai/includes/user_login?email=test&password=test`
+
+*Note: I enclose the URL in single quotes (`' '`) in the terminal to prevent special characters like `?` or `&` from breaking the command.*
+
+### Step 2: Scan for Vulnerabilities & Databases
+I scan the URL using `--level=5` for maximum depth and append `--dbs` to list the databases.
+```bash
+sqlmap -u 'http://MACHINE_IP/ai/includes/user_login?email=test&password=test' --level=5 --dbs
