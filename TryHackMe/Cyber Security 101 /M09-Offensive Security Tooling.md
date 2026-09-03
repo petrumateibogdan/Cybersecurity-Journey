@@ -263,7 +263,7 @@ Manually extracting data can be tedious. I learned to use **SQLMap**, an automat
 
 ---
 
-## 3. SQLMap Exploitation Workflow
+##  SQLMap Exploitation Workflow
 Here is the exact step-by-step workflow I use to exploit a vulnerable GET-based endpoint.
 
 ### Step 1: Identify the Vulnerable URL
