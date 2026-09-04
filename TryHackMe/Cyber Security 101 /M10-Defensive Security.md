@@ -2,8 +2,6 @@
 
 # 1. SOC Fundamentals
 
-
-
 I recently completed a module on the fundamentals of a Security Operations Center (SOC). Here are my notes on how a SOC operates, its core pillars, and the defensive technologies utilized to protect organizational networks.
 
 ###  The Core Focus: Detection and Response
@@ -25,3 +23,6 @@ I recently completed a module on the fundamentals of a Security Operations Cente
 *   **SIEM (Security Information and Event Management):** Centralizes logs from various network devices, correlating data against detection rules to identify suspicious activity (Detection only).
 *   **EDR (Endpoint Detection and Response):** Provides real-time and historical visibility at the device level, allowing analysts to investigate and execute automated responses.
 *   **Firewall:** Acts as a network barrier to filter unauthorized traffic and block suspicious activity before it reaches the internal network.
+
+
+# 2. Digital Forensics Fundamentals
