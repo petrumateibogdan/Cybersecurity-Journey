@@ -21,7 +21,7 @@ I recently completed a module on the fundamentals of a Security Operations Cente
 *   **Reporting:** Escalating validated threats to higher-level analysts via ticketing systems, ensuring reports include thorough analysis and evidence.
 *   **Forensics & Incident Response:** Analyzing system or network artifacts during critical incidents to determine the exact root cause.
 
-### 4. The Third Pillar: Technology
+###  The Third Pillar: Technology
 *   **SIEM (Security Information and Event Management):** Centralizes logs from various network devices, correlating data against detection rules to identify suspicious activity (Detection only).
 *   **EDR (Endpoint Detection and Response):** Provides real-time and historical visibility at the device level, allowing analysts to investigate and execute automated responses.
 *   **Firewall:** Acts as a network barrier to filter unauthorized traffic and block suspicious activity before it reaches the internal network.
