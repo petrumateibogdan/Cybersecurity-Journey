@@ -16,7 +16,7 @@ I recently completed a module on the fundamentals of a Security Operations Cente
 *   **Level 3 Analysts:** Proactively hunt for threat indicators and handle critical incidents requiring containment, eradication, and recovery.
 *   **Engineers & Management:** Security Engineers configure tools, Detection Engineers build alert logic, and the SOC Manager oversees processes and communicates with the CISO.
 
-### 3. The Second Pillar: Process
+###  The Second Pillar: Process
 *   **Alert Triage:** The initial analysis of an alert to determine severity and priority by answering the "5 Ws" (What, When, Where, Who, Why).
 *   **Reporting:** Escalating validated threats to higher-level analysts via ticketing systems, ensuring reports include thorough analysis and evidence.
 *   **Forensics & Incident Response:** Analyzing system or network artifacts during critical incidents to determine the exact root cause.
