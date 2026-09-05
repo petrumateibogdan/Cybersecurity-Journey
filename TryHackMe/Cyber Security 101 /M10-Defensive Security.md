@@ -47,7 +47,7 @@ Acquiring evidence is a highly critical job that must follow strict legal and te
 *   **Chain of Custody:** A formal document tracking the evidence description, collectors, storage location, and access history to prove integrity and reliability.
 *   **Write Blockers:** Essential hardware or software tools used during extraction to prevent the forensic workstation from accidentally altering original file timestamps.
 
-## 3. Windows Forensics
+##  Windows Forensics
 When investigating personal computers and laptops, I learned to capture two distinct types of forensic images.
 
 *   **Memory Image (Volatile):** Data inside RAM (running processes, network connections) that is completely lost upon system shutdown. This must be captured first using **DumpIt** or analyzed with **Volatility**.
