@@ -27,11 +27,11 @@ I recently completed a module on the fundamentals of a Security Operations Cente
 
 # 2. Digital Forensics Fundamentals
 
-# Intro to Digital Forensics: Methodology & Commands
+
 
 I recently completed a module on Digital Forensics, learning how law enforcement investigates cybercrimes—like analyzing a bank robber's laptop or mobile phone for digital maps, documents, and chat logs. Here is my comprehensive guide covering the investigative process, secure evidence acquisition, and metadata analysis.
 
-## 1. The NIST Forensics Process & Domains
+##  The NIST Forensics Process & Domains
 I learned that the National Institute of Standards and Technology (NIST) defines a strict four-phase framework for every investigation:
 
 *   **Collection:** Securely extracting data from devices (computers, USBs, cameras) without tampering with the original evidence.
