@@ -108,3 +108,6 @@ This is the formal document, approved by senior management, that details the org
 *   **SIEM:** Centralizes and correlates logs to identify incidents.
 *   **AV (Antivirus):** Scans for and detects known malicious programs.
 *   **EDR (Endpoint Detection and Response):** Deployed on endpoints to protect against advanced threats and can actively contain and eradicate them.
+
+
+# 4. Logs Fundamentals
