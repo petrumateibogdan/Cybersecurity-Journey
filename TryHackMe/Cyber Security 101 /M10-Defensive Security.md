@@ -60,3 +60,6 @@ Digital activities always leave traces. I use specific command-line tools to ext
 | :--- | :--- | :--- |
 | **pdfinfo** | Extracts document creation dates, authors, and the exact software used to generate the file. | `pdfinfo DOCUMENT.pdf` |
 | **exiftool** | Extracts embedded Exchangeable Image File Format (EXIF) data, including camera settings and GPS coordinates that can be mapped online. | `exiftool IMAGE.jpg` |
+
+
+# 3. Incident Response Fundamentals
