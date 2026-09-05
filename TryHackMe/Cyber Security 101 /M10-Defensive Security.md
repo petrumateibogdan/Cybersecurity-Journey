@@ -68,18 +68,18 @@ Digital activities always leave traces. I use specific command-line tools to ext
 
 I recently completed a module focusing on Incident Response, an essential part of defensive security. I learned how organizations prepare for, identify, and mitigate cybersecurity incidents. Here are my notes on incident classification, response frameworks, and playbooks.
 
-### 1. Incidents and Severity
+###  Incidents and Severity
 *   **True Positives vs. False Positives:** Security solutions generate alerts based on events. A *true positive* indicates actual harmful activity (like a phishing attack), while a *false positive* is a benign action mistakenly flagged as harmful (like a scheduled backup).
 *   **Severity Levels:** True positives are classified as *incidents* and assigned a severity level (Critical, High, Medium, Low) based on their potential impact to help prioritize the response.
 
-### 2. Common Types of Incidents
+###  Common Types of Incidents
 *   **Malware Infections:** The most frequent incidents, caused by malicious programs designed to damage networks or systems.
 *   **Security Breaches:** Occur when unauthorized individuals gain access to confidential data.
 *   **Data Leaks:** The exposure of confidential information to unauthorized entities. Unlike breaches, these can be caused unintentionally by human error or misconfiguration.
 *   **Insider Attacks:** Threats originating from within the organization, such as a disgruntled employee intentionally causing damage.
 *   **Denial of Service (DoS):** Attacks designed to make a system or network unavailable to legitimate users by flooding it with false requests.
 
-### 3. Incident Response Frameworks
+###  Incident Response Frameworks
 To structure their response, organizations rely on established frameworks like SANS and NIST.
 
 **SANS Framework (PICERL):**
@@ -97,14 +97,14 @@ The NIST framework simplifies this into four phases:
 3.  Containment, Eradication, and Recovery (combined)
 4.  Post-Incident Activity (equivalent to SANS Lessons Learned)
 
-### 4. The Incident Response Plan
+###  The Incident Response Plan
 This is the formal document, approved by senior management, that details the organization's approach to handling incidents. It includes roles, methodologies, communication strategies (including with law enforcement), and escalation paths.
 
-### 5. Playbooks and Runbooks
+###  Playbooks and Runbooks
 *   **Playbooks:** Step-by-step guidelines for handling specific types of incidents comprehensively. For example, a phishing playbook might include steps like notifying stakeholders, analyzing the email and attachments, isolating infected systems, and blocking the sender.
 *   **Runbooks:** Detailed execution steps for specific tasks within the incident response process, which can vary based on the available tools and resources.
 
-### 6. Tools for Detection and Response
+###  Tools for Detection and Response
 *   **SIEM:** Centralizes and correlates logs to identify incidents.
 *   **AV (Antivirus):** Scans for and detects known malicious programs.
 *   **EDR (Endpoint Detection and Response):** Deployed on endpoints to protect against advanced threats and can actively contain and eradicate them.
