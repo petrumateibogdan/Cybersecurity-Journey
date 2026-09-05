@@ -26,3 +26,37 @@ I recently completed a module on the fundamentals of a Security Operations Cente
 
 
 # 2. Digital Forensics Fundamentals
+
+# Intro to Digital Forensics: Methodology & Commands
+
+I recently completed a module on Digital Forensics, learning how law enforcement investigates cybercrimes—like analyzing a bank robber's laptop or mobile phone for digital maps, documents, and chat logs. Here is my comprehensive guide covering the investigative process, secure evidence acquisition, and metadata analysis.
+
+## 1. The NIST Forensics Process & Domains
+I learned that the National Institute of Standards and Technology (NIST) defines a strict four-phase framework for every investigation:
+
+*   **Collection:** Securely extracting data from devices (computers, USBs, cameras) without tampering with the original evidence.
+*   **Examination:** Filtering massive datasets to extract only the data of interest for a specific timeframe or user account.
+*   **Analysis:** Correlating the filtered evidence to build a chronological timeline of the incident and draw conclusions.
+*   **Reporting:** Presenting detailed findings, methodologies, and executive summaries to law enforcement or executive management.
+*   **Domains:** Digital investigations span across Computer, Mobile, Network (traffic logs), Database, Cloud, and Email forensics.
+
+## 2. Secure Evidence Acquisition
+Acquiring evidence is a highly critical job that must follow strict legal and technical procedures to be valid.
+
+*   **Proper Authorization:** Securing legal approval before data collection is essential so the private evidence remains admissible in court.
+*   **Chain of Custody:** A formal document tracking the evidence description, collectors, storage location, and access history to prove integrity and reliability.
+*   **Write Blockers:** Essential hardware or software tools used during extraction to prevent the forensic workstation from accidentally altering original file timestamps.
+
+## 3. Windows Forensics
+When investigating personal computers and laptops, I learned to capture two distinct types of forensic images.
+
+*   **Memory Image (Volatile):** Data inside RAM (running processes, network connections) that is completely lost upon system shutdown. This must be captured first using **DumpIt** or analyzed with **Volatility**.
+*   **Disk Image (Non-Volatile):** Permanent storage data (documents, media, browsing history) acquired and analyzed using tools like **FTK Imager** or **Autopsy**.
+
+## 4. Metadata Command Cheat Sheet
+Digital activities always leave traces. I use specific command-line tools to extract hidden metadata from files and images.
+
+| Tool | Function | Example Command |
+| :--- | :--- | :--- |
+| **pdfinfo** | Extracts document creation dates, authors, and the exact software used to generate the file. | `pdfinfo DOCUMENT.pdf` |
+| **exiftool** | Extracts embedded Exchangeable Image File Format (EXIF) data, including camera settings and GPS coordinates that can be mapped online. | `exiftool IMAGE.jpg` |
