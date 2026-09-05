@@ -53,7 +53,7 @@ When investigating personal computers and laptops, I learned to capture two dist
 *   **Memory Image (Volatile):** Data inside RAM (running processes, network connections) that is completely lost upon system shutdown. This must be captured first using **DumpIt** or analyzed with **Volatility**.
 *   **Disk Image (Non-Volatile):** Permanent storage data (documents, media, browsing history) acquired and analyzed using tools like **FTK Imager** or **Autopsy**.
 
-## 4. Metadata Command Cheat Sheet
+##  Metadata Command Cheat Sheet
 Digital activities always leave traces. I use specific command-line tools to extract hidden metadata from files and images.
 
 | Tool | Function | Example Command |
