@@ -40,7 +40,7 @@ I learned that the National Institute of Standards and Technology (NIST) defines
 *   **Reporting:** Presenting detailed findings, methodologies, and executive summaries to law enforcement or executive management.
 *   **Domains:** Digital investigations span across Computer, Mobile, Network (traffic logs), Database, Cloud, and Email forensics.
 
-## 2. Secure Evidence Acquisition
+##  Secure Evidence Acquisition
 Acquiring evidence is a highly critical job that must follow strict legal and technical procedures to be valid.
 
 *   **Proper Authorization:** Securing legal approval before data collection is essential so the private evidence remains admissible in court.
