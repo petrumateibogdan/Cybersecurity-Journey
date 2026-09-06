@@ -111,3 +111,68 @@ This is the formal document, approved by senior management, that details the org
 
 
 # 4. Logs Fundamentals
+
+# Intro to Log Analysis: Event Viewer & Linux CLI
+
+I recently completed a module focusing on the importance of log analysis in defensive security. I learned that logs are digital footprints left behind by both normal and malicious activities, making them crucial for incident investigation, security monitoring, and troubleshooting. 
+
+Here are my repository notes covering the different types of logs, how to analyze Windows Event Logs, and how to parse Web Server Access Logs using Linux command-line tools.
+
+---
+
+## 1. Common Log Categories
+To make investigations manageable, systems segregate logs into multiple categories based on the type of information they provide. 
+
+| Log Type | Primary Usage | Example Events |
+| :--- | :--- | :--- |
+| **System** | Troubleshooting OS running issues. | System startup/shutdown, driver loading events. |
+| **Security** | Detecting and investigating incidents. | Authentication, authorization, and policy changes. |
+| **Application** | Events related to specific applications. | Application errors, updates, and user interactions. |
+| **Audit** | Compliance requirements and security monitoring. | Data access and policy enforcement events. |
+| **Network** | Monitoring incoming and outgoing traffic. | Network connection and firewall logs. |
+| **Access** | Detailing access to different resources. | Webserver, database, and API access logs. |
+
+---
+
+## 2. Windows Event Logs & Event Viewer
+I learned that Windows logs many of its activities into specific files, primarily categorized as Application, System, and Security. Security logs are the most important for cyber investigations, logging all authentication and account changes.
+
+Windows provides a built-in GUI utility called **Event Viewer** to search and filter these logs. Every logged activity is assigned a unique identifier known as an Event ID.
+
+### Crucial Windows Event IDs for Investigations:
+*   **4624:** A user account successfully logged in.
+*   **4625:** A user account failed to log in.
+*   **4634:** A user account successfully logged off.
+*   **4720:** A user account was created.
+*   **4722:** A user account was enabled.
+*   **4724:** An attempt was made to reset an account’s password.
+*   **4725:** A user account was disabled.
+*   **4726:** A user account was deleted.
+
+> **Tip:** In Event Viewer, I can use the "Filter Current Log" feature to input specific Event IDs (like `4624`) to quickly hunt for successful logins without manually scrolling through thousands of entries.
+
+---
+
+## 3. Web Server Access Logs (Linux CLI)
+When users interact with a website, requests are stored in a log file on the web server (e.g., Apache logs are often found at `/var/log/apache2/access.log`). I learned that these logs contain valuable data, including the requester's IP address, the timestamp, the HTTP method (e.g., GET), the requested URL, the status code, and the User-Agent string.
+
+Because web logs are typically plain text, I can analyze them manually using standard Linux command-line utilities.
+
+### Command-Line Cheat Sheet for Log Analysis:
+
+*   **`cat`:** Displays the contents of a text file. It is also useful for combining multiple rotated log files into one.
+    ```bash
+    # Combine two access logs into a single file
+    cat access1.log access2.log > combined_access.log
+    ```
+*   **`grep`:** Searches for specific strings or patterns inside a log file. This is highly effective for filtering logs by a specific suspicious IP address.
+    ```bash
+    # Search for all requests made by a specific IP
+    grep "192.168.1.1" access.log
+    ```
+*   **`less`:** Allows for viewing large log files one page at a time to prevent overwhelming the terminal. 
+    ```bash
+    # Open the log file for paginated viewing
+    less access.log
+    ```
+    *Inside `less`, I can press `/` followed by a string to search, `n` to move to the next occurrence, and `N` to move to the previous occurrence.*
