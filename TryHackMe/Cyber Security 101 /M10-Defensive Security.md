@@ -112,7 +112,6 @@ This is the formal document, approved by senior management, that details the org
 
 # 4. Logs Fundamentals
 
-# Intro to Log Analysis: Event Viewer & Linux CLI
 
 I recently completed a module focusing on the importance of log analysis in defensive security. I learned that logs are digital footprints left behind by both normal and malicious activities, making them crucial for incident investigation, security monitoring, and troubleshooting. 
 
