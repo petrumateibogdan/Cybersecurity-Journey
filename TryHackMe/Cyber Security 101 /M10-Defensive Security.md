@@ -120,7 +120,7 @@ Here are my repository notes covering the different types of logs, how to analyz
 
 ---
 
-## 1. Common Log Categories
+##  Common Log Categories
 To make investigations manageable, systems segregate logs into multiple categories based on the type of information they provide. 
 
 | Log Type | Primary Usage | Example Events |
@@ -134,7 +134,7 @@ To make investigations manageable, systems segregate logs into multiple categori
 
 ---
 
-## 2. Windows Event Logs & Event Viewer
+##  Windows Event Logs & Event Viewer
 I learned that Windows logs many of its activities into specific files, primarily categorized as Application, System, and Security. Security logs are the most important for cyber investigations, logging all authentication and account changes.
 
 Windows provides a built-in GUI utility called **Event Viewer** to search and filter these logs. Every logged activity is assigned a unique identifier known as an Event ID.
