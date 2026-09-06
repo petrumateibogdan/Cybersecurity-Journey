@@ -153,7 +153,7 @@ Windows provides a built-in GUI utility called **Event Viewer** to search and fi
 
 ---
 
-## 3. Web Server Access Logs (Linux CLI)
+##  Web Server Access Logs (Linux CLI)
 When users interact with a website, requests are stored in a log file on the web server (e.g., Apache logs are often found at `/var/log/apache2/access.log`). I learned that these logs contain valuable data, including the requester's IP address, the timestamp, the HTTP method (e.g., GET), the requested URL, the status code, and the User-Agent string.
 
 Because web logs are typically plain text, I can analyze them manually using standard Linux command-line utilities.
