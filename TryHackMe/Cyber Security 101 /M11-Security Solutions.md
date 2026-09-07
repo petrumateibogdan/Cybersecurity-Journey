@@ -25,3 +25,7 @@ Detection rules use logical expressions and normalized field-value pairs to succ
 *   For example, if a Windows EventLog registers Event ID 104, a rule triggers an "Event Log Cleared" alert.
 *   Analysts investigate triggered alerts via dashboards to determine if they are True Positives or False Positives.
 *   Based on these findings, analysts may tune rules, contact asset owners, block IPs, or isolate infected hosts.
+
+
+# 2. Firewall Fundamentals
+
