@@ -36,7 +36,7 @@ A firewall is designed to inspect a network's or digital device’s incoming and
 
 ---
 
-## 1. Types of Firewalls
+##  Types of Firewalls
 Different types of firewalls operate on different layers of the OSI model and serve unique purposes.
 
 | Firewall Type | OSI Layer | Characteristics |
@@ -48,7 +48,7 @@ Different types of firewalls operate on different layers of the OSI model and se
 
 ---
 
-## 2. Firewall Rules and Components
+##  Firewall Rules and Components
 Firewalls give you control over network traffic through built-in or customized rules. 
 
 ### Basic Rule Components
