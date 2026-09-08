@@ -31,4 +31,4 @@ Detection rules use logical expressions and normalized field-value pairs to succ
 
 
 
-# 3. IDS Fundamentals 
+# 3. IDS ( Intrusion Detection System )  Fundamentals 
