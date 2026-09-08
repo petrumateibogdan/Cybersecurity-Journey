@@ -66,7 +66,7 @@ Firewalls give you control over network traffic through built-in or customized r
 
 ---
 
-## 3. Windows Defender Firewall
+##  Windows Defender Firewall
 Windows Defender is Microsoft's built-in firewall containing core functionalities for allowing/denying specific programs or creating custom rules.
 
 ### Network Profiles
