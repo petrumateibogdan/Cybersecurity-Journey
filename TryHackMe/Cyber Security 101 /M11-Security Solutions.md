@@ -80,7 +80,7 @@ Custom rules are created in the "Advanced Settings" menu to strictly control inb
 
 ---
 
-## 4. Linux Built-in Firewalls
+##  Linux Built-in Firewalls
 Linux operating systems utilize the **Netfilter** framework, which provides core functionalities like packet filtering, NAT, and connection tracking. 
 
 ### Netfilter Utilities
