@@ -29,3 +29,6 @@ Detection rules use logical expressions and normalized field-value pairs to succ
 
 # 2. Firewall Fundamentals
 
+
+
+# 3. IDS Fundamentals 
