@@ -99,3 +99,54 @@ Linux operating systems utilize the **Netfilter** framework, which provides core
 
 
 # 3. IDS ( Intrusion Detection System )  Fundamentals 
+
+
+# Intro to IDS & Snort: Methodology and Command Cheat Sheet
+
+I recently explored Intrusion Detection Systems (IDS), which act as internal surveillance cameras for a network, detecting malicious activities that successfully bypass the perimeter firewall. Below is my GitHub-ready cheat sheet covering IDS concepts, Snort modes, custom rule creation, and a walkthrough for PCAP analysis.
+
+---
+
+## 1. IDS Deployment and Detection Modes
+Intrusion Detection Systems are categorized by where they are placed and how they identify threats.
+
+*   **Host Intrusion Detection System (HIDS):** Installed on individual devices to monitor specific host activities. Resource-intensive but provides granular visibility.
+*   **Network Intrusion Detection System (NIDS):** Monitors traffic across the entire network to provide a centralized view of suspicious activities.
+*   **Signature-Based Detection:** Compares network traffic against a database of known attack patterns (signatures). Fast, but fails against zero-day attacks.
+*   **Anomaly-Based Detection:** Establishes a baseline of normal network behavior and flags deviations. Can detect zero-days but often generates false positives.
+*   **Hybrid IDS:** Combines both signature and anomaly-based detection to leverage the strengths of each.
+
+---
+
+## 2. Snort Operation Modes
+Snort is a highly popular open-source IDS that operates in three distinct modes depending on your objective:
+
+| Snort Mode | Description | Primary Use Case |
+| :--- | :--- | :--- |
+| **Packet Sniffer** | Reads and displays network packets in real-time without analyzing them for threats. | Network monitoring and troubleshooting. |
+| **Packet Logging** | Logs network traffic into a standard PCAP file format, saving the data to the disk. | Forensic investigations and root cause analysis. |
+| **NIDS Mode** | Monitors traffic in real-time, applies rules/signatures, and generates alerts upon matches. | Proactive threat detection and alerting. |
+
+---
+
+## 3. Snort Rule Syntax & CLI Commands
+Snort's detection engine relies on rule files (typically located in `/etc/snort/rules/`). 
+
+**Anatomy of a Snort Rule:**
+`alert icmp any any -> $HOME_NET any (msg:"Ping Detected"; sid:10001; rev:1;)`
+*   **Action & Protocol:** `alert icmp` (Generate an alert for ICMP traffic).
+*   **Source IP & Port:** `any any` (From any IP and any port).
+*   **Direction:** `->` (Flowing towards the destination).
+*   **Destination IP & Port:** `$HOME_NET any` (To the defined home network on any port).
+*   **Metadata:** `msg` (Alert text), `sid` (Unique Signature ID), `rev` (Revision number).
+
+**Essential Snort Commands:**
+```bash
+# Edit custom local rules
+sudo nano /etc/snort/rules/local.rules
+
+# Run Snort in NIDS mode on a live interface (e.g., 'lo' or 'eth0')
+sudo snort -q -l /var/log/snort -i lo -A alert_fast -c /etc/snort/snort.lua
+
+# Run Snort against a historical PCAP file for forensic analysis
+sudo snort -q -l /var/log/snort -r /path/to/file.pcap -A alert_fast -c /etc/snort/snort.lua
