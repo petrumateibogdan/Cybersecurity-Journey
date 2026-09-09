@@ -101,7 +101,6 @@ Linux operating systems utilize the **Netfilter** framework, which provides core
 # 3. IDS ( Intrusion Detection System )  Fundamentals 
 
 
-# Intro to IDS & Snort: Methodology and Command Cheat Sheet
 
 I recently explored Intrusion Detection Systems (IDS), which act as internal surveillance cameras for a network, detecting malicious activities that successfully bypass the perimeter firewall. Below is my GitHub-ready cheat sheet covering IDS concepts, Snort modes, custom rule creation, and a walkthrough for PCAP analysis.
 
