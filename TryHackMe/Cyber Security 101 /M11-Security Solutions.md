@@ -107,7 +107,7 @@ I recently explored Intrusion Detection Systems (IDS), which act as internal sur
 
 ---
 
-## 1. IDS Deployment and Detection Modes
+##  IDS Deployment and Detection Modes
 Intrusion Detection Systems are categorized by where they are placed and how they identify threats.
 
 *   **Host Intrusion Detection System (HIDS):** Installed on individual devices to monitor specific host activities. Resource-intensive but provides granular visibility.
@@ -118,7 +118,7 @@ Intrusion Detection Systems are categorized by where they are placed and how the
 
 ---
 
-## 2. Snort Operation Modes
+##  Snort Operation Modes
 Snort is a highly popular open-source IDS that operates in three distinct modes depending on your objective:
 
 | Snort Mode | Description | Primary Use Case |
