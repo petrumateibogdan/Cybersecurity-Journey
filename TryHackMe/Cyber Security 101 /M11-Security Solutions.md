@@ -129,7 +129,7 @@ Snort is a highly popular open-source IDS that operates in three distinct modes 
 
 ---
 
-## 3. Snort Rule Syntax & CLI Commands
+##  Snort Rule Syntax & CLI Commands
 Snort's detection engine relies on rule files (typically located in `/etc/snort/rules/`). 
 
 **Anatomy of a Snort Rule:**
