@@ -162,3 +162,9 @@ Run Snort against the specific PCAP file:
 
 
 sudo snort -q -l /var/log/snort -r Intro_to_IDS.pcap -A alert_fast -c /etc/snort/snort.lua
+
+```
+
+#4. Vulnerability Scanner Overview
+
+
