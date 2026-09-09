@@ -165,6 +165,6 @@ sudo snort -q -l /var/log/snort -r Intro_to_IDS.pcap -A alert_fast -c /etc/snort
 
 ```
 
-#4. Vulnerability Scanner Overview
+# 4.Vulnerability Scanner Overview
 
 
