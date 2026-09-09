@@ -149,3 +149,13 @@ sudo snort -q -l /var/log/snort -i lo -A alert_fast -c /etc/snort/snort.lua
 
 # Run Snort against a historical PCAP file for forensic analysis
 sudo snort -q -l /var/log/snort -r /path/to/file.pcap -A alert_fast -c /etc/snort/snort.lua
+
+
+ractical Exercise Guide (Intro_to_IDS.pcap)
+To solve the final challenge using the provided Intro_to_IDS.pcap file, execute the following steps in your terminal to parse the traffic and extract the answers.
+
+Navigate to the Snort directory:
+
+Bash
+cd /etc/snort
+Run Snort against the specific PCAP file:
