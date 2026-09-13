@@ -254,3 +254,9 @@ Configure the Scan: Select your desired scan options (defining the scope/depth) 
 Initiate: Click the Play button under the "Actions" column to start the scan.
 
 Review & Export: Once the status changes to "Done", click the task name to view the severity numbers and export the final report.
+
+
+```
+#5. Snort Challenge - The Basics
+
+
