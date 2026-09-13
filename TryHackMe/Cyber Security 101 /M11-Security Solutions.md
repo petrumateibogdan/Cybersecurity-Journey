@@ -257,6 +257,6 @@ Review & Export: Once the status changes to "Done", click the task name to view 
 
 
 ```
-#5. Snort Challenge - The Basics
+# 5.Snort Challenge - The Basics
 
 
