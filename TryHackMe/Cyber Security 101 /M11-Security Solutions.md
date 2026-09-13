@@ -224,7 +224,7 @@ Because you can't fix everything at once, CVSS helps prioritize patching by assi
 
 ---
 
-## 4. OpenVAS: Practical Usage Guide
+##  OpenVAS: Practical Usage Guide
 Here is my workflow for deploying and using OpenVAS for vulnerability scanning.
 
 ### Installation via Docker
@@ -236,3 +236,7 @@ sudo apt install docker.io
 # Pull and run the OpenVAS container (Immauss image)
 sudo docker run -d -p 443:443 --name openvas immauss/openvas
 
+If the container is already installed but stopped:
+
+Bash
+docker start openvas****
