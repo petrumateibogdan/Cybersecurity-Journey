@@ -194,7 +194,7 @@ Organizations must regularly scan their infrastructure to maintain compliance an
 
 ---
 
-## 2. Industry Vulnerability Scanners
+##  Industry Vulnerability Scanners
 Automated scanners make finding weaknesses across massive networks efficient. They generate detailed reports outlining discovered vulnerabilities, risk scores, and remediation steps.
 
 *   **Nessus:** Originally open-source, now a proprietary tool by Tenable. Extremely popular in enterprises, offering a limited free version and a highly advanced commercial version. Requires on-premises deployment.
