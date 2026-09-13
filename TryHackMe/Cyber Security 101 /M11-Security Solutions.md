@@ -204,7 +204,7 @@ Automated scanners make finding weaknesses across massive networks efficient. Th
 
 ---
 
-## 3. Vulnerability Tracking: CVE and CVSS
+##  Vulnerability Tracking: CVE and CVSS
 To manage and prioritize the thousands of known vulnerabilities, the cybersecurity industry relies on standardized tracking and scoring systems.
 
 ### CVE (Common Vulnerabilities and Exposures)
@@ -240,3 +240,18 @@ If the container is already installed but stopped:
 
 Bash
 docker start openvas****
+
+Performing a Scan
+Access the Dashboard: Open a web browser and navigate to https://127.0.0.1.
+
+Login: Enter credentials (default is often admin / admin).
+
+Navigate to Tasks: Go to Scans -> Tasks.
+
+Create a Target: Click the star icon -> New Task. Click Scan Targets to add the target IP address/hostname, then click Create.
+
+Configure the Scan: Select your desired scan options (defining the scope/depth) and finalize task creation.
+
+Initiate: Click the Play button under the "Actions" column to start the scan.
+
+Review & Export: Once the status changes to "Done", click the task name to view the severity numbers and export the final report.
