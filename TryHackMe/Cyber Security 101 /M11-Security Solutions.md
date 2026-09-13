@@ -167,4 +167,72 @@ sudo snort -q -l /var/log/snort -r Intro_to_IDS.pcap -A alert_fast -c /etc/snort
 
 # 4.Vulnerability Scanner Overview
 
+# Vulnerability Scanning and Management
+
+I recently completed a module on hunting down digital vulnerabilities. Just as small holes in a roof can lead to severe water damage if left unchecked, vulnerabilities in software or hardware can allow attackers to compromise a system. Identifying these weaknesses is known as **Vulnerability Scanning**, and fixing them is called **Patching**.
+
+Here are my comprehensive notes and cheat sheets for GitHub, covering scan types, industry tools, vulnerability scoring, and an OpenVAS walkthrough.
+
+---
+
+## 1. Types of Vulnerability Scans
+Organizations must regularly scan their infrastructure to maintain compliance and security. Scans are broadly categorized by access level and origin point.
+
+### Authenticated vs. Unauthenticated Scans
+| Feature | Authenticated Scans | Unauthenticated Scans |
+| :--- | :--- | :--- |
+| **Credentials** | Requires the host's login credentials. | Does not require credentials; only the IP address. |
+| **Perspective** | Identifies vulnerabilities exploitable by someone with internal host access. | Identifies vulnerabilities exploitable by an external attacker with no access. |
+| **Visibility** | Deep visibility (scans configurations, installed apps, registries). | Surface-level visibility (less resource-intensive, easy to set up). |
+| **Example** | Scanning an internal database using admin credentials. | Scanning a public-facing website. |
+
+### Internal vs. External Scans
+| Feature | Internal Scans | External Scans |
+| :--- | :--- | :--- |
+| **Origin** | Conducted from *inside* the network. | Conducted from *outside* the network. |
+| **Focus** | Vulnerabilities exploitable after an attacker breaches the perimeter. | Vulnerabilities exposed directly to the public internet. |
+
+---
+
+## 2. Industry Vulnerability Scanners
+Automated scanners make finding weaknesses across massive networks efficient. They generate detailed reports outlining discovered vulnerabilities, risk scores, and remediation steps.
+
+*   **Nessus:** Originally open-source, now a proprietary tool by Tenable. Extremely popular in enterprises, offering a limited free version and a highly advanced commercial version. Requires on-premises deployment.
+*   **Qualys:** A cloud-based, subscription model platform. Because it is hosted in the cloud, it requires no physical hardware maintenance while providing continuous scanning, compliance checks, and asset management.
+*   **Nexpose:** Developed by Rapid7. It continuously discovers new assets and assigns dynamic risk scores based on asset value and vulnerability impact. Offers on-premises and hybrid deployments.
+*   **OpenVAS:** An open-source scanner by Greenbone Security. While less extensive than enterprise tools, it provides a full vulnerability scanning experience, making it perfect for individuals and small organizations.
+
+---
+
+## 3. Vulnerability Tracking: CVE and CVSS
+To manage and prioritize the thousands of known vulnerabilities, the cybersecurity industry relies on standardized tracking and scoring systems.
+
+### CVE (Common Vulnerabilities and Exposures)
+Managed by the MITRE Corporation, a CVE is a unique identifier assigned to a specific, publicly known vulnerability. 
+*   **Format:** `CVE-[Year]-[Arbitrary Digits]` (e.g., *CVE-2024-9374*).
+*   **Purpose:** Provides a universal reference point so professionals can look up details and patches in online databases.
+
+### CVSS (Common Vulnerability Scoring System)
+Because you can't fix everything at once, CVSS helps prioritize patching by assigning a severity score from 0 to 10 based on impact and ease of exploitation.
+
+| CVSS Score Range | Severity Level |
+| :--- | :--- |
+| **0.0 - 3.9** | Low |
+| **4.0 - 6.9** | Medium |
+| **7.0 - 8.9** | High |
+| **9.0 - 10.0** | Critical |
+
+---
+
+## 4. OpenVAS: Practical Usage Guide
+Here is my workflow for deploying and using OpenVAS for vulnerability scanning.
+
+### Installation via Docker
+OpenVAS has many dependencies, making manual installation tedious. Using a Docker container simplifies this immensely.
+```bash
+# Install Docker (Ubuntu/Debian)
+sudo apt install docker.io
+
+# Pull and run the OpenVAS container (Immauss image)
+sudo docker run -d -p 443:443 --name openvas immauss/openvas
 
