@@ -167,7 +167,6 @@ sudo snort -q -l /var/log/snort -r Intro_to_IDS.pcap -A alert_fast -c /etc/snort
 
 # 4.Vulnerability Scanner Overview
 
-# Vulnerability Scanning and Management
 
 I recently completed a module on hunting down digital vulnerabilities. Just as small holes in a roof can lead to severe water damage if left unchecked, vulnerabilities in software or hardware can allow attackers to compromise a system. Identifying these weaknesses is known as **Vulnerability Scanning**, and fixing them is called **Patching**.
 
@@ -175,7 +174,7 @@ Here are my comprehensive notes and cheat sheets for GitHub, covering scan types
 
 ---
 
-## 1. Types of Vulnerability Scans
+##  Types of Vulnerability Scans
 Organizations must regularly scan their infrastructure to maintain compliance and security. Scans are broadly categorized by access level and origin point.
 
 ### Authenticated vs. Unauthenticated Scans
