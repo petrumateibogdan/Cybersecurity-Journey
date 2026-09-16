@@ -44,7 +44,7 @@ A user-friendly space to input text or files by pasting, typing, or dragging.
 * **Clear input and output:** Clears the current input values and their corresponding output.
 * **Reset pane layout:** Restores the interface to default window sizes.
 
-### 4. The Output Area
+###  The Output Area
 The visual space showcasing the results of your data processing and manipulations.
 
 **Key Features:**
