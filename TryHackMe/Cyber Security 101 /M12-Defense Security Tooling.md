@@ -11,7 +11,7 @@ CyberChef is a simple, intuitive web-based application designed to help with var
 
 CyberChef consists of four primary areas, each serving a specific function in your data processing workflow.
 
-### 1. The Operations Area
+###  The Operations Area
 This is a comprehensive repository of all the diverse operations CyberChef can perform, meticulously categorized for convenient access. You can use the search feature to locate specific operations quickly. Hovering over an operation provides a sample, description, and a link to Wikipedia for further reading.
 
 **Common Operations Examples:**
