@@ -145,3 +145,6 @@ When working with the **URL Decode** operation, it is helpful to recognize commo
 | `.` | `%2E` |
 | `=` | `%3D` |
 | `#` | `%23` |
+
+
+# 2. CAPA: The Basics
