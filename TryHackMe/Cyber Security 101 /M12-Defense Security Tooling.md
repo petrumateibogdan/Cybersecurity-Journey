@@ -34,7 +34,7 @@ Considered the heart of the tool. Here, you can select, arrange, and fine-tune o
 * **BAKE! Button:** Processes the data using the current recipe setup.
 * **Auto Bake:** Automatically processes the data as you modify the recipe without needing to manually click "BAKE!".
 
-### 3. The Input Area
+###  The Input Area
 A user-friendly space to input text or files by pasting, typing, or dragging.
 
 **Key Features:**
