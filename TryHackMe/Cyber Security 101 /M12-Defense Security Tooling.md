@@ -24,7 +24,7 @@ This is a comprehensive repository of all the diverse operations CyberChef can p
 | **To Decimal** | Converts the input data to an ordinal integer array. | `This Decimal conversion...` becomes `84 104 105...` |
 | **ROT13** | A Caesar substitution cipher rotating characters by 13. | `Digital Forensics...` becomes `Qvtvgny Sberafvpf...` |
 
-### 2. The Recipe Area
+###  The Recipe Area
 Considered the heart of the tool. Here, you can select, arrange, and fine-tune operations. You drag operations into this area and define their precise arguments and options.
 
 **Key Features:**
