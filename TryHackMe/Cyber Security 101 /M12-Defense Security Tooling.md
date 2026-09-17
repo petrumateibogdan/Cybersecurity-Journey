@@ -149,13 +149,11 @@ When working with the **URL Decode** operation, it is helpful to recognize commo
 
 # 2. CAPA: The Basics
 
-
-
 Notes on CAPA (Common Analysis Platform for Artifacts), an open-source static analysis tool originally developed by the FireEye Mandiant team. Instead of manually reverse engineering a binary line by line, CAPA runs it against a huge library of rules describing known malicious behaviors and tells you what the file is *capable of doing* — network communication, file manipulation, process injection, evasion techniques, and more. It works on PE files, ELF binaries, .NET modules, raw shellcode, and even sandbox reports.
 
 Basically: it encodes years of reverse engineering knowledge into rules, so you get a fast capability summary instead of starting from zero on every sample.
 
-## 1. Command Line Usage
+##  Command Line Usage
 
 Run from PowerShell or Bash, pointing at the target binary.
 
