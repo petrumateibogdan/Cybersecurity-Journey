@@ -171,7 +171,7 @@ capa.exe .\cryptbot.bin
 | `-vv` / `--vverbose` | Very verbose — shows exact rule matches | `capa.exe -vv .\cryptbot.bin` |
 | `-j` | Output in JSON format (needed for Web Explorer) | `capa.exe -j -vv .\cryptbot.bin > output.json` |
 
-## 2. Reading CAPA's Output
+##  Reading CAPA's Output
 
 CAPA organizes what it finds into a few structured blocks, each mapped to a standardized framework:
 
@@ -190,7 +190,7 @@ A language for describing complex malware behavior at a higher level:
 - **Launcher** — drops additional payloads, activates persistence, connects to C2, executes specific functions
 - **Downloader** — fetches additional payloads/resources, pulls updates, retrieves config files
 
-## 3. Malware Behavior Catalogue (MBC)
+##  Malware Behavior Catalogue (MBC)
 
 MBC complements MITRE ATT&CK but is purpose-built for malware analysis specifically — it catalogues malware *objectives* and behaviors.
 
@@ -209,7 +209,7 @@ Format: `OBJECTIVE :: Behavior :: Method [Identifier]`
 - **Execution** — abusing command/script interpreters (Command and Scripting Interpreter [E1059])
 - **Discovery** — enumerating files/directories to gather target info (File and Directory Discovery [E1083])
 
-## 4. Capabilities and Namespaces
+##  Capabilities and Namespaces
 
 This is where CAPA lists exactly which rules matched, grouped logically:
 
