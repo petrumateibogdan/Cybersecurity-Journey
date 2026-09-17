@@ -149,10 +149,106 @@ When working with the **URL Decode** operation, it is helpful to recognize commo
 
 # 2. CAPA: The Basics
 
-CAPA: Automated Static Malware AnalysisCAPA (Common Analysis Platform for Artifacts) is an automated static analysis tool developed by the FireEye Mandiant team. It is designed to identify the capabilities present in executable files—such as Portable Executables (PE), ELF binaries, .NET modules, shellcode, and sandbox reports—by analyzing the file against a set of rules describing common malicious behaviors.By encapsulating years of reverse engineering knowledge, CAPA allows security professionals to quickly determine a program's capabilities (e.g., network communication, file manipulation, process injection, evasion) without manually reverse engineering the code.1. Command Line Usage and ParametersCAPA is executed via the command line (PowerShell or Bash) by pointing the tool to the target binary.Basic SyntaxPowerShellcapa.exe .\cryptbot.bin
 
-Essential ParametersParameterDescriptionExample Syntax-h or --helpDisplays the help message and available options.capa -h-v or --verboseEnables a detailed verbose result document.capa.exe -v .\cryptbot.bin-vv or --vverboseEnables a very verbose document showing exact rule matches.capa.exe -vv .\cryptbot.bin-jOutputs the results in JSON format (ideal for Web Explorer).capa.exe -j -vv .\cryptbot.bin > output.json2. Dissecting the CAPA OutputCAPA categorizes its findings into highly structured blocks mapping the binary's behavior to standardized cybersecurity frameworks.Basic InformationDisplays foundational file details including cryptographic hashes (MD5, SHA1, SHA256), the analysis method (static), the operating system, the architecture (e.g., i386), and the file format (e.g., pe).MITRE ATT&CK MappingCAPA maps the file's discovered capabilities to the MITRE ATT&CK adversary playbook, helping defenders understand the tactics and techniques being utilized.Format: ATT&CK Tactic :: ATT&CK Technique :: Sub-Technique [Identifier]Example: DEFENSE EVASION :: Obfuscated Files or Information :: Indicator Removal from Tools [T1027.005]MAEC (Malware Attribute Enumeration and Characterization)MAEC is a specialized language used to encode and communicate complex details concerning malware.Launcher: The file exhibits behaviors such as dropping additional payloads, activating persistence mechanisms, connecting to C2 servers, or executing specific functions.Downloader: The file fetches additional payloads/resources from the internet, pulls updates, or retrieves configuration files.3. Malware Behavior Catalogue (MBC)MBC serves as a catalog of malware objectives and behaviors that complements the MITRE ATT&CK framework, tailored specifically for malware analysis and characterization.Format: OBJECTIVE :: Behavior :: Method [Identifier]ComponentExampleExplanationObjectiveDATABroad goals (e.g., checking strings, compressing, decoding, or encoding data).Behavior / Micro-BehaviorEncode DataSpecific actions or low-level actions (e.g., encoding data using Base64 or XOR).MethodBase64Sub-technique indicating how the behavior is achieved.Identifier[C0026.001]The unique tag linking to the MBC catalog.Common MBC ObjectivesAnti-Behavioral Analysis: Attempts to avoid detection by hindering sandboxes or debuggers (e.g., Lab Machine Detection [B0009]).Anti-Static Analysis: Obstructs static analysis to conceal intentions (e.g., Executable Code Obfuscation [B0032]).Execution: Exploits command and script interpreters (e.g., Command and Scripting Interpreter [E1059]).Discovery: Enumerates files and directories to gather target information (e.g., File and Directory Discovery [E1083]).4. Capabilities and NamespacesThis block outlines the specific rules triggered by the binary and groups them logically.Capability: The specific rule name that was matched (e.g., reference anti-VM strings targeting VMWare). This translates directly to the underlying .yml rule file name (e.g., reference-anti-vm-strings-targeting-vmware.yml).Top-Level Namespace (TLN): The broad category of the rule (e.g., anti-analysis, host-interaction, communication, data-manipulation).Namespace: The specific sub-category within the TLN (e.g., anti-vm/vm-detection).Nursery (Exception): Rules that are not yet fully polished are placed in the nursery TLN rather than their expected logical TLN.Top-Level Namespace (TLN) ExamplesTLNExplanationanti-analysisRules designed to detect evasion behaviors like obfuscation, packing, anti-debugging, and VM detection.communicationRules pertaining to data transmission, C2 communications, and network behaviors (HTTP, DNS, etc.).data-manipulationBehaviors altering data within executables, such as string encryption or data encoding (XOR, Base64).host-interactionBehaviors involving the host system (reading, writing, modifying files, registries, or processes).impactPotential consequences or harm the malware can cause (destruction, cryptocurrency mining, remote access).5. CAPA Web Explorer (Very Verbose Analysis)When utilizing the -vv (very verbose) parameter, CAPA generates extensive output explaining exactly why a rule matched. Because terminal output can easily exceed thousands of lines, analysts use the CAPA Web Explorer for visual analysis.Workflow for Web ExplorerGenerate a JSON report:PowerShellcapa.exe -j -vv .\cryptbot.bin > cryptbot_vv.json
-Open CAPA Web Explorer: Access the online CAPA Explorer or use a local HTML copy.Upload the Report: Click "Upload from local" in the bottom left and select your cryptbot_vv.json file.Analyze Rule Logic: Click on specific capabilities to view the underlying YAML rule and the exact regex strings matched within the binary. Use the global search box to filter results efficiently.Example: Rule Matching Logic (Anti-VM)If you click on the capability reference anti-VM strings targeting VMWare inside the Web Explorer, you will see the exact strings CAPA found inside the binary's code that triggered the alert. This confirms that the malware is actively searching for VMware artifacts to evade sandboxes.YAML  features:
+
+Notes on CAPA (Common Analysis Platform for Artifacts), an open-source static analysis tool originally developed by the FireEye Mandiant team. Instead of manually reverse engineering a binary line by line, CAPA runs it against a huge library of rules describing known malicious behaviors and tells you what the file is *capable of doing* — network communication, file manipulation, process injection, evasion techniques, and more. It works on PE files, ELF binaries, .NET modules, raw shellcode, and even sandbox reports.
+
+Basically: it encodes years of reverse engineering knowledge into rules, so you get a fast capability summary instead of starting from zero on every sample.
+
+## 1. Command Line Usage
+
+Run from PowerShell or Bash, pointing at the target binary.
+
+**Basic syntax:**
+```powershell
+capa.exe .\cryptbot.bin
+```
+
+**Key flags:**
+
+| Flag | Description | Example |
+|---|---|---|
+| `-h` / `--help` | Shows help message and available options | `capa -h` |
+| `-v` / `--verbose` | Detailed verbose result document | `capa.exe -v .\cryptbot.bin` |
+| `-vv` / `--vverbose` | Very verbose — shows exact rule matches | `capa.exe -vv .\cryptbot.bin` |
+| `-j` | Output in JSON format (needed for Web Explorer) | `capa.exe -j -vv .\cryptbot.bin > output.json` |
+
+## 2. Reading CAPA's Output
+
+CAPA organizes what it finds into a few structured blocks, each mapped to a standardized framework:
+
+### Basic Information
+File hashes (MD5/SHA1/SHA256), analysis method (static), OS, architecture (e.g. i386), file format (e.g. pe).
+
+### MITRE ATT&CK Mapping
+Maps discovered capabilities to the MITRE ATT&CK framework so you can see the tactics/techniques in play.
+
+Format: `ATT&CK Tactic :: ATT&CK Technique :: Sub-Technique [Identifier]`
+
+Example: `DEFENSE EVASION :: Obfuscated Files or Information :: Indicator Removal from Tools [T1027.005]`
+
+### MAEC (Malware Attribute Enumeration and Characterization)
+A language for describing complex malware behavior at a higher level:
+- **Launcher** — drops additional payloads, activates persistence, connects to C2, executes specific functions
+- **Downloader** — fetches additional payloads/resources, pulls updates, retrieves config files
+
+## 3. Malware Behavior Catalogue (MBC)
+
+MBC complements MITRE ATT&CK but is purpose-built for malware analysis specifically — it catalogues malware *objectives* and behaviors.
+
+Format: `OBJECTIVE :: Behavior :: Method [Identifier]`
+
+| Component | Example | Meaning |
+|---|---|---|
+| Objective | DATA | Broad goal (checking strings, compressing, decoding, encoding data) |
+| Behavior | Encode Data | Specific action (e.g. encoding via Base64 or XOR) |
+| Method | Base64 | The exact sub-technique used |
+| Identifier | [C0026.001] | Unique tag linking back to the MBC catalog |
+
+**Common MBC objectives to know:**
+- **Anti-Behavioral Analysis** — evading sandboxes/debuggers (e.g. Lab Machine Detection [B0009])
+- **Anti-Static Analysis** — obstructing static analysis, e.g. code obfuscation (Executable Code Obfuscation [B0032])
+- **Execution** — abusing command/script interpreters (Command and Scripting Interpreter [E1059])
+- **Discovery** — enumerating files/directories to gather target info (File and Directory Discovery [E1083])
+
+## 4. Capabilities and Namespaces
+
+This is where CAPA lists exactly which rules matched, grouped logically:
+
+- **Capability** — the specific rule name matched (e.g. "reference anti-VM strings targeting VMWare"), which maps directly to a `.yml` rule file (`reference-anti-vm-strings-targeting-vmware.yml`)
+- **Top-Level Namespace (TLN)** — the broad category (anti-analysis, host-interaction, communication, data-manipulation, impact...)
+- **Namespace** — a more specific sub-category within the TLN (e.g. `anti-vm/vm-detection`)
+- **Nursery** — an exception TLN for rules that aren't fully polished yet, so they sit here instead of their "proper" category
+
+**TLN examples:**
+
+| TLN | Meaning |
+|---|---|
+| anti-analysis | Evasion behaviors — obfuscation, packing, anti-debugging, VM detection |
+| communication | Data transmission, C2 communication, network behavior (HTTP, DNS, etc.) |
+| data-manipulation | Altering data inside the executable — string encryption, XOR/Base64 encoding |
+| host-interaction | Reading/writing/modifying files, registry keys, or processes on the host |
+| impact | The actual damage potential — destruction, cryptomining, remote access |
+
+## 5. CAPA Web Explorer (for very verbose output)
+
+Running with `-vv` can produce thousands of lines in the terminal — way too much to read raw. The Web Explorer turns that JSON dump into something actually browsable.
+
+**Workflow:**
+1. Generate the JSON report:
+```powershell
+   capa.exe -j -vv .\cryptbot.bin > cryptbot_vv.json
+```
+2. Open CAPA Web Explorer (online version, or a local HTML copy).
+3. Click **"Upload from local"** (bottom left) and select the `.json` file.
+4. Click into individual capabilities to see the exact YAML rule logic and the precise regex strings that matched inside the binary. There's a global search box to filter through everything quickly.
+
+### Example — Anti-VM rule logic
+
+Clicking into "reference anti-VM strings targeting VMWare" shows exactly which strings inside the binary triggered the match — confirming the malware is actively searching for VMware artifacts to detect (and evade) a sandbox:
+
+```yaml
+features:
     - or:
       - string: /VMWare/i
       - string: /VMTools/i
@@ -160,7 +256,14 @@ Open CAPA Web Explorer: Access the online CAPA Explorer or use a local HTML copy
       - string: /vmnet\.sys/i
       - string: /vmmouse\.sys/i
       - string: /vmtoolsd\.exe/i
-Example: Rule Matching Logic (Persistence)If you inspect the capability schedule task via schtasks, the Web Explorer reveals the logic requiring specific process creation commands paired with task scheduling strings:YAML  features:
+```
+
+### Example — Persistence rule logic
+
+Inspecting "schedule task via schtasks" shows the rule requires a process-creation event paired with specific scheduling command strings:
+
+```yaml
+features:
     - and:
       - match: host-interaction/process/create
       - or:
@@ -168,4 +271,19 @@ Example: Rule Matching Logic (Persistence)If you inspect the capability schedule
           - string: /schtasks/i
           - string: /\/create /i
         - string: /Register-ScheduledTask /i
+```
+
+## Takeaway
+
+What clicked for me: CAPA isn't guessing behavior from vibes — every single capability it reports traces back to an actual YAML rule made of concrete string/regex matches or API/process-creation patterns found inside the binary. The Web Explorer is what makes that traceable — instead of just trusting a label like "anti-VM detection," you can click straight through to the exact strings that earned it that label. That's a big part of why CAPA is useful for triage: it doesn't replace manual reverse engineering, but it tells you *where to look first* by mapping raw binary behavior onto frameworks (ATT&CK, MBC) that already have a shared vocabulary across the industry.
+
+## Quick reference
+
+| Task | Command |
+|---|---|
+| Basic scan | `capa.exe .\file.bin` |
+| Verbose | `capa.exe -v .\file.bin` |
+| Very verbose | `capa.exe -vv .\file.bin` |
+| JSON output for Web Explorer | `capa.exe -j -vv .\file.bin > output.json` |
+| Help | `capa -h` |
 
