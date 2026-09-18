@@ -285,3 +285,5 @@ What clicked for me: CAPA isn't guessing behavior from vibes — every single ca
 | JSON output for Web Explorer | `capa.exe -j -vv .\file.bin > output.json` |
 | Help | `capa -h` |
 
+# 3. REMnux: Getting Started
+
