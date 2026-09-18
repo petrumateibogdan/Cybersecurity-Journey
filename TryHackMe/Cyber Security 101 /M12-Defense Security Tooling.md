@@ -228,7 +228,7 @@ This is where CAPA lists exactly which rules matched, grouped logically:
 | host-interaction | Reading/writing/modifying files, registry keys, or processes on the host |
 | impact | The actual damage potential — destruction, cryptomining, remote access |
 
-## 5. CAPA Web Explorer (for very verbose output)
+##  CAPA Web Explorer (for very verbose output)
 
 Running with `-vv` can produce thousands of lines in the terminal — way too much to read raw. The Web Explorer turns that JSON dump into something actually browsable.
 
