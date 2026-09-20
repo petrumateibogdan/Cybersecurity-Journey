@@ -371,7 +371,7 @@ Execute payload
 
 ---
 
-## 2. Dynamic Analysis with INetSim
+##  Dynamic Analysis with INetSim
 
 I used **INetSim** to simulate Internet services in an isolated environment.
 
@@ -424,7 +424,7 @@ This helped me understand how malware network behaviour can be observed safely u
 
 ---
 
-## 3. Windows Memory Analysis with Volatility 3
+##  Windows Memory Analysis with Volatility 3
 
 I analysed:
 
@@ -489,7 +489,7 @@ The process tree, command lines and process scanning helped me understand how di
 
 ---
 
-## 4. Automating Volatility
+##  Automating Volatility
 
 Instead of running every plugin manually, I learned how to process several plugins using a Bash loop:
 
@@ -506,7 +506,7 @@ This creates separate `.txt` files containing the results.
 
 ---
 
-## 5. Extracting Strings
+##  Extracting Strings
 
 I also learned how to preprocess a memory image with `strings`:
 
