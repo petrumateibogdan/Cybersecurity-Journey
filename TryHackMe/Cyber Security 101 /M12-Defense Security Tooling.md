@@ -287,3 +287,9 @@ What clicked for me: CAPA isn't guessing behavior from vibes — every single ca
 
 # 3. REMnux: Getting Started
 
+
+
+# 4. FlareVM: Arsenal of Tools
+
+
+
