@@ -559,4 +559,255 @@ I also learned the importance of **preprocessing evidence** so that large amount
 # 4. FlareVM: Arsenal of Tools
 
 
+# FlareVM – Malware Analysis
+
+Notes from my FlareVM / malware analysis practice.
+I’m keeping these here so I can come back later and remember what I learned and how the tools are used.
+
+## FlareVM
+
+I learned that **FlareVM** is a Windows environment made for malware analysis, reverse engineering, incident response and forensics.
+
+Some of the tools I got introduced to:
+
+* PEStudio
+* FLOSS
+* Process Explorer
+* Procmon
+* HxD
+* CFF Explorer
+* Wireshark
+* Volatility
+* Ghidra
+* x64dbg
+* Binary Ninja
+* DIE / PEiD
+* FTK Imager
+
+## PEStudio
+
+I learned that PEStudio can be used for **static analysis** without executing the file.
+
+Things I should check:
+
+* MD5 / SHA-1 hashes
+* File description and metadata
+* Version information
+* Rich Header
+* Entropy
+* Imported APIs / IAT
+* Possible packing or obfuscation
+
+I analyzed a suspicious `windows.exe` file that pretended to be Windows Registry Editor.
+
+Hashes from the sample:
+
+```text
+MD5:
+9FDD4767DE5AEC8E577C1916ECC3E1D6
+
+SHA-1:
+A1BC55A7931BFCD24651357829C460FD3DC4828F
+```
+
+I learned that suspicious metadata, file location and imported functions can give useful clues before running a sample.
+
+Interesting APIs from the sample:
+
+```text
+set_UseShellExecute
+CryptoStream
+RijndaelManaged
+CipherMode
+CreateDecryptor
+```
+
+## FLOSS
+
+I learned that **FLOSS** is used to extract strings from binaries and can also try to deobfuscate strings.
+
+Command:
+
+```powershell
+FLOSS.exe .\windows.exe > windows.txt
+```
+
+It can help find things like:
+
+* URLs
+* IP addresses
+* File paths
+* API calls
+* Registry information
+* Configuration data
+* Other hardcoded strings
+
+I also used it on `cobaltstrike.exe`.
+
+```powershell
+floss .\cobaltstrike.exe
+```
+
+The analysis extracted **189 static strings**, but no decoded strings.
+
+Some APIs found:
+
+```text
+CreateFileA
+CreateNamedPipeA
+CreateThread
+GetProcAddress
+LoadLibraryW
+VirtualAlloc
+VirtualProtect
+WriteFile
+```
+
+## Process Explorer
+
+I learned that **Process Explorer** helps me understand running processes and their relationships.
+
+Things I should check:
+
+* Process ID
+* Parent process
+* Child processes
+* Process path
+* Process information
+* Network connections
+
+This is useful for seeing what a suspicious file starts or what started it.
+
+## Procmon
+
+I learned that **Process Monitor** records system activity in real time.
+
+It can show:
+
+* File system activity
+* Registry activity
+* Process activity
+* Thread activity
+
+I learned how to filter Procmon to focus on a specific process.
+
+Example:
+
+```text
+Process Name
+contains
+cobalt
+include
+```
+
+This makes it much easier to investigate one suspicious process instead of looking through everything.
+
+## Cobalt Strike Analysis
+
+I analyzed `cobaltstrike.exe` using Process Explorer and Procmon.
+
+I checked the process and then looked at its **TCP/IP** information.
+
+I verified the result using Procmon instead of trusting only one tool.
+
+The sample made a connection to:
+
+```text
+47.120.46.210
+```
+
+Important lesson:
+
+**Always try to verify important findings with another tool or source of evidence.**
+
+## HxD
+
+I learned that **HxD** can be used to inspect raw hexadecimal data.
+
+Example:
+
+```text
+4D 5A
+```
+
+The `MZ` header is an important indicator when identifying Windows PE files.
+
+I can use HxD to:
+
+* Inspect bytes
+* Search binary data
+* Compare data
+* Look at file structure
+* Investigate suspicious/corrupted files
+
+## CFF Explorer
+
+I learned that **CFF Explorer** can be used to inspect PE files and their information.
+
+I can use it for:
+
+* PE information
+* File hashes
+* Metadata
+* Checking unusual modifications
+* Investigating executable files
+
+## Wireshark
+
+I learned that **Wireshark** is used to analyze network traffic.
+
+Things I should look at:
+
+* Source IP
+* Destination IP
+* Ports
+* Protocols
+* Packets
+* Connection patterns
+
+Encrypted traffic such as TLS can hide the actual contents, but the connection metadata can still be useful.
+
+## My Malware Analysis Workflow
+
+The main workflow I want to remember from this room:
+
+```text
+Identify the file
+       ↓
+Calculate / check hashes
+       ↓
+Static analysis
+       ↓
+Inspect PE information
+       ↓
+Extract strings
+       ↓
+Check APIs
+       ↓
+Run only in an isolated environment
+       ↓
+Monitor the process
+       ↓
+Monitor system activity
+       ↓
+Check network connections
+       ↓
+Verify findings with multiple tools
+```
+
+## What I Learned
+
+* How to start investigating a suspicious Windows executable.
+* The difference between static and dynamic analysis.
+* How PEStudio can give me an initial overview of a binary.
+* How FLOSS can reveal useful strings and APIs.
+* How Process Explorer helps me understand process relationships.
+* How Procmon can show what a process is doing on the system.
+* How HxD can help me inspect raw binary data.
+* How CFF Explorer can help with PE information and hashes.
+* How Wireshark can help investigate suspicious network traffic.
+* Why I should not rely on one tool when analyzing malware.
+* Why suspicious samples should only be handled in an isolated environment.
+
+**Things I want to revisit later:** PE files, IAT/API analysis, entropy, packing, string obfuscation, Windows processes, network analysis, and reverse engineering.
 
