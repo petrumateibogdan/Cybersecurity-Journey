@@ -3,9 +3,6 @@
 
 # Security Principles
 
-Notes from my TryHackMe **Security Principles** room.
-
-I’m keeping these here so I can come back later and remember the concepts I learned.
 
 ## CIA Triad
 
