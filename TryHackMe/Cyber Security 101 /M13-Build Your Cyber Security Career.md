@@ -208,4 +208,6 @@ This room gave me a foundation in:
 
 Things I want to revisit later: **security models, ISO/IEC 19249, Zero Trust, risk analysis, and cloud security.**
 
+# 2. Training Impact on Teams
+
 
