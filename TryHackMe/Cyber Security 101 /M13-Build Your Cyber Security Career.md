@@ -182,8 +182,8 @@ The responsibility depends on the service model.
 
 For example:
 
-* **IaaS ( Infrastructure as a Service) ** → customer has significant responsibility, including the operating system.
-* **SaaS ( Software as a Service ) ** → provider manages much more of the underlying infrastructure, while the customer still has responsibilities at their level.
+* **IaaS ( Infrastructure as a Service)** → customer has significant responsibility, including the operating system.
+* **SaaS ( Software as a Service )** → provider manages much more of the underlying infrastructure, while the customer still has responsibilities at their level.
 
 ## What I Learned
 
