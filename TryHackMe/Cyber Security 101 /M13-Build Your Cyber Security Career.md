@@ -211,3 +211,104 @@ Things I want to revisit later: **security models, ISO/IEC 19249, Zero Trust, ri
 # 2. Training Impact on Teams
 
 
+## Why Training Matters
+
+I learned that cyber security skills need to be built through **practice and continuous training**.
+
+Nobody becomes a cyber security expert without practice. Training environments are important because they allow people to learn and experiment without risking production systems.
+
+It is better to learn how to respond to attacks **before** dealing with a real incident.
+
+Training can help organizations:
+
+* Improve the skills of their security teams
+* Prepare employees for real incidents
+* Increase productivity
+* Help junior employees develop faster
+* Reduce the amount of repeated training required from senior staff
+* Create a common baseline for measuring skills
+* Make it easier to assign people to tasks based on their abilities
+* Encourage teamwork through activities such as CTFs
+
+## Training Platforms
+
+I learned that smaller teams can use **off-the-shelf training**, while larger organizations or teams with specific requirements may benefit from customized training.
+
+TryHackMe's **Content Studio** can be used by organizations to modify or create training content around their own requirements.
+
+For larger companies, training platforms may also need integrations such as:
+
+* **SSO (Single Sign-On)**
+* **APIs**
+* Integration with existing systems
+
+## Training ROI
+
+I learned how training can be measured financially using **Return on Investment (ROI)**.
+
+Example:
+
+```text
+10 employees
+$80,000 cost per employee
+4% productivity increase
+```
+
+Productivity gain:
+
+```text
+10 × $80,000 × 4% = $32,000
+```
+
+Training cost:
+
+```text
+10 × $500 = $5,000
+```
+
+ROI:
+
+```text
+$32,000 / $5,000 = 640%
+```
+
+So the example showed a **640% ROI**.
+
+## Training Scenario
+
+I also learned how to calculate the productivity savings for a different team:
+
+```text
+20 employees
+$50,000 per employee
+4% productivity increase
+```
+
+Calculation:
+
+```text
+20 × $50,000 × 4% = $40,000
+```
+
+**Savings = $40,000**
+
+## Choosing a Training Vendor
+
+I learned that organizations should consider:
+
+* Who the training is for
+* Employees' experience and background
+* Their roles and relevant topics
+* Whether the vendor has experience with similar organizations
+* Content breadth, depth and quality
+* Whether users can learn and practice on the same platform
+* Cost compared with the expected benefits
+
+## What I Learned
+
+The main thing I took from this room is that **cyber security requires continuous learning**.
+
+Training is useful not only for learning technical skills, but also for preparing teams to respond to real incidents, measuring skill development, improving productivity and building a stronger security team.
+
+I also learned how to think about training from a **business perspective**, including costs, productivity gains, ROI and choosing a training platform.
+
