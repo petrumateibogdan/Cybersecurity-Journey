@@ -144,3 +144,6 @@ The main things I want to remember are:
 * **A09:** Log important security events and alert on suspicious activity.
 
 This room helped me understand how mistakes in **identity, authentication, authorisation and accountability** can turn into real web application vulnerabilities.
+
+
+# 2. OWASP Top 10 2025: Application Design Flaws
