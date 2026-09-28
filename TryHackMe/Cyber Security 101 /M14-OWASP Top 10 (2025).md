@@ -344,3 +344,133 @@ The main thing I want to remember is:
 **Security needs to be built into the architecture, configuration, dependencies and design from the beginning.**
 
 # 3. OWASP Top 10 2025: Insecure Data Handling
+
+
+
+
+
+
+* **A04 – Cryptographic Failures**
+* **A05 – Injection**
+* **A08 – Software or Data Integrity Failures**
+
+
+
+## A04 – Cryptographic Failures
+
+I learned that cryptographic failures happen when sensitive data isn't properly protected because of weak encryption, bad implementation, exposed keys or missing security controls.
+
+Examples include:
+
+* Storing passwords without proper hashing
+* Weak/deprecated algorithms such as MD5, SHA-1 or DES
+* Exposing encryption keys
+* Not protecting data during transmission
+* Creating custom/"home-made" cryptography
+
+Important things I learned:
+
+* Use established and well-tested cryptographic algorithms.
+* Passwords should use slow password-hashing algorithms such as **bcrypt, scrypt or Argon2**.
+* Don't create my own encryption algorithms.
+* Don't hard-code credentials or secrets in source code, configuration files or repositories.
+* Use proper secret/key management.
+
+### Practical
+
+I worked with a note-sharing application that used a **weak shared derivative key** to protect notes.
+
+The goal was to use the weakness to unlock the notes and retrieve the flag.
+
+## A05 – Injection
+
+I learned that injection happens when an application takes **untrusted user input** and passes it directly into another system that can interpret it as commands or queries.
+
+Examples:
+
+* SQL Injection
+* Command Injection
+* Server-Side Template Injection (SSTI)
+* AI prompt injection
+
+The basic problem is:
+
+```text id="6p8x4e"
+User Input
+    ↓
+Application
+    ↓
+Interpreter / Query / Command
+    ↓
+Unexpected behaviour
+```
+
+I learned that SQL injection can happen when user input is directly used to construct database queries.
+
+Important prevention techniques:
+
+* Treat all user input as untrusted.
+* Use prepared statements / parameterised queries.
+* Avoid constructing SQL with string concatenation.
+* Avoid passing user input directly to the system shell.
+* Use safe APIs instead of shell commands where possible.
+* Validate input and enforce expected data types.
+* Properly sanitise/escape dangerous input where appropriate.
+
+### Practical
+
+I worked with a web application demonstrating **Server-Side Template Injection (SSTI)**.
+
+The goal was to abuse the application's dynamic rendering functionality to retrieve a flag stored on the machine.
+
+## A08 – Software or Data Integrity Failures
+
+I learned that integrity failures happen when an application trusts code, updates or data without properly verifying their **authenticity, integrity or origin**.
+
+Examples include:
+
+* Unverified software updates
+* Loading scripts from untrusted sources
+* Accepting modified configuration files
+* Trusting binaries or templates without verification
+* Failing to validate important application data
+* Weak integrity controls in CI/CD pipelines
+
+Important things to remember:
+
+* Establish clear trust boundaries.
+* Verify important files and updates before trusting them.
+* Use cryptographic checks such as checksums where appropriate.
+* Only trusted sources should be able to modify critical files.
+* Protect build and CI/CD processes.
+
+### Practical
+
+I worked with a Python application demonstrating a **deserialization attack**.
+
+The practical involved generating malicious input and providing it to the application.
+
+## What I Learned
+
+This room helped me understand three important areas of web application security:
+
+```text id="2bqk7f"
+Cryptography
+     ↓
+Protect sensitive information
+
+Injection
+     ↓
+Don't trust user input
+
+Integrity
+     ↓
+Don't blindly trust code or data
+```
+
+The main things I want to remember:
+
+* **A04:** Use strong, established cryptography and protect keys/secrets.
+* **A05:** Treat user input as untrusted and prevent it from being interpreted as commands or queries.
+* **A08:** Verify the integrity and origin of code, updates and important data before trusting them.
+
