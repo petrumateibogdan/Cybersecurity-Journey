@@ -344,3 +344,4 @@ The main thing I want to remember is:
 
 **Security needs to be built into the architecture, configuration, dependencies and design from the beginning.**
 
+# 3. OWASP Top 10 2025: Insecure Data Handling
