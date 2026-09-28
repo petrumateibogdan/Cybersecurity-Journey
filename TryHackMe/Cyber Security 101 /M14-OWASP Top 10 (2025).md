@@ -149,7 +149,6 @@ This room helped me understand how mistakes in **identity, authentication, autho
 # 2. OWASP Top 10 2025: Application Design Flaws
 
 
-# OWASP Top 10 2025 – Architecture & Design
 
 Notes from my TryHackMe room covering four OWASP Top 10:2025 categories related to **architecture, configuration, dependencies, cryptography and design**.
 
