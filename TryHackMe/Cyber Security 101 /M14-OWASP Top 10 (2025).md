@@ -147,3 +147,200 @@ This room helped me understand how mistakes in **identity, authentication, autho
 
 
 # 2. OWASP Top 10 2025: Application Design Flaws
+
+
+# OWASP Top 10 2025 – Architecture & Design
+
+Notes from my TryHackMe room covering four OWASP Top 10:2025 categories related to **architecture, configuration, dependencies, cryptography and design**.
+
+I’m keeping these notes so I can come back later and remember what I learned.
+
+## Categories
+
+* **AS02 – Security Misconfigurations**
+* **AS03 – Software Supply Chain Failures**
+* **AS04 – Cryptographic Failures**
+* **AS06 – Insecure Design**
+
+## AS02 – Security Misconfigurations
+
+I learned that security misconfigurations happen when systems are deployed with unsafe defaults, exposed services, weak permissions or incomplete security settings.
+
+Common examples:
+
+* Default credentials
+* Unnecessary exposed services
+* Misconfigured cloud storage
+* Missing authentication / authorisation
+* Verbose error messages
+* Outdated software
+* Exposed AI/ML endpoints
+
+Important things to remember:
+
+* Harden default configurations.
+* Remove unnecessary services.
+* Use strong authentication and least privilege.
+* Limit network exposure.
+* Keep software and containers updated.
+* Don't expose stack traces or sensitive system information.
+* Regularly review cloud permissions.
+* Include configuration checks in the deployment process.
+
+**Challenge:** I investigated a User Management API with too many exposed traces.
+
+## AS03 – Software Supply Chain Failures
+
+I learned that a vulnerability doesn't always come from my own code. Applications depend on libraries, packages, APIs, services and other components that can also be compromised.
+
+Common problems:
+
+* Unverified dependencies
+* Outdated libraries
+* Automatic updates without verification
+* Vulnerable third-party components
+* Insecure CI/CD pipelines
+* Poor dependency provenance tracking
+* Unverified AI models or datasets
+
+Important things to remember:
+
+* Verify third-party components.
+* Keep dependencies updated.
+* Sign and verify software updates.
+* Secure CI/CD pipelines.
+* Track dependency provenance.
+* Monitor dependencies after deployment.
+* Treat third-party AI components as part of the supply chain.
+
+**Challenge:** I investigated an application using an outdated `vulnerable_utils.py` component.
+
+## AS04 – Cryptographic Failures
+
+I learned that cryptography can fail through incorrect implementation, weak algorithms, exposed keys or poor secret management.
+
+Common examples:
+
+* Weak/deprecated algorithms such as MD5 or SHA-1
+* ECB mode
+* Hard-coded secrets
+* Poor key management
+* Poor key rotation
+* Unencrypted sensitive data
+* Invalid TLS certificates
+* Exposed secrets in AI systems
+
+I learned that modern applications should use strong cryptographic algorithms and proper key management.
+
+Examples mentioned:
+
+```text
+AES-GCM
+ChaCha20-Poly1305
+TLS 1.3
+```
+
+For key management, examples include:
+
+```text
+AWS KMS
+Azure Key Vault
+HashiCorp Vault
+```
+
+Important things to remember:
+
+* Don't hard-code secrets.
+* Protect data both at rest and in transit.
+* Rotate keys and secrets.
+* Keep track of certificates and keys.
+* Never expose sensitive secrets through AI models or automation.
+
+**Challenge:** I investigated a web application where I had to find the key needed to decrypt a file.
+
+## AS06 – Insecure Design
+
+I learned that **insecure design** is different from simply having a coding bug.
+
+The problem can be built into the architecture or business logic from the beginning.
+
+Examples include:
+
+* Weak recovery or approval flows
+* Bad assumptions about user behaviour
+* Missing security requirements
+* Missing abuse-case analysis
+* Test/debug functionality left in production
+* AI systems with too much authority
+* Missing guardrails around AI agents
+
+An important lesson:
+
+**You can't simply patch an insecure design. Sometimes the design or workflow itself needs to change.**
+
+## Insecure Design + AI
+
+I learned that AI introduces additional design risks.
+
+Examples include:
+
+* Prompt injection
+* Blindly trusting model output
+* AI agents having excessive permissions
+* Unverified models or datasets
+* Missing human review
+* Sensitive information being placed into prompts
+
+Important principles:
+
+* Treat AI models as untrusted.
+* Validate model inputs and outputs.
+* Separate system instructions from user input.
+* Keep sensitive information out of prompts when possible.
+* Require human review for high-risk actions.
+* Monitor model behaviour and provenance.
+* Include AI threats in threat modelling.
+
+## Secure Design
+
+Things I want to remember:
+
+```text
+Threat modelling
+      ↓
+Security requirements
+      ↓
+Least privilege
+      ↓
+Authentication / Authorisation
+      ↓
+Secure dependencies
+      ↓
+Testing
+      ↓
+Monitoring
+```
+
+I learned that security needs to be considered throughout development rather than added at the very end.
+
+## What I Learned
+
+This room helped me understand that security problems can come from much more than vulnerable code.
+
+I learned about:
+
+* **Security misconfigurations**
+* **Software supply chains**
+* **Cryptographic failures**
+* **Insecure design**
+* Dependency security
+* Key and secret management
+* Least privilege
+* Threat modelling
+* Secure architecture
+* AI-specific security risks
+
+The main thing I want to remember is:
+
+**Security needs to be built into the architecture, configuration, dependencies and design from the beginning.**
+
